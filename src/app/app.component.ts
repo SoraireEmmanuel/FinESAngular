@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'FinesPlusPlus';
   finesImg = 'https://www.todoprovincial.com/wp-content/uploads/2018/09/fines.png'
+  finesImg2 ='https://elsubmarinojujuy.com.ar/wp-content/uploads/Fotos_Archivo/nuevas7/plan_fines-logo.jpg'
 }
