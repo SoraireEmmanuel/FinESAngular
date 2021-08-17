@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FinesPlusPlus';
-  finesImg = 'https://www.todoprovincial.com/wp-content/uploads/2018/09/fines.png'
 }
