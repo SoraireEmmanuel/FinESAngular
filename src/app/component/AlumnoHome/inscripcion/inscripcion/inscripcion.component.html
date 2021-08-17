@@ -1,0 +1,24 @@
+
+<div class="p-3">
+  <h1>Inscripcion</h1>
+  <hr>
+<form>
+    <h5>Materia: {{materia}}</h5>
+    <label for="zona" class="form-label">Zona: </label>
+    <select id="zona" class="form-select">
+        <option *ngFor="let z of zona">{{z}}</option>
+    </select>
+    <div class="row">
+        <div class="col-sm-6">
+        <label for="zona" class="form-label">Zona: </label>
+        <select id="zona" class="form-select">
+            <option *ngFor="let s of censsede">{{s}}</option>
+        </select>
+    </div>
+    <div class="col-sm-6 mt-4">
+        <h5>Horario: xx - xx Dia: XX</h5>
+    </div>
+    </div>
+    <button type="submit" class="btn  btn-success">Inscribirme</button>
+</form>
+</div>

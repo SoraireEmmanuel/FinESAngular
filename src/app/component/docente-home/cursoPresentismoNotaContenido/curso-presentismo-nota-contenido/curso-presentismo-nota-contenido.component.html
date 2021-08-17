@@ -1,0 +1,71 @@
+<div>
+
+    <h6>Materia: Matematica</h6>
+    <h6>Curso: 1° 1°</h6>
+    <h6>CEDE/Sens: 451 - Biblitoe guevara</h6>
+    <div style="margin: 3%;border: black; ">
+        <label for="disabledSelect" class="form-label">Clase: </label>
+        <select id="disabledSelect" class="form-select">
+            <option *ngFor="let item of clase">{{item}}</option>
+        </select>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                style="height: 100px" name="resumenclinico" formControlName="resumenclinico"></textarea>
+            <label for="floatingTextarea2">Tema Dado</label>
+        </div>
+    </div>
+    <div style="margin: 3%;border: black; ">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5>Nombre y Apellido del Alumno</h5>
+            </div>
+            <div class="col-sm-2">
+                <h5>Presente</h5>
+            </div>
+            <div class="row 5 col-sm-5">
+                <div class="col-sm-3">
+                    <h5>Nota 1</h5>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Nota 2</h5>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Nota 3</h5>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Nota Final</h5>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row" *ngFor="let item of alumno; let indice=index" >
+            <div class="col-sm-5">
+                {{indice + item.nombre}}
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Errores Formales" id="p1c1o1" name="p1c1o1"
+                        formControlName="p1c1o1">
+                </div>
+            </div>
+            <div class="row col-sm-5">
+                <div class="col-sm-3">
+                    <input type="number" style="width: 40%;">
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" style="width: 40%;">
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" style="width: 40%;">
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" style="width: 40%;">
+                </div>
+            </div>
+            <hr class="mt-1">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <button type="submit" class="btn btn-primary">Descargar Informe</button>
+</div>
