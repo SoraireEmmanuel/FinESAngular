@@ -26,6 +26,7 @@ import { MisCursosHistoricosComponent } from './component/docente-home/MisCursos
 import { AsignardocenteComponent } from './component/coordinador-home/asignardocente/asignardocente/asignardocente.component';
 import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
+import { UserComponent } from './component/user/user.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CursoPresentismoNotaContenidoComponent } from './component/docente-home
     MisCursosHistoricosComponent,
     AsignardocenteComponent,
     AdministrarcursoComponent,
-    CursoPresentismoNotaContenidoComponent
+    CursoPresentismoNotaContenidoComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,71 +1,138 @@
-<div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <dl class="row">
+        <dt class="col-sm-3">Materia</dt>
+        <dd class="col-sm-9">{{ materia.nombre }}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">Curso</dt>
+        <dd class="col-sm-9">{{ materia.nivel }} {{materia.cuatrimestre}}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">SEDE/Sens</dt>
+        <dd class="col-sm-9">{{ curso.sede }}</dd>
+      </dl>
+    </div>
+    <div class="col-lg-4">
+      <dl class="row">
+        <dt class="col-sm-4">Turno</dt>
+        <dd class="col-sm-8">{{ curso.turno }}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-4">Ciclo Lectivo</dt>
+        <dd class="col-sm-8">{{ curso.cicloLectivo }}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">CEDE/Sens</dt>
+        <dd class="col-sm-9"></dd>
+      </dl>
+    </div>
+</div>
+</div>
 
-    <h6>Materia: Matematica</h6>
-    <h6>Curso: 1° 1°</h6>
-    <h6>CEDE/Sens: 451 - Biblitoe guevara</h6>
-    <div style="margin: 3%;border: black; ">
-        <label for="disabledSelect" class="form-label">Clase: </label>
-        <select id="disabledSelect" class="form-select">
-            <option *ngFor="let item of clase">{{item}}</option>
+<br />
+
+<form>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          <u>Clase: </u>
+
+        </label>
+
+        <select class="form-select" aria-label="Default select example">
+          <option *ngFor="let clase of clases; index as i" value="i">
+            {{ clase.nombre }}
+          </option>
         </select>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                style="height: 100px" name="resumenclinico" formControlName="resumenclinico"></textarea>
-            <label for="floatingTextarea2">Tema Dado</label>
-        </div>
-    </div>
-    <div style="margin: 3%;border: black; ">
-        <div class="row">
-            <div class="col-sm-5">
-                <h5>Nombre y Apellido del Alumno</h5>
-            </div>
-            <div class="col-sm-2">
-                <h5>Presente</h5>
-            </div>
-            <div class="row 5 col-sm-5">
-                <div class="col-sm-3">
-                    <h5>Nota 1</h5>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Nota 2</h5>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Nota 3</h5>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Nota Final</h5>
-                </div>
-            </div>
-            <hr>
-        </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Fecha</span>
+        <input type="text" class="form-control" placeholder="dd/mm/aa" aria-label="Fecha"
+        value="{{fecha}}"
+        aria-describedby="basic-addon1">
 
-        <div class="row" *ngFor="let item of alumno; let indice=index" >
-            <div class="col-sm-5">
-                {{indice + item.nombre}}
-            </div>
-            <div class="col-sm-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Errores Formales" id="p1c1o1" name="p1c1o1"
-                        formControlName="p1c1o1">
-                </div>
-            </div>
-            <div class="row col-sm-5">
-                <div class="col-sm-3">
-                    <input type="number" style="width: 40%;">
-                </div>
-                <div class="col-sm-3">
-                    <input type="number" style="width: 40%;">
-                </div>
-                <div class="col-sm-3">
-                    <input type="number" style="width: 40%;">
-                </div>
-                <div class="col-sm-3">
-                    <input type="number" style="width: 40%;">
-                </div>
-            </div>
-            <hr class="mt-1">
-        </div>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success btn-lg">
+          <i class="fas fa-database"></i>&nbsp; Guardar cambios
+        </button>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    <button type="submit" class="btn btn-primary">Descargar Informe</button>
+
+    <div class="col-lg-8">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">
+          <u> Tema Dado: </u>
+          </label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+
+      </div>
+
+      <span class="badge rounded-pill bg-success p-2 m-1">
+        <i class="fas fa-plus"></i>
+        &nbsp; Nueva clase
+      </span>
+      <span class="badge rounded-pill bg-danger p-2 m-1">
+        <i class="fas fa-minus"></i>
+        &nbsp; Eliminar clase
+      </span>
+
+    </div>
+  </div>
+</form>
+
+<div class="row mt-4 g-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nr</th>
+              <th scope="col">Nombre y Apellido del Alumno</th>
+              <th scope="col">Presente</th>
+              <th scope="col">Nota 1</th>
+              <th scope="col">Nota 2</th>
+              <th scope="col">Nota Final</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alumno of alumnos; let i = index">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ alumno.nombre }}</td>
+
+              <td>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="Errores Formales"
+                    id="presente"
+                    name="presente"
+                    formControlName="presente"
+                    [(ngModel)]="alumno.presente"
+                  />
+                </div>
+              </td>
+              <td>{{ alumno.nota1 }}</td>
+              <td>{{ alumno.nota2 }}</td>
+              <td>{{ alumno.notaFinal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg">
+    Descargar Informe
+  </button>
 </div>
