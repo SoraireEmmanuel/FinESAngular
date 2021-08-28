@@ -13,6 +13,8 @@ import { HomeComponent } from './component/home/home.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
+import { ToastrModule } from 'ngx-toastr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlumnoHomeComponent } from './component/alumno-home/alumno-home.component';
@@ -53,7 +55,10 @@ import { UserComponent } from './component/user/user.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot( ROUTES, {useHash:true})
+    RouterModule.forRoot( ROUTES, {useHash:true}),
+    HttpClientModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

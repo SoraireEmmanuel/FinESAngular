@@ -7,11 +7,11 @@
       </dl>
       <dl class="row">
         <dt class="col-sm-3">Curso</dt>
-        <dd class="col-sm-9">{{ materia.nivel }} {{materia.cuatrimestre}}</dd>
+        <dd class="col-sm-9">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-3">SEDE/Sens</dt>
-        <dd class="col-sm-9">{{ curso.sede }}</dd>
+        <dd class="col-sm-9">{{ curso.sedeId }}</dd>
       </dl>
     </div>
     <div class="col-lg-4">
@@ -23,37 +23,40 @@
         <dt class="col-sm-4">Ciclo Lectivo</dt>
         <dd class="col-sm-8">{{ curso.cicloLectivo }}</dd>
       </dl>
-      <dl class="row">
-        <dt class="col-sm-3">CEDE/Sens</dt>
-        <dd class="col-sm-9"></dd>
-      </dl>
     </div>
-</div>
+  </div>
 </div>
 
 <br />
 
-<form>
+<form [formGroup]="form" (ngSubmit)="guardarCambios()">
   <div class="row">
     <div class="col-lg-4">
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">
+        <label class="form-label">
           <u>Clase: </u>
-
         </label>
 
-        <select class="form-select" aria-label="Default select example">
-          <option *ngFor="let clase of clases; index as i" value="i">
+        <select
+          class="form-select"
+          (change)="changeForm($event)"
+          (click)="obtenerClases(1)"
+          formControlName="claseNombre"
+        >
+          <option *ngFor="let clase of clases1; index as i">
             {{ clase.nombre }}
           </option>
         </select>
       </div>
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Fecha</span>
-        <input type="text" class="form-control" placeholder="dd/mm/aa" aria-label="Fecha"
-        value="{{fecha}}"
-        aria-describedby="basic-addon1">
-
+        <span class="input-group-text" id="claseFecha">Fecha</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="dd/mm/aa"
+          aria-label="Fecha"
+          formControlName="claseFecha"
+        />
       </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-success btn-lg">
@@ -66,14 +69,13 @@
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">
           <u> Tema Dado: </u>
-          </label
-        >
+        </label>
         <textarea
           class="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          formControlName="claseTema"
         ></textarea>
-
       </div>
 
       <span class="badge rounded-pill bg-success p-2 m-1">
@@ -84,7 +86,6 @@
         <i class="fas fa-minus"></i>
         &nbsp; Eliminar clase
       </span>
-
     </div>
   </div>
 </form>
@@ -106,7 +107,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let alumno of alumnos; let i = index">
-              <th scope="row">{{ i+1 }}</th>
+              <th scope="row">{{ i + 1 }}</th>
               <td>{{ alumno.nombre }}</td>
 
               <td>
@@ -132,7 +133,7 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">
+  <button (click)="cargarCurso(1)" class="btn btn-primary btn-lg">
     Descargar Informe
   </button>
 </div>

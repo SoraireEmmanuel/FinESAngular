@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-cursos-activos',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisCursosActivosComponent implements OnInit {
 prueba=["1","2","3","4"];
-  constructor() { }
+cursos:any;
+idCurso=0;
+  constructor( public cursoContenidoService: CursoContenidoService,
+    private router:Router) { }
+
 
   ngOnInit(): void {
-  }
+    this.cursoContenidoService.obtenerCursos1().subscribe(data=>{
+      console.log("data",data)
+      this.cursos = data as any;
+        //console.log(this.listCursos)
+        console.log(this.cursos)
+      });
 
+  }
+  verDetalle(id:any){
+    this.idCurso=id;
+    this.cursoContenidoService.actualizar(this.idCurso);
+    console.log("llamdo")
+    this.router.navigate(['cursopresentismocontenido']);
+  }
 }
