@@ -5,7 +5,7 @@
 <div *ngFor="let curso of cursos" (click)="verDetalle(curso.id)" class="card">
     <div class=" card border-success mb-3" style="max-width: 18rem;">
         <div class="card-body text-success" >
-            <h5 class="card-title">{{curso.id}} - IGE: {{curso.ige}}</h5>
+            <h5 class="card-title">{{curso.id}} - IGE: {{curso.ige}} - {{curso.materia.nombre}}</h5>
             <p class="card-text">Turno: {{curso.turno}}</p>
             <p class="card-text">Ciclo lectivo: {{curso.cicloLectivo}}</p>
             <p class="card-text">Sede: {{curso.sedeId}}</p>

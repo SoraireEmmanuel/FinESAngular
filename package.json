@@ -9,7 +9,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serverAPI":"json-server --watch server/db.json --port 3000"
   },
   "private": true,
   "dependencies": {

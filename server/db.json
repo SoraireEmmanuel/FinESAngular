@@ -1,0 +1,184 @@
+{
+  "clases": [
+    {
+      "id": 1,
+      "nombre": "Clase 1",
+      "fecha": "12/11/21",
+      "tema": "Test",
+      "curso": {
+        "id": 1,
+        "turno": "Tarde",
+        "cicloLectivo": "2021",
+        "sedeId": "La Plata",
+        "materia": 1,
+        "ige": 2323,
+        "id_curso": "1",
+        "published_at": "2021-08-27T06:10:36.963Z",
+        "created_at": "2021-08-27T06:10:08.568Z",
+        "updated_at": "2021-08-28T12:13:05.014Z"
+      },
+      "idClase": "1",
+      "published_at": "2021-08-27T17:24:30.274Z",
+      "created_at": "2021-08-27T06:12:52.651Z",
+      "updated_at": "2021-08-28T12:18:27.490Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Clase 2",
+      "fecha": "13/11/21",
+      "tema": "test 2",
+      "curso": {
+        "id": 1,
+        "turno": "Tarde",
+        "cicloLectivo": "2021",
+        "sedeId": "La Plata",
+        "materia": 1,
+        "ige": 2323,
+        "id_curso": "1",
+        "published_at": "2021-08-27T06:10:36.963Z",
+        "created_at": "2021-08-27T06:10:08.568Z",
+        "updated_at": "2021-08-28T12:13:05.014Z"
+      },
+      "idClase": "2",
+      "published_at": "2021-08-27T20:56:33.746Z",
+      "created_at": "2021-08-27T20:56:23.862Z",
+      "updated_at": "2021-08-28T12:18:43.979Z"
+    }
+  ],
+  "materias": [
+    {
+      "id": 1,
+      "nombre": "Historia",
+      "nivel": "2°",
+      "cuatrimestre": "1c",
+      "cargaHoraria": 2,
+      "IdMateria": null,
+      "published_at": "2021-08-27T06:15:39.010Z",
+      "created_at": "2021-08-27T06:07:34.319Z",
+      "updated_at": "2021-08-27T06:15:39.029Z",
+      "curso_id": [
+        {
+          "id": 1,
+          "turno": "Tarde",
+          "cicloLectivo": "2021",
+          "sedeId": "La Plata",
+          "materia": 1,
+          "ige": 2323,
+          "id_curso": "1",
+          "published_at": "2021-08-27T06:10:36.963Z",
+          "created_at": "2021-08-27T06:10:08.568Z",
+          "updated_at": "2021-08-28T12:13:05.014Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Matematica",
+      "nivel": "1°",
+      "cuatrimestre": "1c",
+      "cargaHoraria": 2,
+      "IdMateria": null,
+      "published_at": "2021-08-28T12:02:33.738Z",
+      "created_at": "2021-08-28T12:02:31.809Z",
+      "updated_at": "2021-08-28T12:02:33.776Z",
+      "curso_id": [
+        {
+          "id": 3,
+          "turno": "Mañana",
+          "cicloLectivo": "2021",
+          "sedeId": "La Plata",
+          "materia": 2,
+          "ige": 2325,
+          "id_curso": "3",
+          "published_at": "2021-08-28T12:01:26.702Z",
+          "created_at": "2021-08-28T12:01:24.295Z",
+          "updated_at": "2021-08-28T12:12:28.837Z"
+        }
+      ]
+    }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+      "turno": "Tarde",
+      "cicloLectivo": "2021",
+      "sedeId": "La Plata",
+      "materia": {
+        "id": 1,
+        "nombre": "Historia",
+        "nivel": "2°",
+        "cuatrimestre": "1c",
+        "cargaHoraria": 2,
+        "IdMateria": null,
+        "published_at": "2021-08-27T06:15:39.010Z",
+        "created_at": "2021-08-27T06:07:34.319Z",
+        "updated_at": "2021-08-27T06:15:39.029Z"
+      },
+      "ige": 2323,
+      "id_curso": "1",
+      "published_at": "2021-08-27T06:10:36.963Z",
+      "created_at": "2021-08-27T06:10:08.568Z",
+      "updated_at": "2021-08-28T12:13:05.014Z",
+      "clases": [
+        {
+          "id": 1,
+          "nombre": "Clase 1",
+          "fecha": "12/11/21",
+          "tema": "Test",
+          "curso": 1,
+          "idClase": "1",
+          "published_at": "2021-08-27T17:24:30.274Z",
+          "created_at": "2021-08-27T06:12:52.651Z",
+          "updated_at": "2021-08-28T12:18:27.490Z"
+        },
+        {
+          "id": 2,
+          "nombre": "Clase 2",
+          "fecha": "13/11/21",
+          "tema": "test 2",
+          "curso": 1,
+          "idClase": "2",
+          "published_at": "2021-08-27T20:56:33.746Z",
+          "created_at": "2021-08-27T20:56:23.862Z",
+          "updated_at": "2021-08-28T12:18:43.979Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "turno": "Tarde",
+      "cicloLectivo": "2021",
+      "sedeId": "La Plata",
+      "materia": null,
+      "ige": 2324,
+      "id_curso": "2",
+      "published_at": "2021-08-28T12:00:56.959Z",
+      "created_at": "2021-08-28T12:00:54.229Z",
+      "updated_at": "2021-08-28T12:13:40.167Z",
+      "clases": []
+    },
+    {
+      "id": 3,
+      "turno": "Mañana",
+      "cicloLectivo": "2021",
+      "sedeId": "La Plata",
+      "materia": {
+        "id": 2,
+        "nombre": "Matematica",
+        "nivel": "1°",
+        "cuatrimestre": "1c",
+        "cargaHoraria": 2,
+        "IdMateria": null,
+        "published_at": "2021-08-28T12:02:33.738Z",
+        "created_at": "2021-08-28T12:02:31.809Z",
+        "updated_at": "2021-08-28T12:02:33.776Z"
+      },
+      "ige": 2325,
+      "id_curso": "3",
+      "published_at": "2021-08-28T12:01:26.702Z",
+      "created_at": "2021-08-28T12:01:24.295Z",
+      "updated_at": "2021-08-28T12:12:28.837Z",
+      "clases": []
+    }
+  ]
+}
