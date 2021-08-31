@@ -7,3 +7,24 @@ background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, F
   font-family: 'Potta One', cursive;
   text-align: center;
 }
+
+.manito{
+    cursor: pointer;
+}
+.manito:hover{
+    opacity: 0.7;
+}
+
+.aprobada{
+background-color: rgba(13, 223, 30, 0.308);
+}
+.noCursada{
+background-color: rgba(255, 0, 0, 0.300);
+
+}
+.enCurso{
+    background-color: rgba(238, 255, 0, 0.308);
+    color:rgb(182, 148, 0);
+
+
+    }
