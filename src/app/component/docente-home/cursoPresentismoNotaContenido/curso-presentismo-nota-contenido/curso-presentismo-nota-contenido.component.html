@@ -1,32 +1,37 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-4">
+  <div class="row mt-3">
+    <div class="col-sm-3  m-2 p-2">
       <dl class="row">
-        <dt class="col-sm-3">Materia</dt>
-        <dd class="col-sm-9" >{{ materia.nombre }}</dd>
-      </dl>
-      <dl class="row">
-        <dt class="col-sm-3">IGE</dt>
-        <dd class="col-sm-9">{{ materia.igeCurso}}</dd>
-      </dl>
-      <dl class="row">
-        <dt class="col-sm-3">Curso</dt>
-        <dd class="col-sm-9">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
-      </dl>
-
-    </div>
-    <div class="col-lg-4">
-      <dl class="row">
-        <dt class="col-sm-3">SEDE/Sens</dt>
-        <dd class="col-sm-9">{{ curso.sedeId }}</dd>
+        <dt class="col-sm-4">Materia</dt>
+        <dd class="col-sm-8" >{{ materia.nombre }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Turno</dt>
         <dd class="col-sm-8">{{ curso.turno }}</dd>
       </dl>
+
+
+    </div>
+    <div class="col-sm-3 m-2 p-2">
       <dl class="row">
-        <dt class="col-sm-4">Ciclo Lectivo</dt>
-        <dd class="col-sm-8">{{ curso.cicloLectivo }}</dd>
+        <dt class="col-sm-4">IGE</dt>
+        <dd class="col-sm-8">{{ materia.igeCurso}}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-4">Curso</dt>
+        <dd class="col-sm-8">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
+      </dl>
+
+    </div>
+    <div class="col-sm-3 m-2 p-2">
+      <dl class="row">
+        <dt class="col-sm-5">SEDE/Sens</dt>
+        <dd class="col-sm-7">{{ curso.sedeId }}</dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="col-sm-5">Ciclo Lectivo</dt>
+        <dd class="col-sm-7">{{ curso.cicloLectivo }}</dd>
       </dl>
     </div>
   </div>
@@ -35,8 +40,8 @@
 <br />
 
 <form [formGroup]="form" (ngSubmit)="guardarCambios()">
-  <div class="row">
-    <div class="col-lg-4">
+  <div class="row m-2 p-3 fondo">
+    <div class="col-lg-3">
       <div class="mb-3">
         <label class="form-label">
           <u>Clase: </u>
@@ -72,7 +77,7 @@
       </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-9">
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">
           <u> Tema Dado: </u>

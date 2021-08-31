@@ -2,6 +2,13 @@
   cursor: pointer;
 }
 .container-fluid{
-  background-color: rgb(236, 233, 233);
+  background-color: rgb(255, 255, 255);
 border-radius: 12px;
+}
+.manito:hover {
+  -webkit-transform:scale(1.25);
+  -moz-transform:scale(1.25);
+  -ms-transform:scale(1.25);
+  -o-transform:scale(1.25);
+  transform:scale(1.25);
 }

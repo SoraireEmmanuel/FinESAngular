@@ -1,11 +1,11 @@
-<div class="mt-3 p-2">
+<div class="mt-3 p-2 fondo">
     <h3>Primer Año</h3>
     <hr>
     <div style="margin-left: 4%;">
         <h5>Primer Cuatrimestre</h5>
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of primerocuatri1" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"
@@ -23,7 +23,7 @@
         <h5>Segundo Cuatrimestre</h5>
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of primerocuatri2" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"
@@ -46,7 +46,7 @@
 
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of segundocuatri1" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"
@@ -65,7 +65,7 @@
         <h5>Segundo Cuatrimestre</h5>
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of segundocuatri2" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"
@@ -87,7 +87,7 @@
         <h5>Primer Cuatrimestre</h5>
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of tercerocuatri1" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"
@@ -105,7 +105,7 @@
         <h5>Segundo Cuatrimestre</h5>
         <div class="row ">
             <div class="col-sm-3 " *ngFor="let item of tercerocuatri2" (click)="verMateria(1,'ss','ss')">
-                <div class=" card border-success mb-3 manito" 
+                <div class=" card border-success mb-3 manito"
                 [class.aprobada]="item.estado=='Aprobada'"
                 [class.text-success]="item.estado=='Aprobada'"
                 [class.enCurso]="item.estado=='En Curso'"

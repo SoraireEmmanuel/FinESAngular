@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 
 @Component({
   selector: 'app-docente-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocenteHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,
+    public cursoContenidoService: CursoContenidoService) { }
 
   ngOnInit(): void {
+  }
+
+  
+  estado(estado:string){
+    this.cursoContenidoService.vista=estado;
+    console.log(this.cursoContenidoService.vista,"vista:");
+    this.router.navigate(['miscursos']);
   }
 
 }

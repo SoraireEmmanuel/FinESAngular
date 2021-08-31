@@ -12,13 +12,15 @@ export class NavbarComponent implements OnInit {
   rol:any='0';
   usuario:any;
   password:any;
-  
+
 
   constructor(public cursoContenidoService: CursoContenidoService, private _auth:AuthService,
-    private router:Router) { }
+    private router:Router) {
+
+     }
 
   ngOnInit(): void {
-  }
+     }
   estado(estado:string){
     this.cursoContenidoService.vista=estado;
     console.log(this.cursoContenidoService.vista,"vista:")

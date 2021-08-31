@@ -1,23 +1,27 @@
-<div class="row mt-5">
+<div class="row m-5">
     <div class="col-sm-6" >
-        <div class=" card border-success mb-3" style="max-width: 18rem;">
-           
+        <div class=" card border-success mb-3 bg-light manito"
+
+        (click)="estado('activo')"
+        style="max-width: 35rem;">
+
             <div class="card-body text-success">
-                <h5 class="card-title">Mis Cursos Activos</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
+              <h3 class="card-title text-center">Mis Cursos Activos</h3>
+              <hr>
+              <p class="card-text">ver la lista de cursos activos</p>
+          </div>
         </div>
     </div>
     <div class="col-sm-6">
-        <div class=" card border-success mb-3" style="max-width: 18rem;">
-            
+        <div class=" card border-success mb-3 bg-light manito"
+
+        (click)="estado('inactivo')"
+        style="max-width: 35rem;">
+
             <div class="card-body text-success">
-                <h5 class="card-title">Mis Cursos Historicos</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
+                <h3 class="card-title text-center">Mis Cursos Historicos</h3>
+                <hr>
+                <p class="card-text">ver la lista de cursos cerrados</p>
             </div>
         </div>
         </div>
