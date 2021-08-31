@@ -8,37 +8,40 @@ import { Materia } from '../models/materia';
   providedIn: 'root'
 })
 export class CursoContenidoService {
-  myAppUrl ='http://localhost:3000/';
+  myAppUrl = 'http://localhost:3000/';
   //myApiUrl = 'api/TarjetaCredito/';
   listCursos: any[];
   listMaterias: any[];
   listClases: any[];
   curso: any;
-  mat:Materia;
+  mat: Materia;
   da: object;
+  vista:string;
 
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.vista="inactivo";
+  }
 
-  obtenerCursos(){
-    this.http.get(this.myAppUrl+'cursos').toPromise()
-        .then(data => {
-          this.listCursos = data as any;
-          //console.log(this.listCursos)
+  obtenerCursos() {
+    this.http.get(this.myAppUrl + 'cursos').toPromise()
+      .then(data => {
+        this.listCursos = data as any;
+        //console.log(this.listCursos)
 
-        });
+      });
 
   }
-  obtenerCursos1(){
-  return this.http.get(this.myAppUrl+'cursos')
-      }
+  obtenerCursos1() {
+    return this.http.get(this.myAppUrl + 'cursos')
+  }
 
-  obtenerClases(ige:any){
-  return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
-   }
+  obtenerClases(ige: any) {
+    return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
+  }
 
   // obtenerCurso(id: number){
   //    this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()
@@ -48,47 +51,47 @@ export class CursoContenidoService {
 
   //   });
   // }
-  obtenerCurso1(id: number){
+  obtenerCurso1(id: number) {
     return this.http.get(`${this.myAppUrl}cursos/${id}`)
-  //   .then(data => {
-  //    this.curso = data as any;
-  //    //console.log(this.listCursos)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
 
-  //  });
- }
-  actualizar(id: any){
+    //  });
+  }
+  actualizar(id: any) {
     this.actualizarFormulario.next(id);
   }
-  obtenerDato$(): Observable<any>{
+  obtenerDato$(): Observable<any> {
     return this.actualizarFormulario.asObservable();
   }
 
-  obtenerMateria(ige: any){
+  obtenerMateria(ige: any) {
     this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
-    .then( (da : any) => {
-      this.da=da[0];
-      this.mat=this.da as Materia;
-      //this.da.map((d) => d.)
-      //this.mat = da as Materia;
-      console.log("obtener materia data",this.mat)
-    })
+      .then((da: any) => {
+        this.da = da[0];
+        this.mat = this.da as Materia;
+        //this.da.map((d) => d.)
+        //this.mat = da as Materia;
+        console.log("obtener materia data", this.mat)
+      })
   }
 
-  obtenerMateria1(ige: number){
+  obtenerMateria1(ige: number) {
     return this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`)
-  //   .then(data => {
-  //    this.curso = data as any;
-  //    //console.log(this.listCursos)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
 
-  //  });
- }
+    //  });
+  }
 
- obtenerAsistencia(idClase: number){
-  return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}`)
-//   .then(data => {
-//    this.curso = data as any;
-//    //console.log(this.listCursos)
+  obtenerAsistencia(idClase: number, ige: number) {
+    return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}&igeId=${ige}`)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
 
-//  });
-}
+    //  });
+  }
 }

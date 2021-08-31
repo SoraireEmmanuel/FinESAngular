@@ -23,7 +23,7 @@ export const ROUTES:Routes=[
     { path: 'alumnoreclamo', component: ReclamoComponent },
     { path: 'asignardocente', component: AsignardocenteComponent },
     { path: 'administrarcurso', component: AdministrarcursoComponent },
-    { path: 'miscursosactivos', component: MisCursosActivosComponent },
+    { path: 'miscursos', component: MisCursosActivosComponent },
     { path: 'cursopresentismocontenido', component: CursoPresentismoNotaContenidoComponent },
     { path: '', pathMatch: 'full', redirectTo: 'home'},
     { path: '**', pathMatch: 'full', redirectTo: 'home'}

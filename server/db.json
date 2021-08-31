@@ -64,6 +64,15 @@
       "claseId": 0
     },
     {
+      "nya": "Emma",
+      "presente": true,
+      "igeId": 2323,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 0
+    },
+    {
       "nya": "Pato",
       "presente": false,
       "igeId": 2323,
@@ -74,43 +83,48 @@
     },
     {
       "nya": "Emma",
-      "presente": "True",
-      "igeId": "2323",
-      "nota1": "1",
-      "nota2": "5",
-      "notaFinal": "3"
+      "presente": true,
+      "igeId": 2327,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 2
+    },
+    {
+      "nya": "Lucas",
+      "presente": true,
+      "igeId": 2326,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 1
     },
     {
       "nya": "Emma",
-      "presente": "True",
-      "igeId": "2323",
-      "nota1": "1",
-      "nota2": "5",
-      "notaFinal": "3"
+      "presente": true,
+      "igeId": 2324,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 1
     },
     {
-      "nya": "Emma",
-      "presente": "True",
-      "igeId": "2323",
-      "nota1": "1",
-      "nota2": "5",
-      "notaFinal": "3"
+      "nya": "Pato",
+      "presente": false,
+      "igeId": 2325,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 1
     },
     {
-      "nya": "Emma",
-      "presente": "True",
-      "igeId": "2323",
-      "nota1": "1",
-      "nota2": "5",
-      "notaFinal": "3"
-    },
-    {
-      "nya": "Emma",
-      "presente": "True",
-      "igeId": "2323",
-      "nota1": "1",
-      "nota2": "5",
-      "notaFinal": "3"
+      "nya": "Pedro",
+      "presente": true,
+      "igeId": 2327,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 0
     }
   ],
   "clases": [
@@ -213,7 +227,8 @@
       "sedeId": "La Plata",
       "materia": "Matematica",
       "ige": 2323,
-      "id_curso": "1"
+      "id_curso": "1",
+      "estado":"activo"
     },
     {
       "id": 2,
@@ -222,7 +237,8 @@
       "sedeId": "La Plata",
       "materia": "Historia",
       "ige": 2324,
-      "id_curso": "2"
+      "id_curso": "2",
+      "estado":"activo"
     },
     {
       "id": 3,
@@ -231,7 +247,8 @@
       "sedeId": "La Plata",
       "materia": "Ingles",
       "ige": 2327,
-      "id_curso": "3"
+      "id_curso": "3",
+      "estado":"activo"
     },
     {
       "id": 4,
@@ -240,7 +257,8 @@
       "sedeId": "La Plata",
       "materia": "Fisica",
       "ige": 2325,
-      "id_curso": "4"
+      "id_curso": "4",
+      "estado":"inactivo"
     },
     {
       "id": 5,
@@ -249,7 +267,8 @@
       "sedeId": "La Plata",
       "materia": "Informatica",
       "ige": 2326,
-      "id_curso": "5"
+      "id_curso": "5",
+      "estado":"activo"
     }
   ]
 }

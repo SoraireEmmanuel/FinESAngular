@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public cursoContenidoService: CursoContenidoService) { }
 
   ngOnInit(): void {
+  }
+  estado(estado:string){
+    this.cursoContenidoService.vista=estado;
+    console.log(this.cursoContenidoService.vista,"vista:")
   }
 
 }

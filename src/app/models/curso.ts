@@ -6,6 +6,7 @@ export class Curso{
   materia: string;
   ige:number;
   id_curso: number;
+  estado:string;
   constructor(){
     this.id=-1,
     this.turno="",
@@ -13,7 +14,8 @@ export class Curso{
     this.sedeId="",
     this.materia="",
     this.ige=-1,
-    this.id_curso=-1
+    this.id_curso=-1,
+    this.estado="activo"
   }
 
 }
