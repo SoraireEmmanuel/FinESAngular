@@ -3,4 +3,11 @@ export class Clases{
   nombre: string;
   fecha: string;
   tema:string;
+
+  constructor(){
+    this.id=-1;
+    this.nombre="";
+    this.fecha="";
+    this.tema=""
+  }
 }

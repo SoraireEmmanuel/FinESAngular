@@ -1,15 +1,26 @@
+<div class="container justify-content-between">
+<h1 class="text-center titulo" >Mis Cursos</h1>
+<hr />
+<div class="card-group">
+  <div class="row  d-flex p-2 justify-content-between">
+    <div
+      *ngFor="let curso of cursos; index as i"
+      (click)="verDetalle(curso.id)"
+      class=" col-lg-3 m-2 "
 
-<h1>Mis Cursos</h1>
-<hr>
-<div>
-<div *ngFor="let curso of cursos" (click)="verDetalle(curso.id)" class="card">
-    <div class=" card border-success mb-3" style="max-width: 18rem;">
-        <div class="card-body text-success" >
-            <h5 class="card-title">{{curso.id}} - IGE: {{curso.ige}} - {{curso.materia.nombre}}</h5>
-            <p class="card-text">Turno: {{curso.turno}}</p>
-            <p class="card-text">Ciclo lectivo: {{curso.cicloLectivo}}</p>
-            <p class="card-text">Sede: {{curso.sedeId}}</p>
+    >
+      <div class="card border-success mb-3 bg-light">
+        <div class="card-body text-success">
+          <h5 class="card-title">
+             IGE: {{ curso.ige }} - Materia: {{ curso.materia }}
+          </h5>
+          <hr>
+          <p class="card-text">Turno: {{ curso.turno }}</p>
+          <p class="card-text">Ciclo lectivo: {{ curso.cicloLectivo }}</p>
+          <p class="card-text">Sede: {{ curso.sedeId }}</p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 </div>

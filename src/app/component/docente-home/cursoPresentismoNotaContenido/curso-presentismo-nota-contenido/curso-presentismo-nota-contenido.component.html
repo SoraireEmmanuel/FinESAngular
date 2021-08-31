@@ -3,18 +3,23 @@
     <div class="col-lg-4">
       <dl class="row">
         <dt class="col-sm-3">Materia</dt>
-        <dd class="col-sm-9">{{ materia.nombre }}</dd>
+        <dd class="col-sm-9" >{{ materia.nombre }}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">IGE</dt>
+        <dd class="col-sm-9">{{ materia.igeCurso}}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-3">Curso</dt>
         <dd class="col-sm-9">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
       </dl>
+
+    </div>
+    <div class="col-lg-4">
       <dl class="row">
         <dt class="col-sm-3">SEDE/Sens</dt>
         <dd class="col-sm-9">{{ curso.sedeId }}</dd>
       </dl>
-    </div>
-    <div class="col-lg-4">
       <dl class="row">
         <dt class="col-sm-4">Turno</dt>
         <dd class="col-sm-8">{{ curso.turno }}</dd>
@@ -40,11 +45,12 @@
         <select
           class="form-select"
           (change)="changeForm($event)"
-          (click)="obtenerClases(1)"
+          (click)="obtenerClases(curso.ige)"
           formControlName="claseNombre"
         >
-          <option *ngFor="let clase of clases1; index as i">
+         <option [value]="idClase" *ngFor="let clase of clases; index as i">
             {{ clase.nombre }}
+            {{idClase}}
           </option>
         </select>
       </div>
@@ -82,10 +88,7 @@
         <i class="fas fa-plus"></i>
         &nbsp; Nueva clase
       </span>
-      <span class="badge rounded-pill bg-danger p-2 m-1">
-        <i class="fas fa-minus"></i>
-        &nbsp; Eliminar clase
-      </span>
+
     </div>
   </div>
 </form>
@@ -106,20 +109,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alumno of alumnos; let i = index">
+            <tr *ngFor="let alumno of asistencia; let i = index">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ alumno.nombre }}</td>
+              <td>{{ alumno.nya }}</td>
 
               <td>
                 <div class="form-check">
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    value="Errores Formales"
                     id="presente"
                     name="presente"
                     formControlName="presente"
                     [(ngModel)]="alumno.presente"
+                    [checked]="alumno.presente === true"
                   />
                 </div>
               </td>

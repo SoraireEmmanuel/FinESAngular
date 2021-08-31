@@ -1,18 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Curso } from '../models/curso';
+import { Materia } from '../models/materia';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoContenidoService {
-  myAppUrl ='http://localhost:1337/';
+  myAppUrl ='http://localhost:3000/';
   //myApiUrl = 'api/TarjetaCredito/';
   listCursos: any[];
   listMaterias: any[];
   listClases: any[];
   curso: any;
+  mat:Materia;
+  da: object;
+
+
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
 
 
@@ -31,14 +36,18 @@ export class CursoContenidoService {
   return this.http.get(this.myAppUrl+'cursos')
       }
 
-  obtenerCurso(id: number){
-     this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()
-     .then(data => {
-      this.curso = data as any;
-      //console.log(this.listCursos)
+  obtenerClases(ige:any){
+  return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
+   }
 
-    });
-  }
+  // obtenerCurso(id: number){
+  //    this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()
+  //    .then(data => {
+  //     this.curso = data as any;
+  //     //console.log(this.listCursos)
+
+  //   });
+  // }
   obtenerCurso1(id: number){
     return this.http.get(`${this.myAppUrl}cursos/${id}`)
   //   .then(data => {
@@ -53,4 +62,33 @@ export class CursoContenidoService {
   obtenerDato$(): Observable<any>{
     return this.actualizarFormulario.asObservable();
   }
+
+  obtenerMateria(ige: any){
+    this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
+    .then( (da : any) => {
+      this.da=da[0];
+      this.mat=this.da as Materia;
+      //this.da.map((d) => d.)
+      //this.mat = da as Materia;
+      console.log("obtener materia data",this.mat)
+    })
+  }
+
+  obtenerMateria1(ige: number){
+    return this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`)
+  //   .then(data => {
+  //    this.curso = data as any;
+  //    //console.log(this.listCursos)
+
+  //  });
+ }
+
+ obtenerAsistencia(idClase: number){
+  return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}`)
+//   .then(data => {
+//    this.curso = data as any;
+//    //console.log(this.listCursos)
+
+//  });
+}
 }

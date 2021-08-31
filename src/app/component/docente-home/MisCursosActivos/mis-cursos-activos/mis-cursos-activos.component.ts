@@ -20,14 +20,14 @@ idCurso=0;
       console.log("data",data)
       this.cursos = data as any;
         //console.log(this.listCursos)
-        console.log(this.cursos)
+        console.log("cursos",this.cursos)
       });
 
   }
   verDetalle(id:any){
     this.idCurso=id;
     this.cursoContenidoService.actualizar(this.idCurso);
-    console.log("llamdo")
+    //console.log("llamado")
     this.router.navigate(['cursopresentismocontenido']);
   }
 }
