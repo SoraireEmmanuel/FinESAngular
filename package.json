@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serverAPI":"json-server --watch server/db.json --port 3000"
+    "serverAPI": "json-server --watch server/db.json --port 3000"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +22,9 @@
     "@angular/platform-browser": "~12.0.0-next.9",
     "@angular/platform-browser-dynamic": "~12.0.0-next.9",
     "@angular/router": "~12.0.0-next.9",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.0",
+    "font-awesome": "^4.7.0",
     "ngx-toastr": "^14.1.0",
     "rxjs": "~6.6.0",
     "toastr": "^2.1.4",

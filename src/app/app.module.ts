@@ -29,6 +29,8 @@ import { AsignardocenteComponent } from './component/coordinador-home/asignardoc
 import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
 import { UserComponent } from './component/user/user.component';
+import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component'
+
 
 
 @NgModule({
@@ -47,6 +49,7 @@ import { UserComponent } from './component/user/user.component';
     MisCursosHistoricosComponent,
     AsignardocenteComponent,
     AdministrarcursoComponent,
+    VerMateriaComponent,
     CursoPresentismoNotaContenidoComponent,
     UserComponent
   ],

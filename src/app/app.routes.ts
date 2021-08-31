@@ -4,6 +4,7 @@ import { AlumnoHomeComponent } from './component/alumno-home/alumno-home.compone
 import { InscripcionComponent } from './component/AlumnoHome/inscripcion/inscripcion/inscripcion.component';
 import { ReclamoComponent } from './component/AlumnoHome/reclamo/reclamo/reclamo.component';
 import { TrayectoriaacademicaComponent } from './component/AlumnoHome/trayectoriaacademica/trayectoriaacademica/trayectoriaacademica.component';
+import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component';
 import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
 import { AsignardocenteComponent } from './component/coordinador-home/asignardocente/asignardocente/asignardocente.component';
 import { CoordinadorHomeComponent } from './component/coordinador-home/coordinador-home.component';
@@ -19,6 +20,8 @@ export const ROUTES:Routes=[
     { path: 'docentehome', component: DocenteHomeComponent },
     { path: 'coordinadorhome', component: CoordinadorHomeComponent },
     { path: 'trayectoriaAcademica', component: TrayectoriaacademicaComponent },
+    { path: 'vermateria', component: VerMateriaComponent },
+    { path: 'reclamos', component: ReclamoComponent },
     { path: 'inscripcion', component: InscripcionComponent },
     { path: 'alumnoreclamo', component: ReclamoComponent },
     { path: 'asignardocente', component: AsignardocenteComponent },
