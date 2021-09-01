@@ -46,7 +46,7 @@
 
         <select class="form-select" (change)="changeForm($event, curso.ige)" formControlName="claseNombre"
           id="claseNombre" name="claseNm" [(ngModel)]="claseNm">
-          <option [value]="clase.nombre" *ngFor="let clase of clases; index as i">
+          <option [value]="clase.nombre" *ngFor="let clase of cursoContenidoService.listClases; index as i">
             {{ clase.nombre }}
 
           </option>
@@ -58,7 +58,7 @@
           [readonly]="cursoContenidoService.vista == 'inactivo'" />
       </div>
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success btn-lg">
+        <button type="submit" class="btn btn-success ">
           <i class="fas fa-database"></i>&nbsp; Guardar cambios
         </button>
       </div>
@@ -73,7 +73,7 @@
           [readonly]="cursoContenidoService.vista == 'inactivo'"></textarea>
       </div>
 
-      <span class="badge rounded-pill bg-success p-2 m-1">
+      <span class="badge rounded-pill bg-success p-2 m-1 sm">
         <i class="fas fa-plus"></i>
         &nbsp; Nueva clase
       </span>
@@ -99,7 +99,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let alumno of notas; let i = index">
+                <tr *ngFor="let alumno of cursoContenidoService.notas; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ alumno.nya }}</td>
 
@@ -117,7 +117,7 @@
 
     </div>
   </div>
-  <div class="col-6" *ngIf="clase.nombre!=='Clase 1'">
+  <div class="col-6" *ngIf="cursoContenidoService.asist !== ''">
     <div class="row mt-4 g-4">
       <div class="col">
         <div class="card">
@@ -132,7 +132,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let alum of asistencia1; let i = index">
+                <tr *ngFor="let alum of cursoContenidoService.asist; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ alum.nya }}</td>
 

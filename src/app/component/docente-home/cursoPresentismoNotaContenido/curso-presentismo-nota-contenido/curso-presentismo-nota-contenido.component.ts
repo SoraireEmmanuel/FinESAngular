@@ -31,7 +31,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   da: object;
   igeCurso: number;
   claseTest: Clases;
-  clase: Clases;
+  clase1: Clases;
   //alumnoPresente: any;
   claseNm: string;
   constructor(private fb: FormBuilder,
@@ -51,7 +51,8 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.asistencia = new Asistencia();
     this.asistencia1 = new Asistencia();
     this.idClase = -1;
-    console.log("clases del contruc", this.clases)
+    console.log("clases del contruc", this.clases);
+    this.claseNm=''
   }
   ngOnInit(): void {
     this.subscription = this.cursoContenidoService.obtenerDato$().subscribe(data => {
@@ -59,7 +60,9 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
       console.log("data desde ccursoPResenNo", data);
       this.cursoContenidoService.obtenerCurso1(data).subscribe(res => {
         this.curso = res as Curso;
-        this.obtenerNotas(this.curso.ige)
+        this.obtenerNotas(this.curso.ige);
+        this.cursoContenidoService.obtenerClases(this.curso.ige);
+
         console.log("es la rest de ob curso", res, "this curso", this.curso);
         // Termian carga curso*******
         //cargo clases ***
@@ -67,6 +70,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
         this.igeCurso = this.curso.ige;
         this.obtenerMateria(this.curso.ige);
         this.obtenerClases(this.curso.ige);
+        this.clases = this.cursoContenidoService.listClases;
 
         //this.completarClase(thi);
         // this.form.patchValue({
@@ -81,23 +85,29 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.cursoContenidoService.asist='';
   }
+
   changeForm(e: any, ige: number) {
-    //console.log(e);
-    //console.log(e.target.options.selectedIndex)
+   // this.cursoContenidoService.obtenerAsistencia1(ige);
+console.log("entro al change");
+    console.log(e);
+    console.log(e.target.options.selectedIndex)
     this.idClase = e.target.options.selectedIndex;
-    this.idClase = this.clases[this.idClase].id;
-    this.igeCurso = this.clases[this.idClase].igeCurso
-    console.log(this.idClase, "id clase", this.igeCurso, "ige curso");
-    this.cursoContenidoService.obtenerClase(this.idClase, this.igeCurso).subscribe((data: any) => {
-      console.log(data, "data de clase")
-      this.da = data[0];
-      this.clase = this.da as Clases;
-      console.log(this.clase, "como clase de data");
-      this.completarClase(this.clase);
-    });
-    this.obtenerAsistencias(this.idClase, ige);
-    this.obtenerAsistencia(this.idClase, ige);
+    this.idClase = this.cursoContenidoService.listClases[this.idClase].id;
+    this.completarClase(this.cursoContenidoService.listClases[this.idClase]);
+    // this.igeCurso = this.clases[this.idClase].igeCurso;
+    // console.log(this.idClase, "id clase", this.igeCurso, "ige curso");
+    // this.obtenerAsistencia(this.idClase, ige);
+    // this.cursoContenidoService.obtenerClase(this.idClase, this.igeCurso).subscribe((data: any) => {
+    //   console.log(data, "data de clase")
+    //   this.da = data[0];
+    //   this.clase1 = this.da as Clases;
+    //   console.log(this.clase1, "changeform clase1 de data");
+    //   this.completarClase(this.clase1);
+    // });
+    //this.obtenerAsistencias(this.idClase, ige);
+
 
   }
   completarClase(clase: Clases) {
@@ -108,7 +118,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
       claseTema: clase.tema
     });
     this.claseNm = clase.nombre;
-    this.obtenerAsistencias(this.idClase, this.igeCurso);
+    this.cursoContenidoService.obtenerAsistencia1(this.idClase, this.igeCurso);
   }
   guardarCambios() {
   }
@@ -123,11 +133,11 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     //         console.log(this.clases);
     //         this.completarClase();
     //     }
-    this.cursoContenidoService.obtenerClases(ige).subscribe(data => {
-      this.clases = data as Clases
-      console.log("resultado obtener clases", this.clases);
-    })
+    this.cursoContenidoService.obtenerClases(ige);
+    this.clases = this.cursoContenidoService.listClases;
+    console.log("funciion de obtener clases ejecutada", this.clases)
   }
+
   obtenerMateria(igeCurso: number) {
     console.log("Materia del componente", this.materia);
     this.cursoContenidoService.obtenerMateria1(igeCurso).subscribe(
@@ -143,54 +153,47 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
         //);
       })
   }
-  obtenerAsistencias(claseId: number, igeCurso: number) {
-    console.log("Asistencias del componente", this.asistencia);
-    this.cursoContenidoService.obtenerAsistencia(claseId, igeCurso).subscribe(
-      (dat: any) => {
-        this.asistencia = dat as Asistencia;
-        // this.da=da;
-        // console.log("da",da)
-        console.log("this.asistencias viejo", this.asistencia)
-          // console.log("respuesta obtener materia", mat);
-          //this.materia=mat as Materia;
-          ;
-        console.log("Materia del componente2", this.materia);
-        //console.log(this.alumnoPresente,"alumno presente");
-        //);
-      })
-  }
+  // obtenerAsistencias(claseId: number, igeCurso: number) {
+  //   console.log("Asistencias del componente", this.asistencia);
+  //   this.cursoContenidoService.obtenerAsistencia(claseId, igeCurso).subscribe(
+  //     (dat: any) => {
+  //       this.asistencia = dat as Asistencia;
+  //       // this.da=da;
+  //       // console.log("da",da)
+  //       console.log("this.asistencias viejo", this.asistencia)
+  //         // console.log("respuesta obtener materia", mat);
+  //         //this.materia=mat as Materia;
+  //         ;
+  //       console.log("Materia del componente2", this.materia);
+  //       //console.log(this.alumnoPresente,"alumno presente");
+  //       //);
+  //     })
+  // }
 
   obtenerNotas(igeCurso: number) {
-    console.log("Asistencias del componente", this.notas);
-    this.cursoContenidoService.obtenerNotas(igeCurso).subscribe(
-      (dat: any) => {
-        this.notas = dat as Asistencia;
-        // this.da=da;
-        // console.log("da",da)
-        console.log("this.asistencias viejo", this.notas)
-          // console.log("respuesta obtener materia", mat);
-          //this.materia=mat as Materia;
-          ;
-        console.log("Materia del componente2", this.materia);
-        //console.log(this.alumnoPresente,"alumno presente");
-        //);
-      })
+    console.log("notas del componente", this.notas, igeCurso);
+    this.cursoContenidoService.obtenerNotas(igeCurso);
+    this.notas = this.cursoContenidoService.notas;
+
   }
+
   obtenerAsistencia(claseId: number, igeCurso: number) {
     console.log("Asistencias del componente", this.asistencia1);
-    this.cursoContenidoService.obtenerAsistencia1(claseId, igeCurso).subscribe(
-      (dat: any) => {
-        this.asistencia1 = dat as Asistencia;
-        // this.da=da;
-        // console.log("da",da)
-        console.log("this.asistencia nuevo sin presente", this.asistencia1)
-          // console.log("respuesta obtener materia", mat);
-          //this.materia=mat as Materia;
-          ;
-        console.log("Materia del componente2", this.materia);
-        //console.log(this.alumnoPresente,"alumno presente");
-        //);
-      })
+     this.cursoContenidoService.obtenerAsistencia1(claseId, igeCurso);
+     this.asistencia1 = this.cursoContenidoService.asist;
+     //.subscribe(
+    //   (dat: any) => {
+    //     this.asistencia1 = dat as Asistencia;
+    //     // this.da=da;
+    //     // console.log("da",da)
+    //     console.log("this.asistencia nuevo sin presente", this.asistencia1)
+    //       // console.log("respuesta obtener materia", mat);
+    //       //this.materia=mat as Materia;
+    //       ;
+    //     console.log("Materia del componente2", this.materia);
+    //     //console.log(this.alumnoPresente,"alumno presente");
+    //     //);
+    //   })
   }
 
   cargarClase() { //tengo q enviarle por param la clase y eliminar la prueba.
