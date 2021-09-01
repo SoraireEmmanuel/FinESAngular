@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Asistencia } from '../models/asistencia';
 import { Clases } from '../models/clases';
 import { Curso } from '../models/curso';
 import { Materia } from '../models/materia';
@@ -13,12 +14,14 @@ export class CursoContenidoService {
   myAppUrl = 'https://fines-back.herokuapp.com/';
   listCursos: any[];
   listMaterias: any[];
-  listClases: any[];
+  listClases: any;
   curso: any;
   mat: Materia;
   da: object;
   vista:string;
   clase: Clases;
+  asist:any;
+  notas:any;
 
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
@@ -42,7 +45,12 @@ export class CursoContenidoService {
   }
 
   obtenerClases(ige: any) {
-    return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
+     this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`).toPromise()
+      .then(data => {
+        this.listClases = data as Clases
+        console.log("resultado obtener clases", this.listClases);
+      })
+      return this.listClases
   }
   obtenerClase(idclase: any, ige:any) {
     return this.http.get(`${this.myAppUrl}clases?id=${idclase}&igeCurso=${ige}`)
@@ -92,6 +100,49 @@ export class CursoContenidoService {
 
   obtenerAsistencia(idClase: number, ige: number) {
     return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}&igeId=${ige}`)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
+
+    //  });
+  }
+  obtenerAsistencia1(idClase: number, ige: number) {
+     this.http.get(`${this.myAppUrl}asistencia/?claseId=${idClase}&igeId=${ige}`).toPromise()
+      .then(
+        (dat: any) => {
+          this.asist = dat as Asistencia;
+          // this.da=da;
+          // console.log("da",da)
+          console.log("this.asistencia nuevo sin presente", this.asist)
+            // console.log("respuesta obtener materia", mat);
+            //this.materia=mat as Materia;
+            ;
+
+          //console.log(this.alumnoPresente,"alumno presente");
+          //);
+        });
+        return this.asist;
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
+
+    //  });
+  }
+  obtenerNotas(ige: number) {
+     this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
+      .then( (dat: any) => {
+        this.notas = dat as Asistencia;
+        // this.da=da;
+        // console.log("da",da)
+        console.log("this.notas ", this.notas)
+          // console.log("respuesta obtener materia", mat);
+          //this.materia=mat as Materia;
+          ;
+      //  console.log("Materia del componente2", this.materia);
+        //console.log(this.alumnoPresente,"alumno presente");
+        //);
+      })
+      return this.notas;
     //   .then(data => {
     //    this.curso = data as any;
     //    //console.log(this.listCursos)
