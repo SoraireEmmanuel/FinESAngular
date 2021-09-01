@@ -44,15 +44,8 @@
           <u>Clase: </u> {{claseNm}}
         </label>
 
-        <select
-          class="form-select"
-          (change)="changeForm($event, curso.ige)"
-         
-          formControlName="claseNombre"
-          id="claseNombre"
-          name="claseNm"
-          [(ngModel)]="claseNm"
-        >
+        <select class="form-select" (change)="changeForm($event, curso.ige)" formControlName="claseNombre"
+          id="claseNombre" name="claseNm" [(ngModel)]="claseNm">
           <option [value]="clase.nombre" *ngFor="let clase of clases; index as i">
             {{ clase.nombre }}
 
@@ -61,14 +54,8 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="claseFecha">Fecha</span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="dd/mm/aa"
-          aria-label="Fecha"
-          formControlName="claseFecha"
-          [readonly]="cursoContenidoService.vista == 'inactivo'"
-        />
+        <input type="text" class="form-control" placeholder="dd/mm/aa" aria-label="Fecha" formControlName="claseFecha"
+          [readonly]="cursoContenidoService.vista == 'inactivo'" />
       </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-success btn-lg">
@@ -82,13 +69,8 @@
         <label for="exampleFormControlTextarea1" class="form-label">
           <u> Tema Dado: </u>
         </label>
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-          formControlName="claseTema"
-          [readonly]="cursoContenidoService.vista == 'inactivo'"
-        ></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="claseTema"
+          [readonly]="cursoContenidoService.vista == 'inactivo'"></textarea>
       </div>
 
       <span class="badge rounded-pill bg-success p-2 m-1">
@@ -99,50 +81,81 @@
   </div>
 </form>
 
-<div class="row mt-4 g-4">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Nr</th>
-              <th scope="col">Nombre y Apellido del Alumno</th>
-              <th scope="col">Presente</th>
-              <th scope="col">Nota 1</th>
-              <th scope="col">Nota 2</th>
-              <th scope="col">Nota Final</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let alumno of asistencia; let i = index">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{ alumno.nya }}</td>
+<div class="row">
+  <div class="col-6">
+    <div class="row mt-4 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nr</th>
+                  <th scope="col">Nombre y Apellido del Alumno</th>
 
-              <td>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="presente"
-                    name="presente"
-                    [checked]="alumno.presente === true"
-                    [disabled]="cursoContenidoService.vista === 'inactivo'"
-                    [(ngModel)]="alumno.presente"
-                  />
-                </div>
-              </td>
-              <td>{{ alumno.nota1 }}</td>
-              <td>{{ alumno.nota2 }}</td>
-              <td>{{ alumno.notaFinal }}</td>
-            </tr>
-          </tbody>
-        </table>
+                  <th scope="col">Nota 1</th>
+                  <th scope="col">Nota 2</th>
+                  <th scope="col">Nota Final</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let alumno of notas; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ alumno.nya }}</td>
+
+
+                  <td>{{ alumno.nota1 }}</td>
+                  <td>{{ alumno.nota2 }}</td>
+                  <td>{{ alumno.notaFinal }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </div>
+  <div class="col-6" *ngIf="clase.nombre!=='Clase 1'">
+    <div class="row mt-4 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nr</th>
+                  <th scope="col">Nombre y Apellido del Alumno</th>
+                  <th scope="col" class="d-flex justify-content-center">Presente</th>
 
-  <button (click)="cargarClase()" class="btn btn-primary btn-lg">
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let alum of asistencia1; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ alum.nya }}</td>
+
+                  <td>
+                    <div class="form-check d-flex justify-content-center">
+                      <input class="form-check-input" type="checkbox" id="presente" name="presente"
+                        [checked]="alum.presente === true" [disabled]="cursoContenidoService.vista === 'inactivo'"
+                        [(ngModel)]="alum.presente" />
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button (click)="obtenerAsistencia(1,2020)" class="btn btn-primary btn-lg mt-3">
     Descargar Informe
   </button>
 </div>
+

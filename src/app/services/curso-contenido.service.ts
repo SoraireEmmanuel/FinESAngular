@@ -98,6 +98,22 @@ export class CursoContenidoService {
 
     //  });
   }
+  obtenerAsistencia1(idClase: number, ige: number) {
+    return this.http.get(`${this.myAppUrl}asistencia/?claseId=${idClase}&igeId=${ige}`)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
+
+    //  });
+  }
+  obtenerNotas(ige: number) {
+    return this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`)
+    //   .then(data => {
+    //    this.curso = data as any;
+    //    //console.log(this.listCursos)
+
+    //  });
+  }
   agregarClase(clase: Clases)
     {
       this.http.post(`${this.myAppUrl}clases/`, clase).subscribe(
