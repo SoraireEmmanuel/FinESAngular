@@ -24,7 +24,7 @@ import { TrayectoriaacademicaComponent } from './component/AlumnoHome/trayectori
 import { InscripcionComponent } from './component/AlumnoHome/inscripcion/inscripcion/inscripcion.component';
 import { ReclamoComponent } from './component/AlumnoHome/reclamo/reclamo/reclamo.component';
 import { MisCursosActivosComponent } from './component/docente-home/MisCursosActivos/mis-cursos-activos/mis-cursos-activos.component';
-import { MisCursosHistoricosComponent } from './component/docente-home/MisCursosHistorico/mis-cursos-historicos/mis-cursos-historicos.component';
+
 import { AsignardocenteComponent } from './component/coordinador-home/asignardocente/asignardocente/asignardocente.component';
 import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
@@ -46,7 +46,6 @@ import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-mater
     InscripcionComponent,
     ReclamoComponent,
     MisCursosActivosComponent,
-    MisCursosHistoricosComponent,
     AsignardocenteComponent,
     AdministrarcursoComponent,
     VerMateriaComponent,

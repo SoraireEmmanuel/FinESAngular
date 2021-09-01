@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Clases } from '../models/clases';
 import { Curso } from '../models/curso';
 import { Materia } from '../models/materia';
 
@@ -17,6 +18,7 @@ export class CursoContenidoService {
   mat: Materia;
   da: object;
   vista:string;
+  clase: Clases;
 
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
@@ -42,7 +44,9 @@ export class CursoContenidoService {
   obtenerClases(ige: any) {
     return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
   }
-
+  obtenerClase(idclase: any) {
+    return this.http.get(`${this.myAppUrl}clases?id=${idclase}`)
+  }
   // obtenerCurso(id: number){
   //    this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()
   //    .then(data => {
@@ -93,5 +97,27 @@ export class CursoContenidoService {
     //    //console.log(this.listCursos)
 
     //  });
+  }
+  agregarClase(clase: Clases)
+    {
+      this.http.post(`${this.myAppUrl}clases/`, clase).subscribe(
+        data => {
+          console.log('POST Request is successful ', data);
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
+  }
+  editarClase(clase: Clases)
+    {
+      this.http.put(`${this.myAppUrl}clases/${clase.id}`, clase).subscribe(
+        data => {
+          console.log('PUT Request is successful ', data);
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
   }
 }

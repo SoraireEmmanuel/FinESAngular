@@ -7,7 +7,7 @@
       "nota1": 1,
       "nota2": 5,
       "notaFinal": 3,
-      "claseId": 0
+      "claseId": 198
     },
     {
       "nya": "Pato",
@@ -16,7 +16,25 @@
       "nota1": 1,
       "nota2": 5,
       "notaFinal": 3,
-      "claseId": 0
+      "claseId": 198
+    },
+    {
+      "nya": "Juan",
+      "presente": true,
+      "igeId": 2323,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 2
+    },
+    {
+      "nya": "Pedro",
+      "presente": false,
+      "igeId": 2323,
+      "nota1": 1,
+      "nota2": 5,
+      "notaFinal": 3,
+      "claseId": 2
     },
     {
       "nya": "Emma",
@@ -28,58 +46,40 @@
       "claseId": 0
     },
     {
-      "nya": "Pato",
-      "presente": false,
-      "igeId": 2323,
-      "nota1": 1,
-      "nota2": 5,
-      "notaFinal": 3,
-      "claseId": 0
-    },
-    {
-      "nya": "Emma",
+      "nya": "Dai",
       "presente": true,
-      "igeId": 2323,
-      "nota1": 1,
+      "igeId": 2326,
+      "nota1": 10,
       "nota2": 5,
-      "notaFinal": 3,
-      "claseId": 0
+      "notaFinal": 7,
+      "claseId": 51
     },
     {
-      "nya": "Pato",
-      "presente": false,
-      "igeId": 2323,
-      "nota1": 1,
-      "nota2": 5,
-      "notaFinal": 3,
-      "claseId": 0
-    },
-    {
-      "nya": "Emma",
+      "nya": "Kiki",
       "presente": true,
-      "igeId": 2323,
-      "nota1": 1,
+      "igeId": 2326,
+      "nota1": 9,
       "nota2": 5,
-      "notaFinal": 3,
-      "claseId": 0
+      "notaFinal": 8,
+      "claseId": 51
     },
     {
-      "nya": "Emma",
+      "nya": "Eduardo",
       "presente": true,
-      "igeId": 2323,
-      "nota1": 1,
-      "nota2": 5,
-      "notaFinal": 3,
-      "claseId": 0
+      "igeId": 2325,
+      "nota1": 10,
+      "nota2": 9,
+      "notaFinal": 9,
+      "claseId": 3
     },
     {
       "nya": "Pato",
       "presente": false,
-      "igeId": 2323,
+      "igeId": 2325,
       "nota1": 1,
       "nota2": 5,
       "notaFinal": 3,
-      "claseId": 0
+      "claseId": 3
     },
     {
       "nya": "Emma",
@@ -161,7 +161,7 @@
       "igeCurso": 2327
     },
     {
-      "id": 3,
+      "id": 51,
       "nombre": "Clase 3",
       "fecha": "12/11/21",
       "tema": "Test",
@@ -175,6 +175,22 @@
       "tema": "Test",
       "cursoId": "",
       "igeCurso": 2326
+    },
+    {
+      "id": 199,
+      "nombre": "test post",
+      "fecha": "15/11/2020",
+      "tema": "Ninguno",
+      "cursoId": "",
+      "igeCurso": 2326
+    },
+    {
+      "id": 198,
+      "nombre": "test put",
+      "fecha": "15/11/2021",
+      "tema": "Ninguno",
+      "cursoId": "",
+      "igeCurso": 2323
     }
   ],
   "materias": [
@@ -228,7 +244,7 @@
       "materia": "Matematica",
       "ige": 2323,
       "id_curso": "1",
-      "estado":"activo"
+      "estado": "activo"
     },
     {
       "id": 2,
@@ -238,7 +254,7 @@
       "materia": "Historia",
       "ige": 2324,
       "id_curso": "2",
-      "estado":"activo"
+      "estado": "activo"
     },
     {
       "id": 3,
@@ -248,7 +264,7 @@
       "materia": "Ingles",
       "ige": 2327,
       "id_curso": "3",
-      "estado":"activo"
+      "estado": "activo"
     },
     {
       "id": 4,
@@ -258,7 +274,7 @@
       "materia": "Fisica",
       "ige": 2325,
       "id_curso": "4",
-      "estado":"inactivo"
+      "estado": "inactivo"
     },
     {
       "id": 5,
@@ -268,7 +284,7 @@
       "materia": "Informatica",
       "ige": 2326,
       "id_curso": "5",
-      "estado":"activo"
+      "estado": "activo"
     }
   ]
 }

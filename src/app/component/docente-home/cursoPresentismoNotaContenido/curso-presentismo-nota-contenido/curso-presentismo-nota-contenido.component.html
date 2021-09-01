@@ -1,27 +1,24 @@
 <div class="container-fluid">
   <div class="row mt-3">
-    <div class="col-sm-3  m-2 p-2">
+    <div class="col-sm-3 m-2 p-2">
       <dl class="row">
         <dt class="col-sm-4">Materia</dt>
-        <dd class="col-sm-8" >{{ materia.nombre }}</dd>
+        <dd class="col-sm-8">{{ materia.nombre }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Turno</dt>
         <dd class="col-sm-8">{{ curso.turno }}</dd>
       </dl>
-
-
     </div>
     <div class="col-sm-3 m-2 p-2">
       <dl class="row">
         <dt class="col-sm-4">IGE</dt>
-        <dd class="col-sm-8">{{ materia.igeCurso}}</dd>
+        <dd class="col-sm-8">{{ materia.igeCurso }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Curso</dt>
         <dd class="col-sm-8">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
       </dl>
-
     </div>
     <div class="col-sm-3 m-2 p-2">
       <dl class="row">
@@ -53,9 +50,9 @@
           (click)="obtenerClases(curso.ige)"
           formControlName="claseNombre"
         >
-         <option [value]="idClase" *ngFor="let clase of clases; index as i">
+          <option value="clase.id" *ngFor="let clase of clases; index as i">
             {{ clase.nombre }}
-            {{idClase}}
+            {{ clase.id }}
           </option>
         </select>
       </div>
@@ -67,7 +64,7 @@
           placeholder="dd/mm/aa"
           aria-label="Fecha"
           formControlName="claseFecha"
-          [readonly]="cursoContenidoService.vista=='inactivo'"
+          [readonly]="cursoContenidoService.vista == 'inactivo'"
         />
       </div>
       <div class="d-grid gap-2">
@@ -87,7 +84,7 @@
           id="exampleFormControlTextarea1"
           rows="3"
           formControlName="claseTema"
-          [readonly]="cursoContenidoService.vista=='inactivo'"
+          [readonly]="cursoContenidoService.vista == 'inactivo'"
         ></textarea>
       </div>
 
@@ -95,7 +92,6 @@
         <i class="fas fa-plus"></i>
         &nbsp; Nueva clase
       </span>
-
     </div>
   </div>
 </form>
@@ -104,7 +100,7 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <table class="table" >
+        <table class="table">
           <thead>
             <tr>
               <th scope="col">Nr</th>
@@ -123,14 +119,13 @@
               <td>
                 <div class="form-check">
                   <input
-                  [readonly]="cursoContenidoService.vista=='inactivo'"
                     class="form-check-input"
                     type="checkbox"
                     id="presente"
                     name="presente"
-                    formControlName="presente"
-                    [(ngModel)]="alumno.presente"
                     [checked]="alumno.presente === true"
+                    [disabled]="cursoContenidoService.vista === 'inactivo'"
+                    [(ngModel)]="alumno.presente"
                   />
                 </div>
               </td>
@@ -144,7 +139,7 @@
     </div>
   </div>
 
-  <button (click)="cargarCurso(1)" class="btn btn-primary btn-lg">
+  <button (click)="cargarClase()" class="btn btn-primary btn-lg">
     Descargar Informe
   </button>
 </div>

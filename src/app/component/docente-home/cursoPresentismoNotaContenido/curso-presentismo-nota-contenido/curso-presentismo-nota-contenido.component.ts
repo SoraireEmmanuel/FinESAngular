@@ -39,6 +39,9 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   idCurso = '';
   da: object;
   igeCurso: number;
+  claseTest: Clases;
+  clase: Clases;
+  alumnoPresente: any;
 
   constructor(private fb: FormBuilder,
     public cursoContenidoService: CursoContenidoService,
@@ -54,8 +57,10 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.materia = new Materia();
     this.curso = new Curso();
     this.clases = new Clases();
+    this.claseTest = new Clases();
     this.asistencia = new Asistencia();
     console.log("clases del contruc", this.clases)
+
   }
 
 
@@ -104,12 +109,35 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   }
 
 
+  changeForm(e: any, ige: number) {
+
+    //console.log(e);
+    //console.log(e.target.options.selectedIndex)
+    this.idClase = e.target.options.selectedIndex;
+    this.idClase=this.clases[this.idClase ].id;
+    console.log(this.idClase, "id clase");
+    this.cursoContenidoService.obtenerClase(this.idClase).subscribe( (data:any) =>{
+    console.log(data,"data de clase")
+      this.da = data[0];
+      this.clase = this.da as Clases;
+      console.log(this.clase,"como clase de data");
+      this.completarClase();
+
+
+    });
+
+    this.obtenerAsistencias(this.idClase, ige)
+
+  }
 
   completarClase() {
+    console.log("clases del comp",this.clase);
+
     this.form.patchValue({
-      claseNombre: this.clases[this.idClase].nombre,
-      claseFecha: this.clases[this.idClase].fecha,
-      claseTema: this.clases[this.idClase].tema
+
+      claseNombre: this.clase.nombre,
+      claseFecha: this.clase.fecha,
+      claseTema: this.clase.tema
     });
     this.obtenerAsistencias(this.idClase, this.igeCurso);
   }
@@ -123,15 +151,6 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
   }
 
-  changeForm(e: any, ige: number) {
-    //console.log(e);
-    //console.log(e.target.options.selectedIndex)
-    this.idClase = e.target.options.selectedIndex;
-    console.log(this.idClase, "id clase");
-    this.completarClase();
-    this.obtenerAsistencias(this.idClase, ige)
-
-  }
   obtenerClases(ige: number) {
     //   if(this.clases === 0 || this.clases === undefined){
     //         this.cursoContenidoService.obtenerCurso(id);
@@ -185,11 +204,22 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
 
 
-        console.log("Materia del componente2", this.materia)
+        console.log("Materia del componente2", this.materia);
+        console.log(this.alumnoPresente,"alumno presente");
 
         //);
 
       })
+  }
+
+  cargarClase(){ //tengo q enviarle por param la clase y eliminar la prueba.
+    this.claseTest.id=198;
+    this.claseTest.nombre="test put";
+    this.claseTest.fecha="15/11/2021";
+    this.claseTest.tema="Ninguno";
+    console.log(this.claseTest);
+    this.cursoContenidoService.agregarClase(this.claseTest)
+
   }
 
 }
