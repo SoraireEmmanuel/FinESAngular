@@ -9,8 +9,8 @@ import { Materia } from '../models/materia';
   providedIn: 'root'
 })
 export class CursoContenidoService {
-  myAppUrl = 'http://localhost:3000/';
-  //myApiUrl = 'api/TarjetaCredito/';
+ // myAppUrl = 'http://localhost:3000/';
+  myAppUrl = 'https://fines-back.herokuapp.com/';
   listCursos: any[];
   listMaterias: any[];
   listClases: any[];
