@@ -44,8 +44,8 @@ export class CursoContenidoService {
   obtenerClases(ige: any) {
     return this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`)
   }
-  obtenerClase(idclase: any) {
-    return this.http.get(`${this.myAppUrl}clases?id=${idclase}`)
+  obtenerClase(idclase: any, ige:any) {
+    return this.http.get(`${this.myAppUrl}clases?id=${idclase}&igeCurso=${ige}`)
   }
   // obtenerCurso(id: number){
   //    this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()

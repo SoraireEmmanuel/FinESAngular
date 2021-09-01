@@ -16,32 +16,28 @@ import { CursoContenidoService } from 'src/app/services/curso-contenido.service'
 export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterViewInit, OnDestroy {
   form: FormGroup;
   subscription: Subscription;
-  clases1: any = [
-    { nombre: 'Clase 1', fecha: '12/11/21', claseTema: 'Descripcion del tema dado', }
-  ];
+  // clases1: any = [
+  //   { nombre: 'Clase 1', fecha: '12/11/21', claseTema: 'Descripcion del tema dado', }
+  // ];
   curso: Curso;
-  fecha = '12/11/21';
-  // alumnos:any []=[
-  //   {nombre:'pepe', presente:'true', nota1:'5', nota2: '6', notaFinal: '7'},
-  //   {nombre:'ana', presente:'true', nota1:'5', nota2: '8', notaFinal: '8'},
-  //   {nombre:'pablo', presente:'true', nota1:'7', nota2: '7', notaFinal: '8'}];
+  // fecha = '12/11/21';
 
   asistencia: any;
   materia: Materia;
-  //{nombre:'Historia',nivel:'2°',cuatrimestre:'1c'}
-  ;
+
   prueba: any;
   //curso:any;
   res: any;
   //clases1:any;
   clases: any;
-  idClase = -1;
+  idClase :number;
   idCurso = '';
   da: object;
   igeCurso: number;
   claseTest: Clases;
   clase: Clases;
-  alumnoPresente: any;
+  //alumnoPresente: any;
+  claseNm:string;
 
   constructor(private fb: FormBuilder,
     public cursoContenidoService: CursoContenidoService,
@@ -59,6 +55,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.clases = new Clases();
     this.claseTest = new Clases();
     this.asistencia = new Asistencia();
+    this.idClase=-1;
     console.log("clases del contruc", this.clases)
 
   }
@@ -81,7 +78,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
         this.igeCurso=this.curso.ige;
         this.obtenerMateria(this.curso.ige);
         this.obtenerClases(this.curso.ige);
-        this.completarClase();
+        //this.completarClase(thi);
 
         // this.form.patchValue({
         //   claseNombre: this.clases[this.idClase].nombre,
@@ -115,13 +112,15 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     //console.log(e.target.options.selectedIndex)
     this.idClase = e.target.options.selectedIndex;
     this.idClase=this.clases[this.idClase ].id;
-    console.log(this.idClase, "id clase");
-    this.cursoContenidoService.obtenerClase(this.idClase).subscribe( (data:any) =>{
+    this.igeCurso=this.clases[this.idClase].igeCurso
+    console.log(this.idClase, "id clase", this.igeCurso ,"ige curso");
+
+    this.cursoContenidoService.obtenerClase(this.idClase, this.igeCurso).subscribe( (data:any) =>{
     console.log(data,"data de clase")
       this.da = data[0];
       this.clase = this.da as Clases;
       console.log(this.clase,"como clase de data");
-      this.completarClase();
+      this.completarClase(this.clase);
 
 
     });
@@ -130,15 +129,16 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
   }
 
-  completarClase() {
-    console.log("clases del comp",this.clase);
+  completarClase(clase : Clases) {
+    console.log("clases del comp completar clase",clase);
 
     this.form.patchValue({
 
-      claseNombre: this.clase.nombre,
-      claseFecha: this.clase.fecha,
-      claseTema: this.clase.tema
+      claseNombre: clase.nombre,
+      claseFecha: clase.fecha,
+      claseTema: clase.tema
     });
+    this.claseNm=clase.nombre;
     this.obtenerAsistencias(this.idClase, this.igeCurso);
   }
 
@@ -205,7 +205,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
 
         console.log("Materia del componente2", this.materia);
-        console.log(this.alumnoPresente,"alumno presente");
+        //console.log(this.alumnoPresente,"alumno presente");
 
         //);
 

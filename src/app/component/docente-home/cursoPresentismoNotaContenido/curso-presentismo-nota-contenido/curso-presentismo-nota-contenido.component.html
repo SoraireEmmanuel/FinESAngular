@@ -41,18 +41,21 @@
     <div class="col-lg-3">
       <div class="mb-3">
         <label class="form-label">
-          <u>Clase: </u>
+          <u>Clase: </u> {{claseNm}}
         </label>
 
         <select
           class="form-select"
           (change)="changeForm($event, curso.ige)"
-          (click)="obtenerClases(curso.ige)"
+         
           formControlName="claseNombre"
+          id="claseNombre"
+          name="claseNm"
+          [(ngModel)]="claseNm"
         >
-          <option value="clase.id" *ngFor="let clase of clases; index as i">
+          <option [value]="clase.nombre" *ngFor="let clase of clases; index as i">
             {{ clase.nombre }}
-            {{ clase.id }}
+
           </option>
         </select>
       </div>
