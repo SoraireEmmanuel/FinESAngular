@@ -14,11 +14,11 @@ background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, F
 .manito:hover{
     opacity: 0.80
     ;
-    -webkit-transform:scale(1.15);
--moz-transform:scale(1.15);
--ms-transform:scale(1.15);
--o-transform:scale(1.15);
-transform:scale(1.15);
+    -webkit-transform:scale(1.08);
+-moz-transform:scale(1.08);
+-ms-transform:scale(1.08);
+-o-transform:scale(1.08);
+transform:scale(1.08);
 }
 
 .aprobada{
