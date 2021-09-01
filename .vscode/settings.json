@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6d8ab8e6-a38c-4e67-9864-01c2cea20902/resourceGroups/FinesPlusPlus/providers/Microsoft.Web/sites/FinesPlusPlusTest",
+    "appService.deploySubpath": "dist\\FinesPlusPlus"
+}
