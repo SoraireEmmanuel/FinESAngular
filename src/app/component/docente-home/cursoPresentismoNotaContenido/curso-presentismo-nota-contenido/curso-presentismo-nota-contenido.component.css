@@ -12,3 +12,12 @@ border-radius: 12px;
   -o-transform:scale(1.25);
   transform:scale(1.25);
 }
+.table td {
+  text-align: center;
+}
+.table th {
+  text-align: center;
+}
+.cursor{
+  cursor: pointer;
+}

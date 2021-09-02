@@ -6,6 +6,7 @@ import { Asistencia } from 'src/app/models/asistencia';
 import { Clases } from 'src/app/models/clases';
 import { Curso } from 'src/app/models/curso';
 import { Materia } from 'src/app/models/materia';
+import { Nota } from 'src/app/models/nota';
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 @Component({
   selector: 'app-curso-presentismo-nota-contenido',
@@ -34,6 +35,15 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   clase1: Clases;
   //alumnoPresente: any;
   claseNm: string;
+  accion:string;
+  enableEdit = false;
+  enableEditIndex = null;
+  nota1: any;
+  nota2:any;
+  notaFinal: any;
+  nota:Nota;
+
+
   constructor(private fb: FormBuilder,
     public cursoContenidoService: CursoContenidoService,
     private toastr: ToastrService) {
@@ -50,9 +60,11 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.claseTest = new Clases();
     this.asistencia = new Asistencia();
     this.asistencia1 = new Asistencia();
+    this.nota = new Nota();
     this.idClase = -1;
     console.log("clases del contruc", this.clases);
-    this.claseNm=''
+    this.claseNm='';
+
   }
   ngOnInit(): void {
     this.subscription = this.cursoContenidoService.obtenerDato$().subscribe(data => {
@@ -80,6 +92,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
         // });
       });
     });
+    this.accion='editar'
   }
   ngAfterViewInit(): void {
   }
@@ -204,4 +217,38 @@ console.log("entro al change");
     console.log(this.claseTest);
     this.cursoContenidoService.agregarClase(this.claseTest)
   }
+
+  ejecutarAccion(a:string){
+    this.accion=a;
+  }
+  enableEditMethod(e:any, i:any) {
+    this.enableEdit = true;
+    this.enableEditIndex = i;
+    console.log(i, e);
+    console.log(this.cursoContenidoService.notas[i]);
+    this.nota1=(this.cursoContenidoService.notas[i].nota1);
+    this.nota2=(this.cursoContenidoService.notas[i].nota2);
+    this.notaFinal=(this.cursoContenidoService.notas[i].notaFinal);
+    this.nota.nya=(this.cursoContenidoService.notas[i].nya);
+    this.nota.igeId=(this.cursoContenidoService.notas[i].igeId);
+    this.nota.nya=(this.cursoContenidoService.notas[i].nya).replace(' ',"%20");
+    //console.log(this.nota.nya.replace(' ',"%"))
+  }
+  saveSegment(){
+    console.log(this.nota1, this.nota2, this.notaFinal);
+    this.nota={
+     nya : this.nota.nya,
+     igeId : this.nota.igeId,
+     nota1 : this.nota1,
+     nota2 :this.nota2,
+     notaFinal : this.notaFinal
+    }
+    console.log(this.nota,"this.nota")
+    this.cursoContenidoService.editarNota(this.nota.nya, this.nota.igeId,this.nota)
+    this.enableEdit = false;
+    this.enableEditIndex = null;
+    this.nota1=null;
+    console.log("save")
+  }
+
 }

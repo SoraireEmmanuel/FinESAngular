@@ -5,6 +5,7 @@ import { Asistencia } from '../models/asistencia';
 import { Clases } from '../models/clases';
 import { Curso } from '../models/curso';
 import { Materia } from '../models/materia';
+import { Nota } from '../models/nota';
 
 @Injectable({
   providedIn: 'root'
@@ -171,4 +172,16 @@ export class CursoContenidoService {
         }
       );
   }
+  editarNota(nya: string,ige:any,nota:Nota)
+    {
+      this.http.put(`${this.myAppUrl}notas/?nya=${nya}&igeId=${ige}`, nota).subscribe(
+        data => {
+          console.log('PUT Request is successful ', data);
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
+  }
 }
+

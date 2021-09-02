@@ -87,7 +87,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <table class="table">
+            <table class="table table-hover align-middle table-responsive">
               <thead>
                 <tr>
                   <th scope="col">Nr</th>
@@ -96,17 +96,40 @@
                   <th scope="col">Nota 1</th>
                   <th scope="col">Nota 2</th>
                   <th scope="col">Nota Final</th>
+                  <th id="editar"  *ngIf="this.accion === 'editar'" scope="col">Editar</th>
+                  <th id="guardar"  *ngIf="this.accion === 'guardar'" scope="col">Guardar</th>
+
+
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let alumno of cursoContenidoService.notas; let i = index">
+                <tr *ngFor="let alumno of cursoContenidoService.notas; index as i">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ alumno.nya }}</td>
 
 
-                  <td>{{ alumno.nota1 }}</td>
+                  <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
+                    <div *ngIf="this.enableEditIndex !== i">{{alumno.nota1}}</div>
+                  </td>
+
                   <td>{{ alumno.nota2 }}</td>
                   <td>{{ alumno.notaFinal }}</td>
+                  <td>
+                    <div class="d-flex justify-content-around">
+                    <button *ngIf="enableEdit && enableEditIndex == i" (click)="this.enableEdit=false"
+                      class="btn page-secondary-action-btn" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i>
+                    </button>
+                    <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="saveBtn" class="btn page-primary-action-btn"
+                      (click)="saveSegment()" type="submit"><i  class="fa fa-database" aria-hidden="true"></i></button>
+                    <a  class="table-row-action edit-action" *ngIf="!enableEdit"
+                      (click)="this.enableEditMethod($event, i)">
+                      <i  class="fa fa-check" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                  </td>
+
+                  <!-- <td (click)="ejecutarAccion('editar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'editar'" class="cursor" ></td>
+                  <td (click)="ejecutarAccion('guardar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'guardar'"  class="cursor" ></td> -->
                 </tr>
               </tbody>
             </table>
@@ -122,16 +145,16 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
+            <table class="table table-hover table-responsive">
+              <thead >
+                <tr >
                   <th scope="col">Nr</th>
                   <th scope="col">Nombre y Apellido del Alumno</th>
                   <th scope="col" class="d-flex justify-content-center">Presente</th>
 
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 <tr *ngFor="let alum of cursoContenidoService.asist; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ alum.nya }}</td>
