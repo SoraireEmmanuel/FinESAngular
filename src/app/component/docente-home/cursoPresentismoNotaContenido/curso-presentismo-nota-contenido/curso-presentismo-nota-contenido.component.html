@@ -82,12 +82,14 @@
 </form>
 
 <div class="row">
+
   <div class="col-6">
     <div class="row mt-4 g-4">
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <table class="table table-hover  table-responsive">
+            <div class="table-responsive">
+            <table class="table table-hover  ">
               <thead>
                 <tr>
                   <th scope="col" *ngIf="!this.enableEdit">Nr</th>
@@ -182,23 +184,26 @@
               </tbody>
             </table>
           </div>
+          </div>
         </div>
       </div>
 
 
     </div>
-  </div>
+ 
+</div>
   <div class="col-6" *ngIf="cursoContenidoService.asist !== ''">
     <div class="row mt-4 g-4">
       <div class="col">
         <div class="card">
           <div class="card-body">
+            <div class="table-responsive">
             <table class="table table-hover table-responsive">
               <thead >
                 <tr >
                   <th scope="col">Nr</th>
                   <th scope="col">Nombre y Apellido del Alumno</th>
-                  <th scope="col" class="d-flex justify-content-center">Presente</th>
+                  <th scope="col" >Presente</th>
 
                 </tr>
               </thead>
@@ -219,6 +224,7 @@
               </tbody>
             </table>
           </div>
+          </div>
         </div>
       </div>
 
@@ -229,4 +235,5 @@
     Descargar Informe
   </button>
 </div>
+
 

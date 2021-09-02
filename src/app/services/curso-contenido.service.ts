@@ -132,7 +132,7 @@ export class CursoContenidoService {
   obtenerNotas(ige: number) {
      this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
       .then( (dat: any) => {
-        this.notas = dat as Asistencia;
+        this.notas = dat as Nota;
         // this.da=da;
         // console.log("da",da)
         console.log("this.notas ", this.notas)
@@ -178,13 +178,15 @@ export class CursoContenidoService {
       .then(
         data => {
           console.log('PUT Request is successful ', data);
+          this. obtenerNotas(ige);
+      console.log("doneeee");
         },
         error => {
           console.log('Error', error);
         }
       ).then( (d:any) => {
         this. obtenerNotas(ige);
-      console.log("doneeee");
+      console.log("doneeee3333");
     }
       );
 
