@@ -5,8 +5,6 @@ import { InscripcionComponent } from './component/AlumnoHome/inscripcion/inscrip
 import { ReclamoComponent } from './component/AlumnoHome/reclamo/reclamo/reclamo.component';
 import { TrayectoriaacademicaComponent } from './component/AlumnoHome/trayectoriaacademica/trayectoriaacademica/trayectoriaacademica.component';
 import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component';
-import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
-import { AsignardocenteComponent } from './component/coordinador-home/asignardocente/asignardocente/asignardocente.component';
 import { CoordinadorHomeComponent } from './component/coordinador-home/coordinador-home.component';
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
 import { DocenteHomeComponent } from './component/docente-home/docente-home.component';
@@ -24,8 +22,6 @@ export const ROUTES:Routes=[
     { path: 'reclamos', component: ReclamoComponent },
     { path: 'inscripcion', component: InscripcionComponent },
     { path: 'alumnoreclamo', component: ReclamoComponent },
-    { path: 'asignardocente', component: AsignardocenteComponent },
-    { path: 'administrarcurso', component: AdministrarcursoComponent },
     { path: 'miscursos', component: MisCursosActivosComponent },
     { path: 'cursopresentismocontenido', component: CursoPresentismoNotaContenidoComponent },
     { path: '', pathMatch: 'full', redirectTo: 'home'},
