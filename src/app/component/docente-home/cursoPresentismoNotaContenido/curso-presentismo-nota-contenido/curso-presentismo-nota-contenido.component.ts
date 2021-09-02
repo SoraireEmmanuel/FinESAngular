@@ -231,23 +231,30 @@ console.log("entro al change");
     this.notaFinal=(this.cursoContenidoService.notas[i].notaFinal);
     this.nota.nya=(this.cursoContenidoService.notas[i].nya);
     this.nota.igeId=(this.cursoContenidoService.notas[i].igeId);
-    this.nota.nya=(this.cursoContenidoService.notas[i].nya).replace(' ',"%20");
+    this.nota.id=(this.cursoContenidoService.notas[i].id);
+    this.nota.nya=(this.cursoContenidoService.notas[i].nya);
     //console.log(this.nota.nya.replace(' ',"%"))
   }
   saveSegment(){
+    this.nota1=parseInt(this.nota1);
     console.log(this.nota1, this.nota2, this.notaFinal);
     this.nota={
+    id:  this.nota.id,
      nya : this.nota.nya,
      igeId : this.nota.igeId,
-     nota1 : this.nota1,
+     nota1 :this.nota1,
      nota2 :this.nota2,
      notaFinal : this.notaFinal
     }
+    this.nota=(this.nota) as Nota;
     console.log(this.nota,"this.nota")
-    this.cursoContenidoService.editarNota(this.nota.nya, this.nota.igeId,this.nota)
+    this.cursoContenidoService.editarNota(this.nota.id, this.nota.igeId,this.nota);
+
     this.enableEdit = false;
     this.enableEditIndex = null;
-    this.nota1=null;
+    this.cursoContenidoService.obtenerNotas(this.igeCurso);
+    //this.nota1=null;
+
     console.log("save")
   }
 

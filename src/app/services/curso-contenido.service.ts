@@ -11,7 +11,7 @@ import { Nota } from '../models/nota';
   providedIn: 'root'
 })
 export class CursoContenidoService {
- // myAppUrl = 'http://localhost:3000/';
+ //myAppUrl = 'http://localhost:3000/';
   myAppUrl = 'https://fines-back.herokuapp.com/';
   listCursos: any[];
   listMaterias: any[];
@@ -172,9 +172,10 @@ export class CursoContenidoService {
         }
       );
   }
-  editarNota(nya: string,ige:any,nota:Nota)
+  editarNota(id: string,ige:any,nota:Nota)
     {
-      this.http.put(`${this.myAppUrl}notas/?nya=${nya}&igeId=${ige}`, nota).subscribe(
+      this.http.put(`${this.myAppUrl}notas/${id}`, nota).toPromise()
+      .then(
         data => {
           console.log('PUT Request is successful ', data);
         },
@@ -182,6 +183,7 @@ export class CursoContenidoService {
           console.log('Error', error);
         }
       );
+      
   }
 }
 
