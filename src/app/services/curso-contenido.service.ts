@@ -182,8 +182,12 @@ export class CursoContenidoService {
         error => {
           console.log('Error', error);
         }
+      ).then( (d:any) => {
+        this. obtenerNotas(ige);
+      console.log("doneeee");
+    }
       );
-      
+
   }
 }
 

@@ -257,5 +257,9 @@ console.log("entro al change");
 
     console.log("save")
   }
+  cancel(){
+    this.enableEdit = false;
+    this.enableEditIndex = null;
 
+  }
 }

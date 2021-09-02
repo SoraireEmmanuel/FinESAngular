@@ -90,36 +90,84 @@
             <table class="table table-hover  table-responsive">
               <thead>
                 <tr>
-                  <th scope="col">Nr</th>
+                  <th scope="col" *ngIf="!this.enableEdit">Nr</th>
                   <th scope="col">Nombre y Apellido del Alumno</th>
 
                   <th scope="col">Nota 1</th>
                   <th scope="col">Nota 2</th>
                   <th scope="col">Nota Final</th>
-                  <th id="editar"  *ngIf="this.accion === 'editar'" scope="col">Editar</th>
-                  <th id="guardar"  *ngIf="this.accion === 'guardar'" scope="col">Guardar</th>
+                  <th id="editar"  *ngIf="this.enableEdit" scope="col">Acción</th>
+
 
 
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let alumno of cursoContenidoService.notas; index as i">
-                  <th scope="row">{{ i + 1 }}</th>
+                  <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
                   <td>{{ alumno.nya }}</td>
 
-
+<!--
                   <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
                     <div *ngIf="this.enableEditIndex !== i">{{alumno.nota1}}</div>
+                  </td> -->
+
+                  <td>
+                    <div class="d-flex justify-content-around">
+
+                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
+                        type="submit">
+                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class=" circulo"  [(ngModel)]="nota1" [value]="alumno.nota1">
+                      </button>
+
+                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                        (click)="this.enableEditMethod($event, i)">
+
+                        <div >{{alumno.nota1}}</div>
+                    </span>
+                  </div>
                   </td>
 
-                  <td>{{ alumno.nota2 }}</td>
-                  <td>{{ alumno.notaFinal }}</td>
                   <td>
+                    <div class="d-flex justify-content-around">
+
+                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
+                        type="submit">
+                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class="circulo"  [(ngModel)]="nota2" [value]="alumno.nota2">
+                      </button>
+
+                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                        (click)="this.enableEditMethod($event, i)">
+
+                        <div >{{alumno.nota2}}</div>
+                    </span>
+                  </div>
+                  </td>
+
+                  <td>
+                    <div class="d-flex justify-content-around">
+
+                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
+                        type="submit">
+                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class=" circulo" [(ngModel)]="notaFinal" [value]="alumno.notaFinal">
+                      </button>
+
+                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                        (click)="this.enableEditMethod($event, i)">
+
+                        <div >{{alumno.notaFinal}}</div>
+                    </span>
+                  </div>
+                  </td>
+
+                  <!-- <td>{{ alumno.nota2 }}</td> -->
+                  <!-- <td>{{ alumno.notaFinal }}</td> -->
+                  <td *ngIf="this.enableEdit" >
                     <div class="d-flex justify-content-around">
                     <button *ngIf="enableEdit && enableEditIndex == i" (click)="this.enableEdit=false"
                       class="btn page-secondary-action-btn" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i>
                     </button>
-                    <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="saveBtn" class="btn page-primary-action-btn"
+                    <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="saveBtn" class="btn page-primary-action-btn "
                       (click)="saveSegment()" type="submit"><i  class="fa fa-database" aria-hidden="true"></i></button>
                     <a  class="table-row-action edit-action" *ngIf="!enableEdit"
                       (click)="this.enableEditMethod($event, i)">
