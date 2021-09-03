@@ -50,14 +50,14 @@
 
 <br />
 
-<form [formGroup]="form" (ngSubmit)="guardarCambios()">
+<form [formGroup]="form" (ngSubmit)="guardarCambios($event)">
   <div class="row m-2 p-3 fondo">
     <div class="col-lg-3">
       <div class="mb-3">
-        <label class="form-label"> <u>Clase: </u> {{ claseNm }} </label>
+        <label class="form-label"> <u>Clase: </u>  </label>
 
-        <select class="form-select" (change)="changeForm($event, curso.ige)" formControlName="claseNombre"
-          id="claseNombre" name="claseNm" [(ngModel)]="claseNm">
+        <select class="form-select" (change)="changeForm($event, curso.ige)"
+          id="clase.id" name="claseNm" >
           <option [value]="clase.nombre" *ngFor="let clase of cursoContenidoService.listClases; index as i">
             {{ clase.nombre }}
           </option>
@@ -65,30 +65,42 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="claseFecha">Fecha</span>
-        <input type="text" class="form-control" placeholder="dd/mm/aa" aria-label="Fecha" formControlName="claseFecha"
+        <input type="text" class="form-control" placeholder="dd/mm/aa" aria-label="Fecha" formControlName="claseFecha" [(ngModel)]="fecha"
           [readonly]="cursoContenidoService.vista == 'inactivo'" />
       </div>
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success">
-          <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
-          cambios
-        </button>
+      <div class="row">
+        <div class="col-8">
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">
+              <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
+
+            </button>
+          </div>
+        </div>
+        <div class="col-3 d-flex justify-content-around">
+          <span class="badge rounded-pill bg-secondary sm  m-1 " data-placement="top" title="Nueva clase" data-toggle="tooltip" >
+            <i class="fas fa-plus"> &nbsp; Crear</i></span>
+        </div>
       </div>
+
     </div>
 
     <div class="col-lg-9">
       <div class="mb-3">
+        <u>Título:</u>
+        <div class="input-group input-group-sm mb-3 mt-1">
+          <input type="text" [value]="claseNm" [(ngModel)]="claseNm" formControlName="claseNombre" class="form-control"  [readonly]="cursoContenidoService.vista == 'inactivo'" >
+      </div>
+      </div>
+      <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">
           <u> Tema Dado: </u>
         </label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="claseTema"
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="claseTema" [(ngModel)]="tema"
           [readonly]="cursoContenidoService.vista == 'inactivo'"></textarea>
       </div>
 
-      <span class="badge rounded-pill bg-success p-2 m-1 sm">
-        <i class="fas fa-plus"></i>
-        &nbsp; Nueva clase
-      </span>
+
     </div>
   </div>
 </form>

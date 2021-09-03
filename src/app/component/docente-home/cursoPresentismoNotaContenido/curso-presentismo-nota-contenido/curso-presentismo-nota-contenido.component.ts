@@ -35,6 +35,9 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   clase1: Clases;
   //alumnoPresente: any;
   claseNm: string;
+  claseNmtext: string;
+  fecha:string;
+  tema:string;
   accion:string;
   enableEdit = false;
   enableEditIndex = null;
@@ -133,8 +136,7 @@ console.log("entro al change");
     this.claseNm = clase.nombre;
     this.cursoContenidoService.obtenerAsistencia1(this.idClase, this.igeCurso);
   }
-  guardarCambios() {
-  }
+
   cargarCurso(id: number) {
   }
   obtenerClases(ige: number) {
@@ -263,21 +265,25 @@ console.log("entro al change");
 
   }
   actualizarCurso(est:string){
-  
+
     if (this.cursoContenidoService.vista==="inactivo") {
       this.cursoContenidoService.vista="activo"
-    
+
     } else {
       this.cursoContenidoService.vista="inactivo"
-    
+
     }
    // this.cursoContenidoService.vista="inactivo";
     console.log("cerrar curso",this.curso);
     this.cursoContenidoService.actualizarCursoEstado(this.curso,est)
   }
-  // abrirCurso(){
-  //   this.cursoContenidoService.vista="activo";
-  //   console.log("cerrar curso",this.curso);
-  //   this.cursoContenidoService.cerrarCursoEstado(this.curso)
-  // }
+
+  guardarCambios(e:any) {
+    console.log(this.idClase,"titulo: ",this.claseNm, " fecha: ",this.fecha, "tema: ", this.tema)
+  this.clase1 =this.cursoContenidoService.listClases[this.idClase];
+  this.clase1.fecha=this.fecha;
+  this.clase1.nombre=this.claseNm;
+  this.clase1.tema=this.tema;
+  this.cursoContenidoService.actualizarClase(this.clase1)
+  }
 }

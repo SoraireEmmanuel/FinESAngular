@@ -202,5 +202,18 @@ export class CursoContenidoService {
           console.log('Error', error);
         })
   }
+  actualizarClase(clase:any){
+
+    this.http.put(`${this.myAppUrl}cursos/${clase.id}`, clase).toPromise()
+      .then(
+        data => {
+          console.log('PUT Request is successful ', data);
+          this. obtenerCursos();
+          console.log("clase actualizado");
+        },
+        error => {
+          console.log('Error', error);
+        })
+  }
 }
 
