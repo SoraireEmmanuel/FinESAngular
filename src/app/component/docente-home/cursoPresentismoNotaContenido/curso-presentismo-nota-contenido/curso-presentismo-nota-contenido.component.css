@@ -12,3 +12,26 @@ border-radius: 12px;
   -o-transform:scale(1.25);
   transform:scale(1.25);
 }
+.table td {
+  text-align: center;
+}
+.table th {
+  text-align: center;
+}
+.cursor{
+  cursor: pointer;
+}
+.circulo{
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  padding: 0 4px 0 4px;
+  width: 27px;
+}
+.fa-database{
+  color: green;
+}
+.fa-ban{
+  color: red;
+}

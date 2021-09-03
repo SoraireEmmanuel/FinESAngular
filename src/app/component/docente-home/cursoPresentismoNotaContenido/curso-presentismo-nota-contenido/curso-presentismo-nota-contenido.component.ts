@@ -6,6 +6,7 @@ import { Asistencia } from 'src/app/models/asistencia';
 import { Clases } from 'src/app/models/clases';
 import { Curso } from 'src/app/models/curso';
 import { Materia } from 'src/app/models/materia';
+import { Nota } from 'src/app/models/nota';
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 @Component({
   selector: 'app-curso-presentismo-nota-contenido',
@@ -34,10 +35,22 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   clase1: Clases;
   //alumnoPresente: any;
   claseNm: string;
+  claseNmtext: string;
+  fecha:string;
+  tema:string;
+  accion:string;
+  enableEdit = false;
+  enableEditIndex = null;
+  nota1: any;
+  nota2:any;
+  notaFinal: any;
+  nota:Nota;
+
+
   constructor(private fb: FormBuilder,
     public cursoContenidoService: CursoContenidoService,
     private toastr: ToastrService) {
-    console.log(this.cursoContenidoService.vista, "vista:")
+
     this.form = fb.group({
       id: new FormControl(['']),
       claseNombre: new FormControl(['']),
@@ -50,9 +63,11 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.claseTest = new Clases();
     this.asistencia = new Asistencia();
     this.asistencia1 = new Asistencia();
+    this.nota = new Nota();
     this.idClase = -1;
-    console.log("clases del contruc", this.clases);
-    this.claseNm=''
+
+    this.claseNm='';
+
   }
   ngOnInit(): void {
     this.subscription = this.cursoContenidoService.obtenerDato$().subscribe(data => {
@@ -80,6 +95,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
         // });
       });
     });
+    this.accion='editar'
   }
   ngAfterViewInit(): void {
   }
@@ -120,8 +136,7 @@ console.log("entro al change");
     this.claseNm = clase.nombre;
     this.cursoContenidoService.obtenerAsistencia1(this.idClase, this.igeCurso);
   }
-  guardarCambios() {
-  }
+
   cargarCurso(id: number) {
   }
   obtenerClases(ige: number) {
@@ -203,5 +218,72 @@ console.log("entro al change");
     this.claseTest.tema = "Ninguno";
     console.log(this.claseTest);
     this.cursoContenidoService.agregarClase(this.claseTest)
+  }
+
+  ejecutarAccion(a:string){
+    this.accion=a;
+  }
+  enableEditMethod(e:any, i:any) {
+    this.enableEdit = true;
+    this.enableEditIndex = i;
+    console.log(i, e);
+    console.log(this.cursoContenidoService.notas[i]);
+    this.nota1=(this.cursoContenidoService.notas[i].nota1);
+    this.nota2=(this.cursoContenidoService.notas[i].nota2);
+    this.notaFinal=(this.cursoContenidoService.notas[i].notaFinal);
+    this.nota.nya=(this.cursoContenidoService.notas[i].nya);
+    this.nota.igeId=(this.cursoContenidoService.notas[i].igeId);
+    this.nota.id=(this.cursoContenidoService.notas[i].id);
+    this.nota.nya=(this.cursoContenidoService.notas[i].nya);
+    //console.log(this.nota.nya.replace(' ',"%"))
+  }
+  saveSegment(){
+    this.nota1=parseInt(this.nota1);
+    console.log(this.nota1, this.nota2, this.notaFinal);
+    this.nota={
+    id:  this.nota.id,
+     nya : this.nota.nya,
+     igeId : this.nota.igeId,
+     nota1 :this.nota1,
+     nota2 :this.nota2,
+     notaFinal : this.notaFinal
+    }
+    this.nota=(this.nota) as Nota;
+    console.log(this.nota,"this.nota")
+    this.cursoContenidoService.editarNota(this.nota.id, this.nota.igeId,this.nota);
+
+    this.enableEdit = false;
+    this.enableEditIndex = null;
+    this.cursoContenidoService.obtenerNotas(this.igeCurso);
+    //this.nota1=null;
+
+    console.log("save")
+  }
+  cancel(){
+    this.enableEdit = false;
+    this.enableEditIndex = null;
+
+  }
+  actualizarCurso(est:string){
+
+    if (this.cursoContenidoService.vista==="inactivo") {
+      this.cursoContenidoService.vista="activo"
+
+    } else {
+      this.cursoContenidoService.vista="inactivo"
+
+    }
+   // this.cursoContenidoService.vista="inactivo";
+    console.log("cerrar curso",this.curso);
+    this.cursoContenidoService.actualizarCursoEstado(this.curso,est)
+  }
+
+  guardarCambios(e:any) {
+    console.log(this.idClase,"titulo: ",this.claseNm, " fecha: ",this.fecha, "tema: ", this.tema)
+  this.clase1 =this.cursoContenidoService.listClases[this.idClase];
+  this.clase1.fecha=this.fecha;
+  this.clase1.nombre=this.claseNm;
+  this.clase1.tema=this.tema;
+  this.cursoContenidoService.actualizarClase(this.clase1)
   }
 }
