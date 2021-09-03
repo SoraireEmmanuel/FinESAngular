@@ -31,6 +31,20 @@
         <dd class="col-sm-7">{{ curso.cicloLectivo }}</dd>
       </dl>
     </div>
+    <div class="col-2 d-flex align-items-center">
+      <div>
+        <button
+          *ngIf="cursoContenidoService.vista == 'activo'" data-placement="top" title="NO CERRAR curso" data-toggle="tooltip" (click)="actualizarCurso('inactivo')" class="btn
+          btn-danger">Cerrar Curso
+        </button>
+      </div>
+      <div>
+        <button *ngIf="cursoContenidoService.vista == 'inactivo'" data-placement="top" title=" Cierra el curso actual" data-toggle="tooltip"
+          (click)="actualizarCurso('activo')" class="btn btn-secondary">
+          Abrir Curso
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -40,15 +54,12 @@
   <div class="row m-2 p-3 fondo">
     <div class="col-lg-3">
       <div class="mb-3">
-        <label class="form-label">
-          <u>Clase: </u> {{claseNm}}
-        </label>
+        <label class="form-label"> <u>Clase: </u> {{ claseNm }} </label>
 
         <select class="form-select" (change)="changeForm($event, curso.ige)" formControlName="claseNombre"
           id="claseNombre" name="claseNm" [(ngModel)]="claseNm">
           <option [value]="clase.nombre" *ngFor="let clase of cursoContenidoService.listClases; index as i">
             {{ clase.nombre }}
-
           </option>
         </select>
       </div>
@@ -58,8 +69,9 @@
           [readonly]="cursoContenidoService.vista == 'inactivo'" />
       </div>
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success ">
-          <i class="fas fa-database"></i>&nbsp; Guardar cambios
+        <button type="submit" class="btn btn-success">
+          <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
+          cambios
         </button>
       </div>
     </div>
@@ -82,158 +94,157 @@
 </form>
 
 <div class="row">
-
   <div class="col-6">
     <div class="row mt-4 g-4">
       <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-            <table class="table table-hover  ">
-              <thead>
-                <tr>
-                  <th scope="col" *ngIf="!this.enableEdit">Nr</th>
-                  <th scope="col">Nombre y Apellido del Alumno</th>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" *ngIf="!this.enableEdit">Nr</th>
+                    <th scope="col">Nombre y Apellido del Alumno</th>
 
-                  <th scope="col">Nota 1</th>
-                  <th scope="col">Nota 2</th>
-                  <th scope="col">Nota Final</th>
-                  <th id="editar"  *ngIf="this.enableEdit" scope="col">Acción</th>
+                    <th scope="col">Nota 1</th>
+                    <th scope="col">Nota 2</th>
+                    <th scope="col">Nota Final</th>
+                    <th id="editar" *ngIf="this.enableEdit" scope="col">
+                      Acción
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                      let alumno of cursoContenidoService.notas;
+                      index as i
+                    ">
+                    <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
+                    <td>{{ alumno.nya }}</td>
 
-
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let alumno of cursoContenidoService.notas; index as i">
-                  <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
-                  <td>{{ alumno.nya }}</td>
-
-<!--
+                    <!--
                   <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
                     <div *ngIf="this.enableEditIndex !== i">{{alumno.nota1}}</div>
                   </td> -->
 
-                  <td>
-                    <div class="d-flex justify-content-around">
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button *ngIf="this.enableEdit && this.enableEditIndex === i" id=""
+                          class="btn page-primary-action-btn" type="submit">
+                          <input *ngIf="
+                              this.enableEdit && this.enableEditIndex === i
+                            " type="text" class="circulo" [(ngModel)]="nota1" [value]="alumno.nota1" />
+                        </button>
 
-                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
-                        type="submit">
-                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class=" circulo"  [(ngModel)]="nota1" [value]="alumno.nota1">
-                      </button>
+                        <span class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                          (click)="this.enableEditMethod($event, i)">
+                          <div>{{ alumno.nota1 }}</div>
+                        </span>
+                      </div>
+                    </td>
 
-                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
-                        (click)="this.enableEditMethod($event, i)">
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button *ngIf="this.enableEdit && this.enableEditIndex === i" id=""
+                          class="btn page-primary-action-btn" type="submit">
+                          <input *ngIf="
+                              this.enableEdit && this.enableEditIndex === i
+                            " type="text" class="circulo" [(ngModel)]="nota2" [value]="alumno.nota2" />
+                        </button>
 
-                        <div >{{alumno.nota1}}</div>
-                    </span>
-                  </div>
-                  </td>
+                        <span class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                          (click)="this.enableEditMethod($event, i)">
+                          <div>{{ alumno.nota2 }}</div>
+                        </span>
+                      </div>
+                    </td>
 
-                  <td>
-                    <div class="d-flex justify-content-around">
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button *ngIf="this.enableEdit && this.enableEditIndex === i" id=""
+                          class="btn page-primary-action-btn" type="submit">
+                          <input *ngIf="
+                              this.enableEdit && this.enableEditIndex === i
+                            " type="text" class="circulo" [(ngModel)]="notaFinal" [value]="alumno.notaFinal" />
+                        </button>
 
-                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
-                        type="submit">
-                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class="circulo"  [(ngModel)]="nota2" [value]="alumno.nota2">
-                      </button>
+                        <span class="table-row-action edit-action" *ngIf="!this.enableEdit"
+                          (click)="this.enableEditMethod($event, i)">
+                          <div>{{ alumno.notaFinal }}</div>
+                        </span>
+                      </div>
+                    </td>
 
-                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
-                        (click)="this.enableEditMethod($event, i)">
+                    <!-- <td>{{ alumno.nota2 }}</td> -->
+                    <!-- <td>{{ alumno.notaFinal }}</td> -->
+                    <td *ngIf="this.enableEdit">
+                      <div class="d-flex justify-content-around">
+                        <button *ngIf="enableEdit && enableEditIndex == i" (click)="this.enableEdit = false"
+                          class="btn page-secondary-action-btn" ng-click="cancel()">
+                          <i class="fa fa-ban" aria-hidden="true"></i>
+                        </button>
+                        <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="saveBtn"
+                          class="btn page-primary-action-btn" (click)="saveSegment()" type="submit">
+                          <i class="fa fa-database" aria-hidden="true"></i>
+                        </button>
+                        <a class="table-row-action edit-action" *ngIf="!enableEdit"
+                          (click)="this.enableEditMethod($event, i)">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </td>
 
-                        <div >{{alumno.nota2}}</div>
-                    </span>
-                  </div>
-                  </td>
-
-                  <td>
-                    <div class="d-flex justify-content-around">
-
-                      <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="" class="btn page-primary-action-btn"
-                        type="submit">
-                        <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" class=" circulo" [(ngModel)]="notaFinal" [value]="alumno.notaFinal">
-                      </button>
-
-                      <span  class="table-row-action edit-action" *ngIf="!this.enableEdit"
-                        (click)="this.enableEditMethod($event, i)">
-
-                        <div >{{alumno.notaFinal}}</div>
-                    </span>
-                  </div>
-                  </td>
-
-                  <!-- <td>{{ alumno.nota2 }}</td> -->
-                  <!-- <td>{{ alumno.notaFinal }}</td> -->
-                  <td *ngIf="this.enableEdit" >
-                    <div class="d-flex justify-content-around">
-                    <button *ngIf="enableEdit && enableEditIndex == i" (click)="this.enableEdit=false"
-                      class="btn page-secondary-action-btn" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i>
-                    </button>
-                    <button *ngIf="this.enableEdit && this.enableEditIndex === i" id="saveBtn" class="btn page-primary-action-btn "
-                      (click)="saveSegment()" type="submit"><i  class="fa fa-database" aria-hidden="true"></i></button>
-                    <a  class="table-row-action edit-action" *ngIf="!enableEdit"
-                      (click)="this.enableEditMethod($event, i)">
-                      <i  class="fa fa-check" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                  </td>
-
-                  <!-- <td (click)="ejecutarAccion('editar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'editar'" class="cursor" ></td>
+                    <!-- <td (click)="ejecutarAccion('editar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'editar'" class="cursor" ></td>
                   <td (click)="ejecutarAccion('guardar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'guardar'"  class="cursor" ></td> -->
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
-
     </div>
- 
-</div>
+  </div>
   <div class="col-6" *ngIf="cursoContenidoService.asist !== ''">
     <div class="row mt-4 g-4">
       <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-            <table class="table table-hover table-responsive">
-              <thead >
-                <tr >
-                  <th scope="col">Nr</th>
-                  <th scope="col">Nombre y Apellido del Alumno</th>
-                  <th scope="col" >Presente</th>
+              <table class="table table-hover table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col">Nr</th>
+                    <th scope="col">Nombre y Apellido del Alumno</th>
+                    <th scope="col">Presente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                      let alum of cursoContenidoService.asist;
+                      let i = index
+                    ">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ alum.nya }}</td>
 
-                </tr>
-              </thead>
-              <tbody >
-                <tr *ngFor="let alum of cursoContenidoService.asist; let i = index">
-                  <th scope="row">{{ i + 1 }}</th>
-                  <td>{{ alum.nya }}</td>
-
-                  <td>
-                    <div class="form-check d-flex justify-content-center">
-                      <input class="form-check-input" type="checkbox" id="presente" name="presente"
-                        [checked]="alum.presente === true" [disabled]="cursoContenidoService.vista === 'inactivo'"
-                        [(ngModel)]="alum.presente" />
-                    </div>
-                  </td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    <td>
+                      <div class="form-check d-flex justify-content-center">
+                        <input class="form-check-input" type="checkbox" id="presente" name="presente"
+                          [checked]="alum.presente === true" [disabled]="
+                            cursoContenidoService.vista === 'inactivo'
+                          " [(ngModel)]="alum.presente" />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-  <button (click)="obtenerAsistencia(1,2020)" class="btn btn-primary btn-lg mt-3">
+  <button (click)="obtenerAsistencia(1, 2020)" class="btn btn-primary btn-lg mt-3 m-1">
     Descargar Informe
   </button>
 </div>
-
-

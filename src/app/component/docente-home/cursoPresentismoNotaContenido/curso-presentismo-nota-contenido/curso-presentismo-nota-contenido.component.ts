@@ -47,7 +47,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   constructor(private fb: FormBuilder,
     public cursoContenidoService: CursoContenidoService,
     private toastr: ToastrService) {
-    console.log(this.cursoContenidoService.vista, "vista:")
+
     this.form = fb.group({
       id: new FormControl(['']),
       claseNombre: new FormControl(['']),
@@ -62,7 +62,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.asistencia1 = new Asistencia();
     this.nota = new Nota();
     this.idClase = -1;
-    console.log("clases del contruc", this.clases);
+
     this.claseNm='';
 
   }
@@ -262,4 +262,22 @@ console.log("entro al change");
     this.enableEditIndex = null;
 
   }
+  actualizarCurso(est:string){
+  
+    if (this.cursoContenidoService.vista==="inactivo") {
+      this.cursoContenidoService.vista="activo"
+    
+    } else {
+      this.cursoContenidoService.vista="inactivo"
+    
+    }
+   // this.cursoContenidoService.vista="inactivo";
+    console.log("cerrar curso",this.curso);
+    this.cursoContenidoService.actualizarCursoEstado(this.curso,est)
+  }
+  // abrirCurso(){
+  //   this.cursoContenidoService.vista="activo";
+  //   console.log("cerrar curso",this.curso);
+  //   this.cursoContenidoService.cerrarCursoEstado(this.curso)
+  // }
 }
