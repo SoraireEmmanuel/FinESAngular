@@ -30,6 +30,7 @@ import { AdministrarcursoComponent } from './component/coordinador-home/administ
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
 import { UserComponent } from './component/user/user.component';
 import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component'
+import { ReporteComponent } from './component/docente-home/cursoPresentismoNotaContenido/reporte/reporte.component'
 
 
 
@@ -50,7 +51,8 @@ import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-mater
     AdministrarcursoComponent,
     VerMateriaComponent,
     CursoPresentismoNotaContenidoComponent,
-    UserComponent
+    UserComponent,
+    ReporteComponent,
   ],
   imports: [
     BrowserModule,
