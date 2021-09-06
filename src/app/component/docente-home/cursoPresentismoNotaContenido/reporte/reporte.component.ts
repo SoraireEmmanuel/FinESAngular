@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
 import { ITable, ICustomTableLayout } from "pdfmake-wrapper/lib/interfaces";
+// import pdfMake from "pdfmake/build/pdfmake";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 interface DataResponseAsistenciaNotas {
   id: number,
@@ -147,7 +150,7 @@ export class ReporteComponent implements OnInit {
 
     ])
       .widths([80, 200, '*'])
-      .heights(rowIndex => {
+      .heights((rowIndex:any) => {
         return rowIndex === 0 ? 20 : 0;
       })
       .alignment('center')
