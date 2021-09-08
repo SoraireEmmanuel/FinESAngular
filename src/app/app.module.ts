@@ -27,7 +27,8 @@ import { MisCursosActivosComponent } from './component/docente-home/MisCursosAct
 
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
 import { UserComponent } from './component/user/user.component';
-import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component'
+import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component';
+import { AdministrarCursosComponent } from './component/coordinador-home/administrar-cursos/administrar-cursos.component'
 
 
 
@@ -46,7 +47,8 @@ import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-mater
     MisCursosActivosComponent,
     VerMateriaComponent,
     CursoPresentismoNotaContenidoComponent,
-    UserComponent
+    UserComponent,
+    AdministrarCursosComponent
   ],
   imports: [
     BrowserModule,
