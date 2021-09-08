@@ -24,8 +24,12 @@ transform:scale(1.08);
 .aprobada{
 background-color: rgba(13, 223, 30, 0.308);
 }
+.veraprobada{
+  background-color:#20c997 ;
+}
 .noCursada{
 background-color: rgba(255, 0, 0, 0.300);
+
 
 }
 .enCurso{
