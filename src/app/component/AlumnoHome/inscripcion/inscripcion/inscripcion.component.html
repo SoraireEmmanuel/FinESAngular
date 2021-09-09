@@ -1,24 +1,49 @@
+<div class=" rounded border-warning" style="background-color: white;">
+    <div class="fondo border-dager rounded p-0 m-0 border-warning">
+        <div class="p-5 pt-1 row mt-2" style="padding-bottom: 0%;">
+            <h2> Inscripcion a Materia</h2>
+            <hr>
+            <div class="col-sm-4">
+                <strong>Nivel o Modalidad:</strong> FINES 2 <br>
+                <strong>Nombre de la Materia:</strong> Matematica 1 <br>
+            </div>
+            <div class="col-sm-4">
+                <strong> Area:</strong> MAT <br>
+                <strong>Curso/Año:</strong> 1° 1° <br>
+            </div>
+            <div class="col-sm-4">
+                <strong>Jornada:</strong> Simple <br>
+                <strong>Carga Horaria:</strong> 5 horas semanales <br>
+            </div>
+        </div>
+        <div class="row p-5 pt-1  ">
+            <div class="col-sm-4">
+                <label for="cens" class="form-label">Seleccione una Localidad</label>
+                <select id="cens" class="form-select">
+                    <option>La Plata - Casco Urbano</option>
+                    <option>Romero </option>
+                    <option>San Carlos</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="sede" class="form-label">Seleccione un Sede</label>
+                <select id="sede" class="form-select">
+                    <option>cuchuflito 1 - Direccion: 7 y 33 - Turno: Tarde</option>
+                    <option>cuchuflito 2 - Direccion: 1 y 45 - Turno: Mañana</option>
+                    <option>cuchuflito 3 - Direccion: 36 y 4 - Turno: Vespertino</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <strong> Dias y Horarios:</strong> Lunes de 13 - 16. Martes de 15 - 17 <br>
+                <strong> Direccion:</strong> 7 y 33 <br>
+                <strong> Turno:</strong> Tarde <br>
+                <strong> CENS:</strong> 460 <br>
+            </div>
+        </div>
+        <div class="row p-5 pt-1 ">
+            <button class="btn btn-success">Inscribirme</button>
+        </div>
+    </div>
 
-<div class="p-3">
-  <h1>Inscripcion</h1>
-  <hr>
-<form>
-    <h5>Materia: {{materia}}</h5>
-    <label for="zona" class="form-label">Zona: </label>
-    <select id="zona" class="form-select">
-        <option *ngFor="let z of zona">{{z}}</option>
-    </select>
-    <div class="row">
-        <div class="col-sm-6">
-        <label for="zona" class="form-label">Zona: </label>
-        <select id="zona" class="form-select">
-            <option *ngFor="let s of censsede">{{s}}</option>
-        </select>
-    </div>
-    <div class="col-sm-6 mt-4">
-        <h5>Horario: xx - xx Dia: XX</h5>
-    </div>
-    </div>
-    <button type="submit" class="btn  btn-success">Inscribirme</button>
-</form>
 </div>
+
