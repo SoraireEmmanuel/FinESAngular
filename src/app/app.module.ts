@@ -25,12 +25,11 @@ import { InscripcionComponent } from './component/AlumnoHome/inscripcion/inscrip
 import { ReclamoComponent } from './component/AlumnoHome/reclamo/reclamo/reclamo.component';
 import { MisCursosActivosComponent } from './component/docente-home/MisCursosActivos/mis-cursos-activos/mis-cursos-activos.component';
 
-import { AsignardocenteComponent } from './component/coordinador-home/asignardocente/asignardocente/asignardocente.component';
-import { AdministrarcursoComponent } from './component/coordinador-home/administrarcurso/administrarcurso/administrarcurso.component';
 import { CursoPresentismoNotaContenidoComponent } from './component/docente-home/cursoPresentismoNotaContenido/curso-presentismo-nota-contenido/curso-presentismo-nota-contenido.component';
 import { UserComponent } from './component/user/user.component';
 import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component'
 import { ReporteComponent } from './component/docente-home/cursoPresentismoNotaContenido/reporte/reporte.component'
+import { AdministrarCursosComponent } from './component/coordinador-home/administrar-cursos/administrar-cursos.component'
 
 
 
@@ -47,12 +46,11 @@ import { ReporteComponent } from './component/docente-home/cursoPresentismoNotaC
     InscripcionComponent,
     ReclamoComponent,
     MisCursosActivosComponent,
-    AsignardocenteComponent,
-    AdministrarcursoComponent,
     VerMateriaComponent,
     CursoPresentismoNotaContenidoComponent,
     UserComponent,
     ReporteComponent,
+    AdministrarCursosComponent
   ],
   imports: [
     BrowserModule,
