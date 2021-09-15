@@ -1,63 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
   <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarTogglerDemo03"
-      aria-controls="navbarTogglerDemo03"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">FinES++</a>
+    <a class="navbar-brand">FinES+++</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <div *ngIf="rol == 'alumno'" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div *ngIf="rol=='alumno'" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['trayectoriaAcademica']"
-              >Trayectoria Academica</a
-            >
+            <a class="nav-link active" aria-current="page" [routerLink]="['alumnohome']">Inicio</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['inscripcion']"
-              >Inscripcion</a
-            >
+            <a class="nav-link active" aria-current="page" [routerLink]="['trayectoriaAcademica']">Trayectoria
+              Academica</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['alumnoreclamo']"
-              >Reclamo</a
-            >
+            <a class="nav-link aa" aria-current="page" [routerLink]="['alumnoreclamo']" >Reclamo
+              <span class="badge bg-secondary ">1</span></a>
           </li>
         </div>
-        <div *ngIf="rol == 'profesor'" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div *ngIf="rol=='profesor'" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              (click)="estado('activo')"
-              aria-current="page"
-              [routerLink]="['miscursos']"
-              >Mis Cursos Activos</a
-            >
+            <a class="nav-link active" (click)="estado('activo')" aria-current="page" [routerLink]="['miscursos']">Mis
+              Cursos Activos</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              (click)="estado('inactivo')"
-              aria-current="page"
-              [routerLink]="['miscursos']"
-              >Mis Cursos Historicos</a
-            >
+            <a class="nav-link active" (click)="estado('inactivo')" aria-current="page" [routerLink]="['miscursos']">Mis
+              Cursos Historicos</a>
           </li>
         </div>
         <div
@@ -65,51 +35,121 @@
           class="navbar-nav me-auto mb-2 mb-lg-0"
         >
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['administrarcurso']"
-              >Administrar Cursos</a
-            >
+            <a class="nav-link active" aria-current="page" [routerLink]="['administrarcursos']">Administrar Cursos</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['alumnoreclamo']"
-              >Reclamos</a
-            >
+            <a class="nav-link active" aria-current="page" [routerLink]="['alumnoreclamo']">Reclamos</a>
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              [routerLink]="['home']"
-              >Validar Materias</a
-            >
-          </li>
+
         </div>
       </ul>
-      <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="text"
-          placeholder="Usuario"
-          [(ngModel)]="usuario"
-        />
-        <input
-          class="form-control me-2"
-          type="password"
-          placeholder="Contraseña"
-          [(ngModel)]="password"
-        />
-        <button
-          class="btn btn-outline-secondary"
-          type="submit"
-          (click)="identificarRol()"
-        >
-          Login
-        </button>
+      <form class="d-flex" *ngIf="status">
+        <input class="form-control me-2" type="text" placeholder="E-mail" [(ngModel)]="usuario">
+        <input class="form-control me-2" type="password" placeholder="Contraseña" [(ngModel)]="password">
+        <button class="btn btn-outline-secondary me-2" type="submit" (click)="identificarRol()">Login</button>
+      </form>
+      <form action="d-flex" *ngIf="status">
+        <button class="btn btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo">Crear Cuenta</button>
+        <div class="modal fade modal-fullscreen" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Cuenta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="nombre" class="col-form-label">Nombre:</label>
+                      <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="apellido" class="col-form-label">Apellido:</label>
+                      <input type="text" class="form-control" id="apellido">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="dni" class="col-form-label">Numero de DNI:</label>
+                      <input type="text" class="form-control" id="dni">
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="mail" class="col-form-label">Correo Electronico:</label>
+                      <input type="text" class="form-control" id="mail">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="contrasenia" class="col-form-label">Contraseña:</label>
+                      <input type="password" class="form-control" id="contrasenia">
+                    </div>
+                    <div class="mb-3 col-sm-6" >
+                      <label for="contrasenia2" class="col-form-label">Repita su Contraseña:</label>
+                      <input type="password" class="form-control" id="contrasenia2">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="telefono" class="col-form-label">Telefono:</label>
+                      <input type="text" class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="rol" class="col-form-label">¿Que tipo de usuario es?:</label>
+                      <select name="rol" id="rol" class="form-select">
+                        <option value="1">Estudiante</option>
+                        <option value="2">Docente</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="terminosycondiciones">
+                    <label class="form-check-label" for="terminosycondiciones">Acepto los terminos y condiciones</label>
+                  </div>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #cerrarmodal>Cerrar</button>
+                <button type="button" class="btn btn-primary" id="crearcuenta" name="crearcuenta" (click)="crearCuenta()" >Crear Cuenta</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form action="d-flex" *ngIf="status">
+        <button class="btn btn-outline-success ms-2" type="submit" data-bs-toggle="modal" data-bs-target="#recuperarcontrasenia"
+          data-bs-whatever="@mdo">Recuperar Contraseña</button>
+        <div class="modal fade modal-fullscreen" id="recuperarcontrasenia" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Recuperar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row">
+                    <div class="mb-3">
+                      <label for="nombre" class="col-form-label">Ingrese el DNI de la cuenta:</label>
+                      <input type="text" class="form-control" id="nombre">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #cerrarmodal>Cerrar</button>
+                <button type="button" class="btn btn-primary" id="crearcuenta" name="crearcuenta" (click)="crearCuenta()" >Recuperar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form *ngIf="!status">
+        <button class="btn btn-outline-secondary" (click)="cerrarsesion()"> Cerrar Sesion</button>
       </form>
       <div class="jumbotron" style="background-color: rgb(255, 255, 245)">
         <!-- <app-user></app-user>-->
