@@ -1,1 +1,81 @@
-<p>reclamo works!</p>
+<div class="mt-3 p-2 fondo">
+    <div class="row">
+        <div class="col-sm-10">
+            <h3>Mis Reclamos</h3>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoreclamo"
+            data-bs-whatever="@getbootstrap">Nuevo Reclamo</button>
+        </div>
+    </div>
+   
+    <div class="modal fade" id="nuevoreclamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Reclamo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Destinatario:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Mensaje:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Enviar Reclamo</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <hr>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" >Reclamos Activos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " >Reclamos Cerrados</a>
+        </li>
+      </ul>
+
+    <ul class="list-group">
+        <li class="list-group-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"> 
+            1 - No me pasaron la nota de Matematica 1</li>
+    </ul>
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel"> 1 - No me pasaron la nota de Matematica 1</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-group">
+                <li class="list-group-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"> 
+                    Yo: Hola que tal, aun no me cargaron aprobada matematica 1 y ya pasaron 4 memses. Podria decirme
+                por favor si pasaron mi nota.</li>
+                <li class="list-group-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"> 
+                    Coordinador: Que tal, estamos contactandonos con el docente dado que no figura en el acta como 
+                    aprobado, en breve nos comunicaremos con usted.</li>
+                <li class="list-group-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"> 
+                    Coordinador: Hola, nos contactamos con el docente y ya corregimos su situacion, fue un error administrativo. Saludos!</li>
+            </ul>
+
+          <div class="dropdown mt-3">
+            <input type="text" placeholder="Mensaje . . ." class="me-2" style="width: 80%;">
+            <button class="btn btn-secondary pt-1" type="button" id="dropdownMenuButton" >
+                <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+</div>

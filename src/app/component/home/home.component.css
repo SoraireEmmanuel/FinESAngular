@@ -1,9 +1,9 @@
 .container-fluid{
-  height: 90vh;
+  height: 60vh;
 }
 
 img{
-    max-width: 80%;
+    max-width: 50%;
     border-radius:2%;
 }
 
