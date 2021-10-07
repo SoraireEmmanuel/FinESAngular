@@ -1,66 +1,63 @@
-<div class="container bg-light">
+<div class="container">
   <div class="card">
-    <div class="car-title text-center mt-3"><h2>Crear un nuevo curso</h2></div>
+    <div class="car-title text-center mt-3">
+      <h2>Crear un nuevo curso</h2>
+    </div>
     <hr>
     <div class="card-body">
       <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#crearCurso">
-    Crear curso
-  </button>
-
-
+      <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" data-bs-toggle="modal"
+        data-bs-target="#crearCurso">
+        Crear curso
+      </button>
     </div>
   </div>
- <!-- Modal -->
- <div class="modal fade" id="crearCurso" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear curso</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <label class="form-label">IGE</label>
-            <input type="number" class="form-control" required />
+  <!-- Modal -->
+  <div class="modal fade" id="crearCurso" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content" ngNativeValidate (ngSubmit)="onSubmitCurso()" [formGroup]="cursoForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Crear curso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <label class="form-label">IGE</label>
+              <input type="number" class="form-control" required formControlName="IGE" />
+            </div>
+            <div class="col">
+              <label class="form-label">Año</label>
+              <input type="number" maxlength="4" class="form-control" required formControlName="Anio" />
+            </div>
           </div>
-          <div class="col">
-            <label class="form-label">Año</label>
-            <input type="number" maxlength="4" class="form-control" required />
+
+          <label class="form-label mt-1">Materia</label>
+          <select class="form-select" required formControlName="Id_Materia">
+            <option *ngFor="let m of materias" [value]="m.Id_Materias">{{m.NombreMateria}}</option>
+          </select>
+
+          <div class="row mt-1">
+            <div class="col">
+              <label class="form-label">CENS</label>
+              <select class="form-select" required formControlName="Id_Cens">
+                <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
+              </select>
+            </div>
+            <div class="col">
+              <label class="form-label">Sede</label>
+              <select class="form-select" required formControlName="Id_Sede">
+                <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <label class="form-label mt-1">Materia</label>
-        <select class="form-select" required>
-          <option *ngFor="let m of materias" [value]="m.Id_Materias">{{m.NombreMateria}}</option>
-        </select>
-
-        <div class="row mt-1">
-          <div class="col">
-            <label class="form-label">CENS</label>
-            <select class="form-select" [ngModel]="selectedItem" (ngModelChange)="onCensChange($event)"
-              required>
-              <option disabled selected value>- seleccione un CENS -</option>
-              <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
-            </select>
-          </div>
-          <div class="col">
-            <label class="form-label">Sede</label>
-            <select class="form-select"
-              required>
-              <option disabled selected value>- seleccione una sede -</option>
-              <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
-            </select>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" type="submit">Guardar curso</button>
         </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar curso</button>
-      </div>
+      </form>
     </div>
   </div>
-</div>
 </div>
