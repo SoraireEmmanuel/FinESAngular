@@ -19,7 +19,7 @@ export const ROUTES:Routes=[
     { path: 'docentehome', component: DocenteHomeComponent },
     { path: 'coordinadorhome', component: CoordinadorHomeComponent },
     { path: 'trayectoriaAcademica', component: TrayectoriaacademicaComponent },
-    { path: 'vermateria', component: VerMateriaComponent },
+    { path: 'vermateria/:id', component: VerMateriaComponent },
     { path: 'reclamos', component: ReclamoComponent },
     { path: 'inscripcion', component: InscripcionComponent },
     { path: 'alumnoreclamo', component: ReclamoComponent },
