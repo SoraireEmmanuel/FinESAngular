@@ -11,12 +11,13 @@ export class MisCursosActivosComponent implements OnInit {
 prueba=["1","2","3","4"];
 cursos:any;
 idCurso=0;
+idDocente =7;
   constructor( public cursoContenidoService: CursoContenidoService,
     private router:Router) { }
 
 
   ngOnInit(): void {
-    this.cursoContenidoService.obtenerCursos1().subscribe(data=>{
+    this.cursoContenidoService.obtenerCursos1(this.idDocente).subscribe(data=>{
       console.log("data",data)
       this.cursos = data as any;
         //console.log(this.listCursos)

@@ -13,6 +13,7 @@ import { Nota } from '../models/nota';
 export class CursoContenidoService {
   //myAppUrl = 'http://localhost:3000/';
   myAppUrl = 'https://fines-back.herokuapp.com/';
+  newAPI = 'https://apifines.azurewebsites.net/api/';
   listCursos: any[];
   listMaterias: any[];
   listClases: any;
@@ -23,6 +24,7 @@ export class CursoContenidoService {
   clase: Clases;
   asist: any;
   notas: any;
+  idDocente:number;
 
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
@@ -30,19 +32,22 @@ export class CursoContenidoService {
 
   constructor(private http: HttpClient) {
     this.vista = "inactivo";
+    this.idDocente  = 7;
   }
 
-  obtenerCursos() {
-    this.http.get(this.myAppUrl + 'cursos').toPromise()
-      .then(data => {
-        this.listCursos = data as any;
-        //console.log(this.listCursos)
+  // obtenerCursos() {
+  //   this.http.get(this.myAppUrl + 'cursos').toPromise()
+  //     .then(data => {
+  //       this.listCursos = data as any;
+  //       //console.log(this.listCursos)
 
-      });
+  //     });
 
-  }
-  obtenerCursos1() {
-    return this.http.get(this.myAppUrl + 'cursos')
+  // }
+  obtenerCursos1(idDocente:number) {
+    this.idDocente =idDocente;
+    return this.http.get(`${this.newAPI}CursosByIdDocente${this.idDocente}`)
+     //this.http.get(this.myAppUrl + 'cursos')
   }
 
   obtenerClases(ige: any) {
@@ -195,7 +200,7 @@ export class CursoContenidoService {
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this. obtenerCursos();
+          this. obtenerCursos1(this.idDocente);
           console.log("estado actualizado");
         },
         error => {
@@ -208,7 +213,7 @@ export class CursoContenidoService {
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this. obtenerCursos();
+          this. obtenerCursos1(this.idDocente);
           console.log("clase actualizado");
         },
         error => {
