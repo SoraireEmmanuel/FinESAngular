@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TrayectoriaAcademicaService } from 'src/app/services/trayectoriaAcademica/trayectoria-academica.service';
 
 
 @Component({
@@ -8,8 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./ver-materia.component.css']
 })
 export class VerMateriaComponent implements OnInit {
-
-  constructor(private router:Router) { }
+id:any;
+materiaData:any;
+  constructor(private router:Router,
+              private _ac:ActivatedRoute,
+              private _trayectoria:TrayectoriaAcademicaService) {
+this._ac.paramMap.subscribe(param=>{
+  this.id=param.get('id');
+  _trayectoria.verMateria(this.id).subscribe(resp=>{
+    this.materiaData=resp;
+  })
+})
+               }
 
   ngOnInit(): void {
   }
