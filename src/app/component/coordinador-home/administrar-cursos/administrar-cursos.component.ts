@@ -19,6 +19,8 @@ export class AdministrarCursosComponent implements OnInit {
     Id_Cens: '',
     Id_Materia: '',
     Id_Sede: '',
+    estado: true,
+    diaHorario: ''
   });
 
   constructor(

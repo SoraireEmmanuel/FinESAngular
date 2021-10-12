@@ -37,6 +37,9 @@
             <option *ngFor="let m of materias" [value]="m.Id_Materias">{{m.NombreMateria}}</option>
           </select>
 
+          <label class="form-label mt-1">Día y horario</label>
+          <input class="form-control" type="text" required formControlName="diaHorario" />
+
           <div class="row mt-1">
             <div class="col">
               <label class="form-label">CENS</label>
