@@ -47,6 +47,17 @@ identificarRol(){
    console.log(resp);
    var us:any=resp;
    this.rol=us.rol;
+   localStorage.setItem('token',us.Token);
+   localStorage.setItem('idUsuario',us.Id_Usuario);
+   localStorage.setItem('rol',us.rol);
+   switch(this.rol){
+    case 1: this.router.navigate(['/alumnohome']);
+    break;
+    case 2: this.router.navigate(['/docentehome']);
+    break;
+    case 3: this.router.navigate(['/coordinadorhome']);
+    break;
+   }
  },error=>{console.log(error)})
 }
 
