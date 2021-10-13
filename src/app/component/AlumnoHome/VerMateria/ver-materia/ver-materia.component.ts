@@ -10,6 +10,7 @@ import { TrayectoriaAcademicaService } from 'src/app/services/trayectoriaAcademi
 })
 export class VerMateriaComponent implements OnInit {
 id:any;
+idMateria:any=9999;
 materiaData:any;
   constructor(private router:Router,
               private _ac:ActivatedRoute,
@@ -18,6 +19,7 @@ this._ac.paramMap.subscribe(param=>{
   this.id=param.get('id');
   _trayectoria.verMateria(this.id).subscribe(resp=>{
     this.materiaData=resp;
+    this.idMateria=this.materiaData[0].Id_Materia
   })
 })
                }
@@ -26,5 +28,9 @@ this._ac.paramMap.subscribe(param=>{
   }
 volver(){
 this.router.navigate(['/trayectoriaAcademica'])
+}
+inscribirme(){
+
+this.router.navigate(['/inscripcion',this.idMateria])  
 }
 }

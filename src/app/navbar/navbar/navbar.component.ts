@@ -32,7 +32,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(public cursoContenidoService: CursoContenidoService, private _auth:AuthService,
     private router:Router, private toastr: ToastrService, private _nuevaCuenta: NuevaCuentaService) {
-
+      if(localStorage.getItem('rol')!=null){
+      this.rol=localStorage.getItem('rol')
+      }
+      else{
+        this.router.navigate(['/home'])
+      }
+      console.log(this.rol )
      }
 
   ngOnInit(): void {
