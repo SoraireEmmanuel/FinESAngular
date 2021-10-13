@@ -75,7 +75,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
       console.log("data desde ccursoPResenNo", data);
       this.cursoContenidoService.obtenerCurso1(localStorage.getItem('idCurso')).subscribe((res:any) => {
         this.curso = res[0] as Curso;
-        this.obtenerNotas(this.curso.IGE);
+        this.obtenerNotas(localStorage.getItem('idCurso'));
         this.cursoContenidoService.obtenerClases(localStorage.getItem('idCurso'));
 
         console.log("es la rest de ob curso", res, "this curso", this.curso);
@@ -185,9 +185,9 @@ console.log("entro al change");
   //     })
   // }
 
-  obtenerNotas(igeCurso: any) {
-    console.log("notas del componente", this.notas, igeCurso);
-    this.cursoContenidoService.obtenerNotas(igeCurso);
+  obtenerNotas(idCurso: any) {
+    console.log("notas del componente", this.notas, idCurso);
+    this.cursoContenidoService.obtenerNotas(idCurso);
     this.notas = this.cursoContenidoService.notas;
 
   }
@@ -254,7 +254,7 @@ console.log("entro al change");
 
     this.enableEdit = false;
     this.enableEditIndex = null;
-    this.cursoContenidoService.obtenerNotas(this.igeCurso);
+    this.cursoContenidoService.obtenerNotas(localStorage.getItem('idCurso'));
     //this.nota1=null;
 
     console.log("save")

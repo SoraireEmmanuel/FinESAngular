@@ -85,16 +85,16 @@ export class CursoContenidoService {
     return this.actualizarFormulario.asObservable();
   }
 
-  obtenerMateria(ige: any) {
-    this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
-      .then((da: any) => {
-        this.da = da[0];
-        this.mat = this.da as Materia;
-        //this.da.map((d) => d.)
-        //this.mat = da as Materia;
-        console.log("obtener materia data", this.mat)
-      })
-  }
+  // obtenerMateria(ige: any) {
+  //   this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
+  //     .then((da: any) => {
+  //       this.da = da[0];
+  //       this.mat = this.da as Materia;
+  //       //this.da.map((d) => d.)
+  //       //this.mat = da as Materia;
+  //       console.log("obtener materia data", this.mat)
+  //     })
+  // }
 
   obtenerMateria1(idCurso: any) {
     return this.http.get(`${this.newAPI}MateriaPorIge/${idCurso}`)
@@ -135,8 +135,9 @@ export class CursoContenidoService {
 
     //  });
   }
-  obtenerNotas(ige: any) {
-    this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
+  obtenerNotas(idCurso: any) {
+    //this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
+    this.http.get(`${this.newAPI}NotasByCursoId/${idCurso}`).toPromise()
       .then((dat: any) => {
         this.notas = dat as Nota;
         // this.da=da;
