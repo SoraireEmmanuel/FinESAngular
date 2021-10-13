@@ -5,45 +5,49 @@
             <hr>
             <div class="col-sm-4">
                 <strong>Nivel o Modalidad:</strong> FINES 2 <br>
-                <strong>Nombre de la Materia:</strong> Matematica 1 <br>
+                <strong>Nombre de la Materia:</strong> {{materiadata.NombreMateria}} <br>
             </div>
             <div class="col-sm-4">
-                <strong> Area:</strong> MAT <br>
-                <strong>Curso/Año:</strong> 1° 1° <br>
+                <strong> Area:</strong> {{materiadata.CodigoMateria}} <br>
+                <strong>Curso/Año:</strong> {{materiadata.Anio}}°{{materiadata.Cuatrimestre}}° <br>
             </div>
             <div class="col-sm-4">
                 <strong>Jornada:</strong> Simple <br>
-                <strong>Carga Horaria:</strong> 5 horas semanales <br>
+                <strong>Carga Horaria:</strong> {{materiadata.CargaHoraria}} horas semanales <br>
             </div>
         </div>
         <div class="row p-5 pt-1  ">
             <div class="col-sm-4">
-                <label for="cens" class="form-label">Seleccione una Localidad</label>
-                <select id="cens" class="form-select">
-                    <option>La Plata - Casco Urbano</option>
-                    <option>Romero </option>
-                    <option>San Carlos</option>
+                <label for="Localidad" class="form-label">Seleccione una Localidad</label>
+                <select id="Localidad" class="form-select" #loc (change)="seleccionLocalidad(loc.value)">
+               <!--</select> (ngModelChange)="seleccionLocalidad($event)" 
+                [ngModel]="selectLocalidad" -->
+                    <option selected="true" disabled="disabled" [selected]="true" >Seleccione una Localidad . . .</option>
+                    <option [value]="item.Localidad" *ngFor="let item of localidades"  
+                    >{{item.Localidad}}</option>
                 </select>
-            </div>
+             </div>
             <div class="col-sm-4">
                 <label for="sede" class="form-label">Seleccione un Sede</label>
-                <select id="sede" class="form-select">
-                    <option>cuchuflito 1 - Direccion: 7 y 33 - Turno: Tarde</option>
-                    <option>cuchuflito 2 - Direccion: 1 y 45 - Turno: Mañana</option>
-                    <option>cuchuflito 3 - Direccion: 36 y 4 - Turno: Vespertino</option>
+                <select id="sede" class="form-select" [disabled]='sededisabled' #sede (change)="seleccionarSede(sede.value)">
+                    <option selected="true" disabled="disabled" [selected]="true">Seleccione la sede. . . </option>
+                    <option [value]="item.Id_Curso" *ngFor="let item of sedeobject" >{{item.SedeDireccion}} - {{item.DiayHorario}} </option>
+                    
                 </select>
             </div>
             <div class="col-sm-4">
-                <strong> Dias y Horarios:</strong> Lunes de 13 - 16. Martes de 15 - 17 <br>
-                <strong> Direccion:</strong> 7 y 33 <br>
+                
+                <strong> Dias y Horarios:</strong> {{selectSede.DiayHorario}} <br>
+                <strong> Direccion:</strong> {{selectSede.SedeDireccion}} <br>
                 <strong> Turno:</strong> Tarde <br>
-                <strong> CENS:</strong> 460 <br>
+                <strong> CENS:</strong> {{selectSede.Cens}} <br>
             </div>
         </div>
         <div class="row p-5 pt-1 ">
-            <button class="btn btn-success">Inscribirme</button>
+            <button class="btn btn-success" [disabled]="inscribirmeDisabled" (click)="inscribirme()">Inscribirme</button>
         </div>
     </div>
 
 </div>
+
 

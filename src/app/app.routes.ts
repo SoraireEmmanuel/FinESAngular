@@ -21,7 +21,7 @@ export const ROUTES:Routes=[
     { path: 'trayectoriaAcademica', component: TrayectoriaacademicaComponent },
     { path: 'vermateria/:id', component: VerMateriaComponent },
     { path: 'reclamos', component: ReclamoComponent },
-    { path: 'inscripcion', component: InscripcionComponent },
+    { path: 'inscripcion/:id', component: InscripcionComponent },
     { path: 'alumnoreclamo', component: ReclamoComponent },
     { path: 'miscursos', component: MisCursosActivosComponent },
     { path: 'cursopresentismocontenido', component: CursoPresentismoNotaContenidoComponent },
