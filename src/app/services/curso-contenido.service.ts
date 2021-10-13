@@ -13,40 +13,45 @@ import { Nota } from '../models/nota';
 export class CursoContenidoService {
   //myAppUrl = 'http://localhost:3000/';
   myAppUrl = 'https://fines-back.herokuapp.com/';
+  newAPI = 'https://apifines.azurewebsites.net/api/';
   listCursos: any[];
   listMaterias: any[];
   listClases: any;
   curso: any;
   mat: Materia;
   da: object;
-  vista: string;
+  vista: boolean;
   clase: Clases;
   asist: any;
   notas: any;
+  idDocente: any;
 
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
 
 
   constructor(private http: HttpClient) {
-    this.vista = "inactivo";
+    this.vista = false;
+    this.idDocente = localStorage.getItem('idUsuario');
   }
 
-  obtenerCursos() {
-    this.http.get(this.myAppUrl + 'cursos').toPromise()
-      .then(data => {
-        this.listCursos = data as any;
-        //console.log(this.listCursos)
+  // obtenerCursos() {
+  //   this.http.get(this.myAppUrl + 'cursos').toPromise()
+  //     .then(data => {
+  //       this.listCursos = data as any;
+  //       //console.log(this.listCursos)
 
-      });
+  //     });
 
-  }
+  // }
   obtenerCursos1() {
-    return this.http.get(this.myAppUrl + 'cursos')
+
+    return this.http.get(`${this.newAPI}CursosByIdDocente/${this.idDocente}`)
+    //this.http.get(this.myAppUrl + 'cursos')
   }
 
-  obtenerClases(ige: any) {
-    this.http.get(`${this.myAppUrl}clases?igeCurso=${ige}`).toPromise()
+  obtenerClases(idCurso: any) {
+    this.http.get(`${this.newAPI}TodasLasClasesPorCurso/${idCurso}`).toPromise()
       .then(data => {
         this.listClases = data as Clases
         console.log("resultado obtener clases", this.listClases);
@@ -54,7 +59,8 @@ export class CursoContenidoService {
     return this.listClases
   }
   obtenerClase(idclase: any, ige: any) {
-    return this.http.get(`${this.myAppUrl}clases?id=${idclase}&igeCurso=${ige}`)
+    return this.http.get(`${this.newAPI}VerInfoClaseByClaseID/${idclase}`)
+    //this.http.get(`${this.myAppUrl}clases?id=${idclase}&igeCurso=${ige}`)
   }
   // obtenerCurso(id: number){
   //    this.http.get(`${this.myAppUrl}cursos/${id}`).toPromise()
@@ -64,8 +70,8 @@ export class CursoContenidoService {
 
   //   });
   // }
-  obtenerCurso1(id: number) {
-    return this.http.get(`${this.myAppUrl}cursos/${id}`)
+  obtenerCurso1(id: any) {
+    return this.http.get(`${this.newAPI}CursosByIdCurso/${id}`)
     //   .then(data => {
     //    this.curso = data as any;
     //    //console.log(this.listCursos)
@@ -79,19 +85,19 @@ export class CursoContenidoService {
     return this.actualizarFormulario.asObservable();
   }
 
-  obtenerMateria(ige: any) {
-    this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
-      .then((da: any) => {
-        this.da = da[0];
-        this.mat = this.da as Materia;
-        //this.da.map((d) => d.)
-        //this.mat = da as Materia;
-        console.log("obtener materia data", this.mat)
-      })
-  }
+  // obtenerMateria(ige: any) {
+  //   this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`).toPromise()
+  //     .then((da: any) => {
+  //       this.da = da[0];
+  //       this.mat = this.da as Materia;
+  //       //this.da.map((d) => d.)
+  //       //this.mat = da as Materia;
+  //       console.log("obtener materia data", this.mat)
+  //     })
+  // }
 
-  obtenerMateria1(ige: number) {
-    return this.http.get(`${this.myAppUrl}materias/?igeCurso=${ige}`)
+  obtenerMateria1(idCurso: any) {
+    return this.http.get(`${this.newAPI}MateriaPorIge/${idCurso}`)
     //   .then(data => {
     //    this.curso = data as any;
     //    //console.log(this.listCursos)
@@ -99,7 +105,7 @@ export class CursoContenidoService {
     //  });
   }
 
-  obtenerAsistencia(idClase: number, ige: number) {
+  obtenerAsistencia(idClase: number, ige: any) {
     return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}&igeId=${ige}`)
     //   .then(data => {
     //    this.curso = data as any;
@@ -107,7 +113,7 @@ export class CursoContenidoService {
 
     //  });
   }
-  obtenerAsistencia1(idClase: number, ige: number) {
+  obtenerAsistencia1(idClase: number, ige: any) {
     this.http.get(`${this.myAppUrl}asistencia/?claseId=${idClase}&igeId=${ige}`).toPromise()
       .then(
         (dat: any) => {
@@ -129,8 +135,9 @@ export class CursoContenidoService {
 
     //  });
   }
-  obtenerNotas(ige: number) {
-    this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
+  obtenerNotas(idCurso: any) {
+    //this.http.get(`${this.myAppUrl}notas/?igeId=${ige}`).toPromise()
+    this.http.get(`${this.newAPI}NotasByCursoId/${idCurso}`).toPromise()
       .then((dat: any) => {
         this.notas = dat as Nota;
         // this.da=da;
@@ -188,27 +195,27 @@ export class CursoContenidoService {
       );
 
   }
-  actualizarCursoEstado(curso:any, estado:string){
+  actualizarCursoEstado(curso: any, estado: string) {
     console.log(curso);
-    curso.estado=estado;
+    curso.estado = estado;
     this.http.put(`${this.myAppUrl}cursos/${curso.id}`, curso).toPromise()
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this. obtenerCursos();
+          this.obtenerCursos1();
           console.log("estado actualizado");
         },
         error => {
           console.log('Error', error);
         })
   }
-  actualizarClase(clase:any){
+  actualizarClase(clase: any) {
 
     this.http.put(`${this.myAppUrl}cursos/${clase.id}`, clase).toPromise()
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this. obtenerCursos();
+          this.obtenerCursos1();
           console.log("clase actualizado");
         },
         error => {

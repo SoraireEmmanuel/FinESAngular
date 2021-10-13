@@ -1,17 +1,17 @@
-export class Materia{
-  id?:number;
-  nombre:string;
-  nivel:string;
-  cuatrimestre:string;
-  cargaHoraria: string;
-  igeCurso: number
+export class Materia {
 
-  constructor(){
-    this.id= 0,
-    this.nombre= "",
-    this.nivel= "",
-    this.cuatrimestre= "",
-    this.cargaHoraria= "",
-    this.igeCurso= 0
+  MateriaNombre: string;
+  Nivel: string;
+  Cuatrimestre: string;
+  CargaHoraria: string;
+  Ige: number
+
+  constructor() {
+
+    this.MateriaNombre = "",
+      this.Nivel = "",
+      this.Cuatrimestre = "",
+      this.CargaHoraria = "",
+      this.Ige = 0
   }
 }

@@ -3,7 +3,7 @@
     <div class="col-sm-3 m-2 p-2">
       <dl class="row">
         <dt class="col-sm-4">Materia</dt>
-        <dd class="col-sm-8">{{ materia.nombre }}</dd>
+        <dd class="col-sm-8">{{ materia.MateriaNombre }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Turno</dt>
@@ -13,28 +13,28 @@
     <div class="col-sm-3 m-2 p-2">
       <dl class="row">
         <dt class="col-sm-4">IGE</dt>
-        <dd class="col-sm-8">{{ materia.igeCurso }}</dd>
+        <dd class="col-sm-8">{{ materia.Ige }}</dd>
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Curso</dt>
-        <dd class="col-sm-8">{{ materia.nivel }} {{ materia.cuatrimestre }}</dd>
+        <dd class="col-sm-8">{{ materia.Nivel }} - {{ materia.Cuatrimestre }}</dd>
       </dl>
     </div>
     <div class="col-sm-3 m-2 p-2">
       <dl class="row">
         <dt class="col-sm-5">SEDE/Sens</dt>
-        <dd class="col-sm-7">{{ curso.sedeId }}</dd>
+        <dd class="col-sm-7">{{ curso.SedeNombre }}</dd>
       </dl>
 
       <dl class="row">
         <dt class="col-sm-5">Ciclo Lectivo</dt>
-        <dd class="col-sm-7">{{ curso.cicloLectivo }}</dd>
+        <dd class="col-sm-7">{{ curso.CicloLectivo }}</dd>
       </dl>
     </div>
     <div class="col-2 d-flex align-items-center">
       <div>
         <button
-          *ngIf="cursoContenidoService.vista == 'activo'"
+          *ngIf="cursoContenidoService.vista == true"
           data-placement="top"
           title="NO CERRAR curso"
           data-toggle="tooltip"
@@ -46,7 +46,7 @@
       </div>
       <div>
         <button
-          *ngIf="cursoContenidoService.vista == 'inactivo'"
+          *ngIf="cursoContenidoService.vista == false"
           data-placement="top"
           title=" Cierra el curso actual"
           data-toggle="tooltip"
@@ -70,7 +70,7 @@
 
         <select
           class="form-select"
-          (change)="changeForm($event, curso.ige)"
+          (change)="changeForm($event, curso.IGE)"
           id="clase.id"
           name="claseNm"
         >
@@ -91,7 +91,7 @@
           aria-label="Fecha"
           formControlName="claseFecha"
           [(ngModel)]="fecha"
-          [readonly]="cursoContenidoService.vista == 'inactivo'"
+          [readonly]="cursoContenidoService.vista == false"
         />
       </div>
       <div class="row">
@@ -125,7 +125,7 @@
             [(ngModel)]="claseNm"
             formControlName="claseNombre"
             class="form-control"
-            [readonly]="cursoContenidoService.vista == 'inactivo'"
+            [readonly]="cursoContenidoService.vista == false"
           />
         </div>
       </div>
@@ -139,7 +139,7 @@
           rows="3"
           formControlName="claseTema"
           [(ngModel)]="tema"
-          [readonly]="cursoContenidoService.vista == 'inactivo'"
+          [readonly]="cursoContenidoService.vista == false"
         ></textarea>
       </div>
     </div>
@@ -344,7 +344,7 @@
                           name="presente"
                           [checked]="alum.presente === true"
                           [disabled]="
-                            cursoContenidoService.vista === 'inactivo'
+                            cursoContenidoService.vista === false
                           "
                           [(ngModel)]="alum.presente"
                         />

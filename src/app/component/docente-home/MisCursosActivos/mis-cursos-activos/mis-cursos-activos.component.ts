@@ -11,6 +11,7 @@ export class MisCursosActivosComponent implements OnInit {
 prueba=["1","2","3","4"];
 cursos:any;
 idCurso=0;
+idDocente =7;
   constructor( public cursoContenidoService: CursoContenidoService,
     private router:Router) { }
 
@@ -25,6 +26,8 @@ idCurso=0;
 
   }
   verDetalle(id:any){
+    localStorage.setItem('idCurso',id);
+    console.log(localStorage.getItem('idCurso'));
     this.idCurso=id;
     this.cursoContenidoService.actualizar(this.idCurso);
     //console.log("llamado")

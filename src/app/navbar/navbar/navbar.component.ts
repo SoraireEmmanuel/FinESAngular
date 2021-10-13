@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   usuario:any;
   password:any;
   status:boolean=true
-  
+
   //variables del formulario registrar usuario
   nombre:string='';
   apellido:string='';
@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
      }
-  estado(estado:string){
+  estado(estado:boolean){
     this.cursoContenidoService.vista=estado;
     console.log(this.cursoContenidoService.vista,"vista:")
   }
@@ -90,7 +90,7 @@ crearCuenta(){
       this.toastr.error('Problemas con el servidor. La cuenta no pudo ser creada exitosamente', 'ERROR')
 
     })
-  
+
 }
 cerrarsesion(){
   this.status=true;

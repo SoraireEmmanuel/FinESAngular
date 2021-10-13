@@ -30,7 +30,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   idClase: number;
   idCurso = '';
   da: object;
-  igeCurso: number;
+  igeCurso: any;
   claseTest: Clases;
   clase1: Clases;
   //alumnoPresente: any;
@@ -73,18 +73,18 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.subscription = this.cursoContenidoService.obtenerDato$().subscribe(data => {
       //Cargo curso **********
       console.log("data desde ccursoPResenNo", data);
-      this.cursoContenidoService.obtenerCurso1(data).subscribe(res => {
-        this.curso = res as Curso;
-        this.obtenerNotas(this.curso.ige);
-        this.cursoContenidoService.obtenerClases(this.curso.ige);
+      this.cursoContenidoService.obtenerCurso1(localStorage.getItem('idCurso')).subscribe((res:any) => {
+        this.curso = res[0] as Curso;
+        this.obtenerNotas(localStorage.getItem('idCurso'));
+        this.cursoContenidoService.obtenerClases(localStorage.getItem('idCurso'));
 
         console.log("es la rest de ob curso", res, "this curso", this.curso);
         // Termian carga curso*******
         //cargo clases ***
-        console.log("ige", this.curso.ige);
-        this.igeCurso = this.curso.ige;
-        this.obtenerMateria(this.curso.ige);
-        this.obtenerClases(this.curso.ige);
+        console.log("ige", this.curso.IGE);
+        this.igeCurso = this.curso.IGE;
+        this.obtenerMateria(localStorage.getItem('idCurso'));
+        this.obtenerClases(localStorage.getItem('idCurso'));
         this.clases = this.cursoContenidoService.listClases;
 
         //this.completarClase(thi);
@@ -104,7 +104,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.cursoContenidoService.asist='';
   }
 
-  changeForm(e: any, ige: number) {
+  changeForm(e: any, ige: any) {
    // this.cursoContenidoService.obtenerAsistencia1(ige);
 console.log("entro al change");
     console.log(e);
@@ -137,9 +137,9 @@ console.log("entro al change");
     this.cursoContenidoService.obtenerAsistencia1(this.idClase, this.igeCurso);
   }
 
-  cargarCurso(id: number) {
+  cargarCurso(id: any) {
   }
-  obtenerClases(ige: number) {
+  obtenerClases(Id_Curso: any) {
     //   if(this.clases === 0 || this.clases === undefined){
     //         this.cursoContenidoService.obtenerCurso(id);
     //       this.res = this.cursoContenidoService.curso;
@@ -148,14 +148,14 @@ console.log("entro al change");
     //         console.log(this.clases);
     //         this.completarClase();
     //     }
-    this.cursoContenidoService.obtenerClases(ige);
+    this.cursoContenidoService.obtenerClases(Id_Curso);
     this.clases = this.cursoContenidoService.listClases;
     console.log("funciion de obtener clases ejecutada", this.clases)
   }
 
-  obtenerMateria(igeCurso: number) {
+  obtenerMateria(idCurso: any) {
     console.log("Materia del componente", this.materia);
-    this.cursoContenidoService.obtenerMateria1(igeCurso).subscribe(
+    this.cursoContenidoService.obtenerMateria1(idCurso).subscribe(
       (da: any) => {
         this.da = da[0];
         console.log("da", da)
@@ -185,14 +185,14 @@ console.log("entro al change");
   //     })
   // }
 
-  obtenerNotas(igeCurso: number) {
-    console.log("notas del componente", this.notas, igeCurso);
-    this.cursoContenidoService.obtenerNotas(igeCurso);
+  obtenerNotas(idCurso: any) {
+    console.log("notas del componente", this.notas, idCurso);
+    this.cursoContenidoService.obtenerNotas(idCurso);
     this.notas = this.cursoContenidoService.notas;
 
   }
 
-  obtenerAsistencia(claseId: number, igeCurso: number) {
+  obtenerAsistencia(claseId: any, igeCurso: any) {
     console.log("Asistencias del componente", this.asistencia1);
      this.cursoContenidoService.obtenerAsistencia1(claseId, igeCurso);
      this.asistencia1 = this.cursoContenidoService.asist;
@@ -254,7 +254,7 @@ console.log("entro al change");
 
     this.enableEdit = false;
     this.enableEditIndex = null;
-    this.cursoContenidoService.obtenerNotas(this.igeCurso);
+    this.cursoContenidoService.obtenerNotas(localStorage.getItem('idCurso'));
     //this.nota1=null;
 
     console.log("save")
@@ -264,13 +264,13 @@ console.log("entro al change");
     this.enableEditIndex = null;
 
   }
-  actualizarCurso(est:string){
+  actualizarCurso(est:any){
 
-    if (this.cursoContenidoService.vista==="inactivo") {
-      this.cursoContenidoService.vista="activo"
+    if (this.cursoContenidoService.vista===false) {
+      this.cursoContenidoService.vista=true
 
     } else {
-      this.cursoContenidoService.vista="inactivo"
+      this.cursoContenidoService.vista=false
 
     }
    // this.cursoContenidoService.vista="inactivo";
