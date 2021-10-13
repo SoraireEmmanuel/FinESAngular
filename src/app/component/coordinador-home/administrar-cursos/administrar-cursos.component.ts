@@ -1,32 +1,43 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DetalleCursoComponent } from '../detalle-curso/detalle-curso.component';
+import { CrearCursoComponent } from '../crear-curso/crear-curso.component';
 
 @Component({
   selector: 'app-administrar-cursos',
   templateUrl: './administrar-cursos.component.html',
-  styleUrls: ['./administrar-cursos.component.css']
+  styleUrls: ['./administrar-cursos.component.css'],
+  providers: [DetalleCursoComponent, CrearCursoComponent]
 })
 export class AdministrarCursosComponent implements OnInit {
+  API_URL = "https://apifines.azurewebsites.net/api";
+
   materias: any;
   cens: any;
   sedes: any;
-  selectedItem: any;
+  selectedCens: any;
+  selectedSede: any;
+  cursos: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   ngOnInit(): void {
-    this.http.get("https://apifines.azurewebsites.net/api/VerListaMaterias").subscribe(
-      data => this.materias = data as Array<any>
-    );
-
-    this.http.get("https://apifines.azurewebsites.net/api/VerCENS").subscribe(
+    this.http.get(`${this.API_URL}/VerCens`).subscribe(
       data => this.cens = data as Array<any>
     );
   }
 
   onCensChange(id_cens: any) {
-    this.http.get(`https://apifines.azurewebsites.net/api/VerSedebyIdCens/${id_cens}`).subscribe(
+    this.http.get(`${this.API_URL}/VerSedebyIdCens/${id_cens}`).subscribe(
       data => this.sedes = data as Array<any>
+    );
+  }
+
+  verCursos() {
+    this.http.get(`${this.API_URL}/CursosByIdSedeActivos/${this.selectedSede}`).subscribe(
+      data => this.cursos = data as Array<any>
     );
   }
 }

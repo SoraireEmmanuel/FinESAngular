@@ -30,7 +30,8 @@ import { UserComponent } from './component/user/user.component';
 import { VerMateriaComponent } from './component/AlumnoHome/VerMateria/ver-materia/ver-materia.component'
 import { ReporteComponent } from './component/docente-home/cursoPresentismoNotaContenido/reporte/reporte.component'
 import { AdministrarCursosComponent } from './component/coordinador-home/administrar-cursos/administrar-cursos.component'
-
+import { DetalleCursoComponent } from './component/coordinador-home/detalle-curso/detalle-curso.component';
+import { CrearCursoComponent } from './component/coordinador-home/crear-curso/crear-curso.component';
 
 
 @NgModule({
@@ -50,7 +51,9 @@ import { AdministrarCursosComponent } from './component/coordinador-home/adminis
     CursoPresentismoNotaContenidoComponent,
     UserComponent,
     ReporteComponent,
-    AdministrarCursosComponent
+    AdministrarCursosComponent,
+    DetalleCursoComponent,
+    CrearCursoComponent,
   ],
   imports: [
     BrowserModule,

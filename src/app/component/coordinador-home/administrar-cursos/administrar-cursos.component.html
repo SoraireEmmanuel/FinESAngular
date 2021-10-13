@@ -1,66 +1,62 @@
-<div class="container bg-light">
+<div class="container">
   <div class="card">
-    <div class="car-title text-center mt-3"><h2>Crear un nuevo curso</h2></div>
-    <hr>
+    <div class="card-header">
+      <h2>Administración de cursos</h2>
+    </div>
     <div class="card-body">
       <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#crearCurso">
-    Crear curso
-  </button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#crearCurso">
+        Crear curso
+      </button>
+      <app-crear-curso></app-crear-curso>
 
+      <hr />
 
-    </div>
-  </div>
- <!-- Modal -->
- <div class="modal fade" id="crearCurso" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear curso</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <label class="form-label">IGE</label>
-            <input type="number" class="form-control" required />
-          </div>
-          <div class="col">
-            <label class="form-label">Año</label>
-            <input type="number" maxlength="4" class="form-control" required />
-          </div>
+      <h3>Ver cursos</h3>
+
+      <p>Seleccione el CENS y sede de la que quiera ver cursos</p>
+      
+      <div class="row mt-1 align-items-end">
+        <div class="col">
+          <label class="form-label">CENS</label>
+          <select class="form-select" [(ngModel)]="selectedCens" (change)="onCensChange(selectedCens)">
+            <option disabled selected>--</option>
+            <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
+          </select>
         </div>
-
-        <label class="form-label mt-1">Materia</label>
-        <select class="form-select" required>
-          <option *ngFor="let m of materias" [value]="m.Id_Materias">{{m.NombreMateria}}</option>
-        </select>
-
-        <div class="row mt-1">
-          <div class="col">
-            <label class="form-label">CENS</label>
-            <select class="form-select" [ngModel]="selectedItem" (ngModelChange)="onCensChange($event)"
-              required>
-              <option disabled selected value>- seleccione un CENS -</option>
-              <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
-            </select>
-          </div>
-          <div class="col">
-            <label class="form-label">Sede</label>
-            <select class="form-select"
-              required>
-              <option disabled selected value>- seleccione una sede -</option>
-              <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
-            </select>
-          </div>
+        <div class="col">
+          <label class="form-label">Sede</label>
+          <select class="form-select" [(ngModel)]="selectedSede">
+            <option disabled selected>--</option>
+            <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary mt-3" (click)="verCursos()">Ver cursos</button>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar curso</button>
-      </div>
+      <ul class="list-group mt-3">
+        <li *ngFor="let c of cursos" class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <strong>IGE:</strong> {{c.Ige}}
+            </div>
+            <div class="col">
+              <strong>Materia:</strong> {{c.Materia}}
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-primary" data-bs-toggle="modal"
+                attr.data-bs-target="#cursoDetalleModal{{c.Id_Curso}}">
+                Detalles
+              </button>
+              <app-detalle-curso [curso]="c"></app-detalle-curso>
+            </div>
+          </div>
+        </li>
+      </ul>
+
     </div>
   </div>
-</div>
 </div>
