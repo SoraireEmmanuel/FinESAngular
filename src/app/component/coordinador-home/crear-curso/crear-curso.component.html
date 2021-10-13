@@ -1,0 +1,51 @@
+<div class="modal fade" id="crearCurso" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content" ngNativeValidate (ngSubmit)="onSubmitCurso()" [formGroup]="cursoForm">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear curso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <label class="form-label">IGE</label>
+            <input type="number" class="form-control" required formControlName="IGE" />
+          </div>
+          <div class="col">
+            <label class="form-label">Año</label>
+            <input type="number" maxlength="4" class="form-control" required formControlName="Anio" />
+          </div>
+        </div>
+
+        <label class="form-label mt-1">Materia</label>
+        <select class="form-select" required formControlName="Id_Materia">
+          <option *ngFor="let m of materias" [value]="m.Id_Materias">{{m.NombreMateria}}</option>
+        </select>
+
+        <label class="form-label mt-1">Día y horario</label>
+        <input class="form-control" type="text" required formControlName="diaHorario" />
+
+        <div class="row mt-1">
+          <div class="col">
+            <label class="form-label">CENS</label>
+            <select class="form-select" required formControlName="Id_Cens">
+              <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label class="form-label">Sede</label>
+            <select class="form-select" required formControlName="Id_Sede">
+              <option selected>--</option>
+              <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" type="submit">Guardar curso</button>
+      </div>
+    </form>
+  </div>
+</div>
