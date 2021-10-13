@@ -15,8 +15,8 @@ export class DocenteHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-  estado(estado:string){
+
+  estado(estado:boolean){
     this.cursoContenidoService.vista=estado;
     console.log(this.cursoContenidoService.vista,"vista:");
     this.router.navigate(['miscursos']);

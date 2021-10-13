@@ -22,11 +22,11 @@
         </div>
         <div *ngIf="rol=='2'" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" (click)="estado('activo')" aria-current="page" [routerLink]="['miscursos']">Mis
+            <a class="nav-link active" (click)="estado(true)" aria-current="page" [routerLink]="['miscursos']">Mis
               Cursos Activos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="estado('inactivo')" aria-current="page" [routerLink]="['miscursos']">Mis
+            <a class="nav-link active" (click)="estado(false)" aria-current="page" [routerLink]="['miscursos']">Mis
               Cursos Historicos</a>
           </li>
         </div>

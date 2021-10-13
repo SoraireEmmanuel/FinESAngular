@@ -1,20 +1,24 @@
 export class Curso {
-  id?: number;
+  Id_Curso?: number;
   turno: string;
-  cicloLectivo: string;
-  sedeId: string;
-  materia: string;
-  ige: number;
-  estado: string;
+  CicloLectivo: string;
+  SedeNombre: string;
+  MateriaNombre: string;
+  IGE: string;
+  Estado: boolean;
+  MateriaCodigo: string;
+  MateriaCargaHoraria: string;
 
   constructor() {
-    this.id = -1,
+    this.Id_Curso = -1,
       this.turno = "",
-      this.cicloLectivo = "",
-      this.sedeId = "",
-      this.materia = "",
-      this.ige = -1,
-      this.estado = "activo"
+      this.CicloLectivo = "",
+      this.SedeNombre = "",
+      this.MateriaNombre = "",
+      this.IGE = "-1",
+      this.Estado = true,
+      this.MateriaCargaHoraria = "",
+      this.MateriaCodigo = ""
   }
 
 }

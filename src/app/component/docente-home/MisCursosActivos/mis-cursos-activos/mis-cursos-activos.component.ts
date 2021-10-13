@@ -17,7 +17,7 @@ idDocente =7;
 
 
   ngOnInit(): void {
-    this.cursoContenidoService.obtenerCursos1(this.idDocente).subscribe(data=>{
+    this.cursoContenidoService.obtenerCursos1().subscribe(data=>{
       console.log("data",data)
       this.cursos = data as any;
         //console.log(this.listCursos)
@@ -26,6 +26,8 @@ idDocente =7;
 
   }
   verDetalle(id:any){
+    localStorage.setItem('idCurso',id);
+    console.log(localStorage.getItem('idCurso'));
     this.idCurso=id;
     this.cursoContenidoService.actualizar(this.idCurso);
     //console.log("llamado")
