@@ -21,14 +21,14 @@
         <div class="col">
           <label class="form-label">CENS</label>
           <select class="form-select" [(ngModel)]="selectedCens" (change)="onCensChange(selectedCens)">
-            <option disabled selected>--</option>
+            <option selected>--</option>
             <option *ngFor="let c of cens" [value]="c.Id_Cens">{{c.Nombre}}</option>
           </select>
         </div>
         <div class="col">
           <label class="form-label">Sede</label>
           <select class="form-select" [(ngModel)]="selectedSede">
-            <option disabled selected>--</option>
+            <option selected>--</option>
             <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
           </select>
         </div>
