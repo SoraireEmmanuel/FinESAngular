@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-curso',
@@ -27,6 +28,7 @@ export class CrearCursoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -52,8 +54,9 @@ export class CrearCursoComponent implements OnInit {
   onSubmitCurso() {
     this.http.post(`${this.API_URL}/AdministrarCursos`, this.cursoForm.value)
       .subscribe(
-        data => console.log(data)
-      );
+        data => this.toast.success('Curso creado satisfactoriamente', 'Curso'),
+        error => this.toast.error('Error en la creacion del curso', 'Curso'),
+    );
 
     this.cursoForm.reset({ estado: true });
   }
