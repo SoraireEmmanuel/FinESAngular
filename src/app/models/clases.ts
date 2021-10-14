@@ -1,13 +1,17 @@
 export class Clases{
-  id?:number;
-  nombre: string;
-  fecha: string;
-  tema:string;
+  Id_Clase?:number;
+  Titulo: string;
+  ClaseNumero: string;
+  Fecha: Date;
+  Contenido:string;
+
 
   constructor(){
-    this.id=-1;
-    this.nombre="";
-    this.fecha="";
-    this.tema=""
+    this.Id_Clase=-1;
+    this.Titulo="";
+    this.ClaseNumero="";
+    this.Fecha=new Date();
+    this.Contenido="";
+
   }
 }

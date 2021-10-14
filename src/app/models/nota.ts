@@ -1,19 +1,21 @@
 export class Nota {
-  id: string;
-  nya: string;
-  igeId: string;
-  nota1: string;
-  nota2: string;
-  notaFinal: string;
+  Id_Cursada: string;
+  AlumnoNombre?: string;
+  AlumnoApellido?: string;
+
+  Nota1: string;
+  Nota2: string;
+  NotaFinal: string;
 
 
   constructor() {
-    this.id = "",
-      this.nya = "",
-      this.igeId = "",
-      this.nota1 = "",
-      this.nota2 = "",
-      this.notaFinal = ""
+    this.Id_Cursada = "",
+      this.AlumnoNombre = "",
+
+      this.Nota1 = "",
+      this.Nota2 = "",
+      this.NotaFinal = "",
+      this.AlumnoApellido = ""
 
   }
 

@@ -70,28 +70,30 @@
 
         <select
           class="form-select"
-          (change)="changeForm($event, curso.IGE)"
+          #CL
+          (change)="changeForm($event, curso.IGE, CL.value)"
           id="clase.id"
           name="claseNm"
         >
           <option
-            [value]="clase.nombre"
+            [value]="clase.Id_Clase"
             *ngFor="let clase of cursoContenidoService.listClases; index as i"
           >
-            {{ clase.nombre }}
+           Clase {{ clase.ClaseNumero }} - {{clase.Titulo}}
           </option>
         </select>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="claseFecha">Fecha</span>
         <input
-          type="text"
+          type="date"
           class="form-control"
           placeholder="dd/mm/aa"
           aria-label="Fecha"
           formControlName="claseFecha"
           [(ngModel)]="fecha"
           [readonly]="cursoContenidoService.vista == false"
+
         />
       </div>
       <div class="row">
@@ -102,7 +104,7 @@
             </button>
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-around">
+        <!-- <div class="col-3 d-flex justify-content-around">
           <span
             class="badge rounded-pill bg-secondary sm m-1"
             data-placement="top"
@@ -111,7 +113,7 @@
           >
             <i class="fas fa-plus"> &nbsp; Crear</i></span
           >
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -175,7 +177,7 @@
                     "
                   >
                     <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
-                    <td>{{ alumno.nya }}</td>
+                    <td>{{ alumno.AlumnoNombre }} {{alumno.AlumnoApellido}}</td>
 
                     <!--
                   <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
@@ -196,8 +198,8 @@
                             "
                             type="text"
                             class="circulo"
-                            [(ngModel)]="nota1"
-                            [value]="alumno.nota1"
+                            [(ngModel)]="Nota1"
+                            [value]="alumno.Nota1"
                           />
                         </button>
 
@@ -206,7 +208,7 @@
                           *ngIf="!this.enableEdit"
                           (click)="this.enableEditMethod($event, i)"
                         >
-                          <div>{{ alumno.nota1 }}</div>
+                          <div>{{ alumno.Nota1 }}</div>
                         </span>
                       </div>
                     </td>
@@ -225,8 +227,8 @@
                             "
                             type="text"
                             class="circulo"
-                            [(ngModel)]="nota2"
-                            [value]="alumno.nota2"
+                            [(ngModel)]="Nota2"
+                            [value]="alumno.Nota2"
                           />
                         </button>
 
@@ -235,7 +237,7 @@
                           *ngIf="!this.enableEdit"
                           (click)="this.enableEditMethod($event, i)"
                         >
-                          <div>{{ alumno.nota2 }}</div>
+                          <div>{{ alumno.Nota2 }}</div>
                         </span>
                       </div>
                     </td>
@@ -254,8 +256,8 @@
                             "
                             type="text"
                             class="circulo"
-                            [(ngModel)]="notaFinal"
-                            [value]="alumno.notaFinal"
+                            [(ngModel)]="NotaFinal"
+                            [value]="alumno.NotaFinal"
                           />
                         </button>
 
@@ -264,13 +266,13 @@
                           *ngIf="!this.enableEdit"
                           (click)="this.enableEditMethod($event, i)"
                         >
-                          <div>{{ alumno.notaFinal }}</div>
+                          <div>{{ alumno.NotaFinal }}</div>
                         </span>
                       </div>
                     </td>
 
                     <!-- <td>{{ alumno.nota2 }}</td> -->
-                    <!-- <td>{{ alumno.notaFinal }}</td> -->
+                    <!-- <td>{{ alumno.NotaFinal }}</td> -->
                     <td *ngIf="this.enableEdit">
                       <div class="d-flex justify-content-around">
                         <button
@@ -333,20 +335,20 @@
                     "
                   >
                     <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ alum.nya }}</td>
+                    <td>{{ alum.NombreAlumno }} {{alum.ApellidoAlumno}}</td>
 
                     <td>
                       <div class="form-check d-flex justify-content-center">
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          id="presente"
-                          name="presente"
-                          [checked]="alum.presente === true"
+                          id="Asistio"
+                          name="Asistio"
+                          [checked]="alum.Asistio === true"
                           [disabled]="
                             cursoContenidoService.vista === false
                           "
-                          [(ngModel)]="alum.presente"
+                          [(ngModel)]="alum.Asistio"
                         />
                       </div>
                     </td>

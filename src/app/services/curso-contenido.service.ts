@@ -105,16 +105,16 @@ export class CursoContenidoService {
     //  });
   }
 
-  obtenerAsistencia(idClase: number, ige: any) {
-    return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}&igeId=${ige}`)
-    //   .then(data => {
-    //    this.curso = data as any;
-    //    //console.log(this.listCursos)
+  // obtenerAsistencia(idClase: number, ige: any) { //TodasLasAsistenciasDeUnaClase/
+  //   return this.http.get(`${this.myAppUrl}asistencias/?claseId=${idClase}&igeId=${ige}`)
+  //   //   .then(data => {
+  //   //    this.curso = data as any;
+  //   //    //console.log(this.listCursos)
 
-    //  });
-  }
-  obtenerAsistencia1(idClase: number, ige: any) {
-    this.http.get(`${this.myAppUrl}asistencia/?claseId=${idClase}&igeId=${ige}`).toPromise()
+  //   //  });
+  // }
+  obtenerAsistencia1(idClase: number) {
+    this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${idClase}`).toPromise()
       .then(
         (dat: any) => {
           this.asist = dat as Asistencia;
@@ -157,18 +157,18 @@ export class CursoContenidoService {
 
     //  });
   }
-  agregarClase(clase: Clases) {
-    this.http.post(`${this.myAppUrl}clases/`, clase).subscribe(
-      data => {
-        console.log('POST Request is successful ', data);
-      },
-      error => {
-        console.log('Error', error);
-      }
-    );
-  }
+  // agregarClase(clase: Clases) {
+  //   this.http.post(`${this.myAppUrl}clases/`, clase).subscribe(
+  //     data => {
+  //       console.log('POST Request is successful ', data);
+  //     },
+  //     error => {
+  //       console.log('Error', error);
+  //     }
+  //   );
+  // }
   editarClase(clase: Clases) {
-    this.http.put(`${this.myAppUrl}clases/${clase.id}`, clase).subscribe(
+    this.http.put(`${this.myAppUrl}clases/${clase.Id_Clase}`, clase).subscribe(
       data => {
         console.log('PUT Request is successful ', data);
       },
@@ -177,19 +177,19 @@ export class CursoContenidoService {
       }
     );
   }
-  editarNota(id: string, ige: any, nota: Nota) {
-    this.http.put(`${this.myAppUrl}notas/${id}`, nota).toPromise()
+  editarNota(id: string, idCurso: any, nota: Nota) {
+    this.http.post(`${this.newAPI}ActualizarNota1/${id}`, nota).toPromise()
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this.obtenerNotas(ige);
+          this.obtenerNotas(idCurso);
           console.log("doneeee");
         },
         error => {
           console.log('Error', error);
         }
       ).then((d: any) => {
-        this.obtenerNotas(ige);
+        this.obtenerNotas(idCurso);
         console.log("doneeee3333");
       }
       );
@@ -197,8 +197,9 @@ export class CursoContenidoService {
   }
   actualizarCursoEstado(curso: any, estado: string) {
     console.log(curso);
-    curso.estado = estado;
-    this.http.put(`${this.myAppUrl}cursos/${curso.id}`, curso).toPromise()
+    //curso.estado = estado;
+    var body = { "id_Curso": curso }
+    this.http.post(`${this.newAPI}ActualizarEstadoCurso/`, body).toPromise()
       .then(
         data => {
           console.log('PUT Request is successful ', data);
