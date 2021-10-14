@@ -47,9 +47,9 @@
               <strong>Materia:</strong> {{c.Materia}}
             </div>
             <div class="col-auto">
-              <button class="btn btn-primary" data-bs-toggle="modal"
+              <button class="btn {{c.DocenteId == -1 ? 'btn-warning': 'btn-primary'}}" data-bs-toggle="modal"
                 attr.data-bs-target="#cursoDetalleModal{{c.Id_Curso}}">
-                Detalles
+                {{c.DocenteId == -1 ? 'Asignar docente': 'Detalle'}}
               </button>
               <app-detalle-curso [curso]="c"></app-detalle-curso>
             </div>
