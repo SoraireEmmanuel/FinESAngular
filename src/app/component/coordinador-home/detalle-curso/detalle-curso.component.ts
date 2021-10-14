@@ -48,12 +48,12 @@ export class DetalleCursoComponent implements OnInit {
     this.http.post(
       `${this.API_URL}/AsignarDocente`,
       {
-        "Id_Docente": this.docente['Id_Usuario'],
+        "Id_Docente": this.docente['IdDocente'],
         "Id_Curso": this.curso['Id_Curso']
       }
     ).subscribe(
       ok => {
-        this.curso['DocenteId'] = this.docente['Id_Usuario'];
+        this.curso['DocenteId'] = this.docente['IdDocente'];
         this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
       }
     );
