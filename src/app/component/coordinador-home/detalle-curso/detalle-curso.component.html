@@ -11,10 +11,37 @@
         <strong>Materia:</strong> {{curso.Materia}}<br />
         <strong>Año:</strong> {{curso.Anio}}<br />
         <strong>Cuatrimestre:</strong> {{curso.Cuatrimestre}}<br />
+        <div *ngIf="curso.DocenteId != -1; else sinDocente">
+          <strong>Docente:</strong> {{apellidoNombreDocente}}
+        </div>
+        <ng-template #sinDocente>
+          <p><strong>Docente:</strong> SIN ASIGNAR</p>
+          <label class="form-label">Buscar docente por DNI</label>
+          <div class="row">
+            <div class="col">
+              <input type="number" class="form-control"
+                min="0" max="99999999" [(ngModel)]="dni" />
+            </div>
+            <div class="col-auto">
+              <button (click)="buscarDocente(dni)"
+                class="btn btn-primary">
+                Buscar
+            </button>
+            </div>
+          </div>
+          <p class="mt-2" *ngIf="docenteExiste; else noEncontrado">
+            <strong>Encontrado:</strong> {{docente.Apellido}}, {{docente.Nombre}}
+            <button (click)="asignarDocente()" class="btn btn-primary ms-2">
+              Asignar docente
+            </button>
+          </p>
+          <ng-template #noEncontrado>
+            <p>Inexistente</p>
+          </ng-template>
+        </ng-template>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
