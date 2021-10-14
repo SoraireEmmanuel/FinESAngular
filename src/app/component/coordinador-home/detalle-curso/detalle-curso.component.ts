@@ -45,19 +45,17 @@ export class DetalleCursoComponent implements OnInit {
   }
 
   asignarDocente() {
-    this.curso['DocenteId'] = this.docente['Id_Usuario'];
-    this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
-    // this.http.post(
-    //   `${this.API_URL}/AsignarDocente`,
-    //   {
-    //     "Id_Docente": this.docente['Id_Usuario'],
-    //     "Id_Curso": this.curso['Id_Curso']
-    //   }
-    // ).subscribe(
-    //   ok => {
-    //     this.curso['DocenteId'] = this.docente['Id_Usuario'];
-    //     this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
-    //   }
-    // );
+    this.http.post(
+      `${this.API_URL}/AsignarDocente`,
+      {
+        "Id_Docente": this.docente['Id_Usuario'],
+        "Id_Curso": this.curso['Id_Curso']
+      }
+    ).subscribe(
+      ok => {
+        this.curso['DocenteId'] = this.docente['Id_Usuario'];
+        this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
+      }
+    );
   }
 }
