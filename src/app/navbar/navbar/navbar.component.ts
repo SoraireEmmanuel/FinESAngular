@@ -38,19 +38,19 @@ export class NavbarComponent implements OnInit {
       else{
         this.router.navigate(['/home'])
       }
-      console.log(this.rol )
+
      }
 
   ngOnInit(): void {
      }
   estado(estado:boolean){
     this.cursoContenidoService.vista=estado;
-    console.log(this.cursoContenidoService.vista,"vista:")
+
   }
 
 identificarRol(){
  this._auth.AuthLogin(this.usuario,this.password).subscribe(resp=>{
-   console.log(resp);
+
    var us:any=resp;
    this.rol=us.rol;
    localStorage.setItem('token',us.Token);
@@ -98,5 +98,6 @@ cerrarsesion(){
   this.router.navigate(['/home']);
   this.password = '';
   this.usuario = '';
+  localStorage.clear();
 }
 }

@@ -20,10 +20,10 @@
             <div class="col-sm-4">
                 <label for="Localidad" class="form-label">Seleccione una Localidad</label>
                 <select id="Localidad" class="form-select" #loc (change)="seleccionLocalidad(loc.value)">
-               <!--</select> (ngModelChange)="seleccionLocalidad($event)" 
+               <!--</select> (ngModelChange)="seleccionLocalidad($event)"
                 [ngModel]="selectLocalidad" -->
                     <option selected="true" disabled="disabled" [selected]="true" >Seleccione una Localidad . . .</option>
-                    <option [value]="item.Localidad" *ngFor="let item of localidades"  
+                    <option [value]="item.Localidad" *ngFor="let item of localidades"
                     >{{item.Localidad}}</option>
                 </select>
              </div>
@@ -31,15 +31,15 @@
                 <label for="sede" class="form-label">Seleccione un Sede</label>
                 <select id="sede" class="form-select" [disabled]='sededisabled' #sede (change)="seleccionarSede(sede.value)">
                     <option selected="true" disabled="disabled" [selected]="true">Seleccione la sede. . . </option>
-                    <option [value]="item.Id_Curso" *ngFor="let item of sedeobject" >{{item.SedeDireccion}} - {{item.DiayHorario}} </option>
-                    
+                    <option [value]="item.Id_Curso" *ngFor="let item of sedeobject" >{{item.SedeNombre}} - {{item.SedeDireccion}} - {{item.DiayHorario}} </option>
+
                 </select>
             </div>
             <div class="col-sm-4">
-                
+
                 <strong> Dias y Horarios:</strong> {{selectSede.DiayHorario}} <br>
                 <strong> Direccion:</strong> {{selectSede.SedeDireccion}} <br>
-                <strong> Turno:</strong> Tarde <br>
+                
                 <strong> CENS:</strong> {{selectSede.Cens}} <br>
             </div>
         </div>

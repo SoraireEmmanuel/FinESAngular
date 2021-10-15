@@ -4,6 +4,7 @@ import { TrayectoriaAcademicaService } from 'src/app/services/trayectoriaAcademi
 import { TrayectoriaacademicaComponent } from '../../trayectoriaacademica/trayectoriaacademica/trayectoriaacademica.component';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-inscripcion',
   templateUrl: './inscripcion.component.html',
@@ -24,7 +25,7 @@ export class InscripcionComponent implements OnInit {
   id: any;
   materiadata: any;
   localidades: any;
-  constructor(private _ac: ActivatedRoute,
+  constructor(private _ac: ActivatedRoute, private router:Router,
     private _trayectoria: TrayectoriaAcademicaService,
     private _toastr: ToastrService) {
     this._ac.paramMap.subscribe(param => {
@@ -84,7 +85,8 @@ export class InscripcionComponent implements OnInit {
   inscribirme(){
     var idalumno = localStorage.getItem('idUsuario')
     this._trayectoria.inscribirme(this.selectSede.Id_Curso,idalumno).subscribe(resp=>{
-      this._toastr.success('La Inscripcion fue exitosa','INSCRIPCION EXITOSA')      
+      this._toastr.success('La Inscripcion fue exitosa','INSCRIPCION EXITOSA')
+      this.router.navigate(['/trayectoriaAcademica'])
     },
     error=>{
     this._toastr.error('Algo salio mal, intente de nuevo mas tarde','INSCRIPCION FALLIDA')
