@@ -15,12 +15,12 @@ interface DataResponseAsistenciaNotas {
 type TableRowAsistenciaNotas = [number, string, number, boolean];
 
 interface DataResponseClaseContenido {
-  Fecha:string,
+  Fecha: string,
   Titulo: string,
-  Contenido:string
+  Contenido: string
 }
 
-type TableRowClaseContenido= [string, string, string]
+type TableRowClaseContenido = [string, string, string]
 
 @Component({
   selector: 'app-reporte',
@@ -29,7 +29,7 @@ type TableRowClaseContenido= [string, string, string]
 })
 export class ReporteComponent implements OnInit {
 
-  constructor( public cursoContenidoService: CursoContenidoService,) { }
+  constructor(public cursoContenidoService: CursoContenidoService,) { }
 
   ngOnInit(): void {
   }
@@ -42,19 +42,19 @@ export class ReporteComponent implements OnInit {
     pdf.pageOrientation('landscape');
 
     pdf.add(
-      new Txt("Materia").bold().italics().end
+      new Txt("Materia: Matematica 1").bold().italics().end
     )
     pdf.add(
-      new Txt("Curso Ige").bold().italics().end
+      new Txt("Curso Ige: 8934").bold().italics().end
     )
     pdf.add(
-      new Txt("Turno").bold().italics().end
+      new Txt("Carga Horaria: 5 horas semanales.").bold().italics().end
     )
     pdf.add(
-      new Txt("Ciclo lectivo").bold().italics().end
+      new Txt("Ciclo lectivo: 2021").bold().italics().end
     )
     pdf.add(
-      new Txt("Sede/CENS").bold().italics().end
+      new Txt("Sede: Cent. Cul. Maria").bold().italics().end
     )
     //console.log(dataAsistencias);
     console.log(dataClaseContenido);
@@ -86,21 +86,21 @@ export class ReporteComponent implements OnInit {
   createTableAsistenciaNotas(dataAsistencias: DataResponseAsistenciaNotas[]): ITable {
     return new Table([
       ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [1, "Nombre y Apellido", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [1, "Carmen Olivaris", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 5, 5],
+      [2, "Fernando Fernandez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 3, 10, 6],
+      [3, "gustavo cargneluti", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 0, 8, 6],
+      [4, "Pedro Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [5, "Esteban Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [6, "Emma Ruiz", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 4, 8, 7],
+      [7, "Emma Coco", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 7, 7],
+      [8, "Lucas Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [9, "Roberto Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [10, "October Fest", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 9, 9, 9],
+      [11, "	Lucas Jose", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [12, "Anto Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 8, 8, 8],
+      [13, "Pato Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 6, 5],
+      [14, "Bautista Antares", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      [15, "Bautista Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 10, 8],
       //...this.extractDataAsistencia(dataAsistencias)
 
     ])
@@ -152,7 +152,7 @@ export class ReporteComponent implements OnInit {
 
     ])
       .widths([80, 200, '*'])
-      .heights((rowIndex:any) => {
+      .heights((rowIndex: any) => {
         return rowIndex === 0 ? 20 : 0;
       })
       .alignment('center')
@@ -167,8 +167,8 @@ export class ReporteComponent implements OnInit {
       .end;
   }
 
-   //se llama desde la creacion de la tabla ClaseContenido
-   extractDataClaseContenido(claseContenido: DataResponseClaseContenido[]): TableRowClaseContenido[] {
+  //se llama desde la creacion de la tabla ClaseContenido
+  extractDataClaseContenido(claseContenido: DataResponseClaseContenido[]): TableRowClaseContenido[] {
     return claseContenido.map(row => [row.Fecha, row.Titulo, row.Contenido])
 
   }
