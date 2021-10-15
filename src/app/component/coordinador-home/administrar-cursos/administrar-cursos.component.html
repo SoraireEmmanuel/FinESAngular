@@ -27,7 +27,7 @@
         </div>
         <div class="col">
           <label class="form-label">Sede</label>
-          <select class="form-select" [(ngModel)]="selectedSede">
+          <select class="form-select" [(ngModel)]="selectedSede" (change)="limpiarCursos()">
             <option selected>--</option>
             <option *ngFor="let s of sedes" [value]="s.Id">{{s.SedeNombre}}</option>
           </select>
