@@ -21,12 +21,14 @@ export class DetalleCursoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`${this.API_URL}/Usuarios/${this.curso['DocenteId']}`).subscribe(
-      data => {
-        let docente = data as any;
-        this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
-      }
-    )
+    if (this.curso['DocenteId'] != -1) {
+      this.http.get(`${this.API_URL}/Usuarios/${this.curso['DocenteId']}`).subscribe(
+        data => {
+          let docente = data as any;
+          this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
+        }
+      )
+    }
   }
 
   buscarDocente(dni: number) {
