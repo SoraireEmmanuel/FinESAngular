@@ -11,22 +11,26 @@ export class DetalleCursoComponent implements OnInit {
 
   API_URL = 'https://apifines.azurewebsites.net/api';
 
-  dni: number;
+  campoDni: number;
   docente: any;
   docenteExiste: boolean = false;
   apellidoNombreDocente: string;
+  dniDocente: any;
 
   constructor(
     private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`${this.API_URL}/Usuarios/${this.curso['DocenteId']}`).subscribe(
-      data => {
-        let docente = data as any;
-        this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
-      }
-    )
+    if (this.curso['DocenteId'] != -1) {
+      this.http.get(`${this.API_URL}/Usuarios/${this.curso['DocenteId']}`).subscribe(
+        data => {
+          let docente = data as any;
+          this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
+          this.dniDocente = docente['DNI'];
+        }
+      )
+    }
   }
 
   buscarDocente(dni: number) {
@@ -55,6 +59,7 @@ export class DetalleCursoComponent implements OnInit {
       ok => {
         this.curso['DocenteId'] = this.docente['IdDocente'];
         this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
+        this.dniDocente = this.docente['DNI'];
       }
     );
   }

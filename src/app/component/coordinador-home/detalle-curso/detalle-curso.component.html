@@ -13,6 +13,7 @@
         <strong>Cuatrimestre:</strong> {{curso.Cuatrimestre}}<br />
         <div *ngIf="curso.DocenteId != -1; else sinDocente">
           <strong>Docente:</strong> {{apellidoNombreDocente}}
+          <strong>DNI:</strong> {{dniDocente}}
         </div>
         <ng-template #sinDocente>
           <p><strong>Docente:</strong> SIN ASIGNAR</p>
@@ -20,10 +21,10 @@
           <div class="row">
             <div class="col">
               <input type="number" class="form-control"
-                min="0" max="99999999" [(ngModel)]="dni" />
+                min="0" max="99999999" [(ngModel)]="campoDni" />
             </div>
             <div class="col-auto">
-              <button (click)="buscarDocente(dni)"
+              <button (click)="buscarDocente(campoDni)"
                 class="btn btn-primary">
                 Buscar
             </button>
