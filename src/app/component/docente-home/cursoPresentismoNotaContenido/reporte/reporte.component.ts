@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
 import { ITable, ICustomTableLayout } from "pdfmake-wrapper/lib/interfaces";
+import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 // import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -14,9 +15,9 @@ interface DataResponseAsistenciaNotas {
 type TableRowAsistenciaNotas = [number, string, number, boolean];
 
 interface DataResponseClaseContenido {
-  fecha:string,
-  nombre: string,
-  tema:string
+  Fecha:string,
+  Titulo: string,
+  Contenido:string
 }
 
 type TableRowClaseContenido= [string, string, string]
@@ -28,7 +29,7 @@ type TableRowClaseContenido= [string, string, string]
 })
 export class ReporteComponent implements OnInit {
 
-  constructor() { }
+  constructor( public cursoContenidoService: CursoContenidoService,) { }
 
   ngOnInit(): void {
   }
@@ -124,10 +125,11 @@ export class ReporteComponent implements OnInit {
     return asistencia.map(row => [row.id, row.nya, row.claseId, row.presente])
 
   }
-  async fetchData2(): Promise<DataResponseClaseContenido[]> {
-    return fetch('https://fines-back.herokuapp.com/clases?igeId=2020')
-      .then(response => response.json())
-      .then(data => data.filter((_: any, index: number) => index < 5))
+  async fetchData2(): Promise<DataResponseClaseContenido[]> { //this.cursoContenidoService.listClases;
+    return this.cursoContenidoService.listClases
+    // fetch('https://fines-back.herokuapp.com/clases?igeId=2020')
+    //   .then(response => response.json())
+    //   .then(data => data.filter((_: any, index: number) => index < 5))
 
   }
   createClaseContenido(dataClaseContenido: DataResponseClaseContenido[]): ITable { //cambiar la interfaz y la variable q recibe
@@ -167,7 +169,7 @@ export class ReporteComponent implements OnInit {
 
    //se llama desde la creacion de la tabla ClaseContenido
    extractDataClaseContenido(claseContenido: DataResponseClaseContenido[]): TableRowClaseContenido[] {
-    return claseContenido.map(row => [row.fecha, row.nombre, row.tema])
+    return claseContenido.map(row => [row.Fecha, row.Titulo, row.Contenido])
 
   }
 }

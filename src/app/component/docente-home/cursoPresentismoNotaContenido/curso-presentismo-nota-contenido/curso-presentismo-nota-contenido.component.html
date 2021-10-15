@@ -6,8 +6,8 @@
         <dd class="col-sm-8">{{ materia.MateriaNombre }}</dd>
       </dl>
       <dl class="row">
-        <dt class="col-sm-4">Turno</dt>
-        <dd class="col-sm-8">{{ curso.turno }}</dd>
+        <dt class="col-sm-4">Carga Horaria</dt>
+        <dd class="col-sm-8">{{ materia.CargaHoraria }} horas semanales.</dd>
       </dl>
     </div>
     <div class="col-sm-3 m-2 p-2">
@@ -17,7 +17,7 @@
       </dl>
       <dl class="row">
         <dt class="col-sm-4">Curso</dt>
-        <dd class="col-sm-8">{{ materia.Nivel }} - {{ materia.Cuatrimestre }}</dd>
+        <dd class="col-sm-8">{{ materia.Nivel }}°  {{ materia.Cuatrimestre }}°</dd>
       </dl>
     </div>
     <div class="col-sm-3 m-2 p-2">
@@ -86,7 +86,7 @@
       <div class="input-group mb-3">
         <span class="input-group-text" id="claseFecha">Fecha</span>
         <input
-          type="date"
+          type="text"
           class="form-control"
           placeholder="dd/mm/aa"
           aria-label="Fecha"
@@ -343,12 +343,14 @@
                           class="form-check-input"
                           type="checkbox"
                           id="Asistio"
+                          #idAsis
                           name="Asistio"
                           [checked]="alum.Asistio === true"
                           [disabled]="
                             cursoContenidoService.vista === false
                           "
                           [(ngModel)]="alum.Asistio"
+                          (click)=cursoContenidoService.actualizarAsistencia(alum.Id_Asistencia)
                         />
                       </div>
                     </td>

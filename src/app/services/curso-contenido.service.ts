@@ -6,7 +6,7 @@ import { Clases } from '../models/clases';
 import { Curso } from '../models/curso';
 import { Materia } from '../models/materia';
 import { Nota } from '../models/nota';
-
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +30,7 @@ export class CursoContenidoService {
   private actualizarFormulario = new BehaviorSubject<any>({} as any);
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService) {
     this.vista = false;
     this.idDocente = localStorage.getItem('idUsuario');
   }
@@ -170,7 +170,8 @@ export class CursoContenidoService {
   editarClase(clase: Clases) {
     this.http.put(`${this.myAppUrl}clases/${clase.Id_Clase}`, clase).subscribe(
       data => {
-        console.log('PUT Request is successful ', data);
+        console.log('PUT Request is successful editar clase ', data);
+        this.toastr.success('La clase fue editada exitosamente','EDICIÓN EXITOSA');
       },
       error => {
         console.log('Error', error);
@@ -181,7 +182,8 @@ export class CursoContenidoService {
     this.http.post(`${this.newAPI}ActualizarNota1/${id}`, nota).toPromise()
       .then(
         data => {
-          console.log('PUT Request is successful ', data);
+          console.log('PUT Request is successful edinar nota ', data);
+          this.toastr.success('La nota fue editada exitosamente','EDICIÓN EXITOSA');
           this.obtenerNotas(idCurso);
           console.log("doneeee");
         },
@@ -211,12 +213,36 @@ export class CursoContenidoService {
         })
   }
   actualizarClase(clase: any) {
+    console.log("3")
+    console.log("Clas recibida en actualizar clase",clase);
+ var body ={
+  "Id_Clase": clase.Id_Clase,
+  "Contenido":clase.Contenido,
+  "Titulo": clase.Titulo,
+  "Fecha": clase.Fecha
+ }
+    this.http.post(`${this.newAPI}ActualizarClase`, body).toPromise()
+      .then(
+        data => {
+          console.log("4")
+          this.toastr.success('La clase fue editada exitosamente','EDICIÓN EXITOSA');
+          console.log('PUT Request is successful ', data);
+          this.obtenerCursos1();
+          console.log("clase actualizado");
+        },
+        error => {
+          console.log('Error', error);
+        })
+  }
 
-    this.http.put(`${this.myAppUrl}cursos/${clase.id}`, clase).toPromise()
+  actualizarAsistencia(idAsistencia: any) {
+var body1 = {"Id_Asistencia":idAsistencia}
+    this.http.post(`${this.newAPI}ActualizarAsistencia`, body1).toPromise()
       .then(
         data => {
           console.log('PUT Request is successful ', data);
-          this.obtenerCursos1();
+          //this.toastr.success('La asistencia fue editada exitosamente','EDICIÓN EXITOSA');
+          //this.obtenerCursos1();
           console.log("clase actualizado");
         },
         error => {

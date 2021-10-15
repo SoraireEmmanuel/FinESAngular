@@ -112,8 +112,10 @@ console.log("entro al change");
     console.log(e);
     console.log(e.target.options.selectedIndex)
     this.idClase = e.target.options.selectedIndex;
-    //this.idClase = this.cursoContenidoService.listClases[this.idClase].Id_Clase;
+
     this.completarClase(this.cursoContenidoService.listClases[this.idClase], idCurso);
+
+     //this.idClase = this.cursoContenidoService.listClases[this.idClase].Id_Clase;
     // this.igeCurso = this.clases[this.idClase].igeCurso;
     // console.log(this.idClase, "id clase", this.igeCurso, "ige curso");
     // this.obtenerAsistencia(this.idClase, ige);
@@ -130,9 +132,10 @@ console.log("entro al change");
   }
   completarClase(clase: Clases, idClase:any) {
     console.log("clases del comp completar clase", clase);
+    var f =
     this.form.patchValue({
       claseNombre: clase.Titulo,
-      claseFecha: clase.Fecha ,
+      claseFecha: clase.Fecha,
       claseTema: clase.Contenido
     });
     this.claseNm = clase.Titulo;
@@ -281,11 +284,14 @@ console.log("entro al change");
   }
 
   guardarCambios(e:any) {
-    console.log(this.idClase,"titulo: ",this.claseNm, " fecha: ",this.fecha, "tema: ", this.tema)
+    console.log("1")
+
   this.clase1 =this.cursoContenidoService.listClases[this.idClase];
   this.clase1.Fecha=this.fecha;
   this.clase1.Titulo=this.claseNm;
+  console.log("2")
   this.clase1.Contenido=this.tema;
+  console.log(this.idClase,"titulo: ",this.claseNm, " fecha: ",this.fecha, "tema: ", this.tema, "clase 1:",this.clase1)
   this.cursoContenidoService.actualizarClase(this.clase1)
   }
 }
