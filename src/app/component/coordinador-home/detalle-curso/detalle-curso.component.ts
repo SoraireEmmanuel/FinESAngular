@@ -11,10 +11,11 @@ export class DetalleCursoComponent implements OnInit {
 
   API_URL = 'https://apifines.azurewebsites.net/api';
 
-  dni: number;
+  campoDni: number;
   docente: any;
   docenteExiste: boolean = false;
   apellidoNombreDocente: string;
+  dniDocente: any;
 
   constructor(
     private http: HttpClient,
@@ -26,6 +27,7 @@ export class DetalleCursoComponent implements OnInit {
         data => {
           let docente = data as any;
           this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
+          this.dniDocente = docente['DNI'];
         }
       )
     }
@@ -57,6 +59,7 @@ export class DetalleCursoComponent implements OnInit {
       ok => {
         this.curso['DocenteId'] = this.docente['IdDocente'];
         this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
+        this.dniDocente = this.docente['DNI'];
       }
     );
   }
