@@ -1,0 +1,7 @@
+.page-footer {
+  background-color: black;
+  color: aliceblue;
+  display: block;
+  position: relative;
+  z-index: 9999;
+}

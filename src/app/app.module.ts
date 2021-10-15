@@ -32,6 +32,7 @@ import { ReporteComponent } from './component/docente-home/cursoPresentismoNotaC
 import { AdministrarCursosComponent } from './component/coordinador-home/administrar-cursos/administrar-cursos.component'
 import { DetalleCursoComponent } from './component/coordinador-home/detalle-curso/detalle-curso.component';
 import { CrearCursoComponent } from './component/coordinador-home/crear-curso/crear-curso.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { CrearCursoComponent } from './component/coordinador-home/crear-curso/cr
     AdministrarCursosComponent,
     DetalleCursoComponent,
     CrearCursoComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
