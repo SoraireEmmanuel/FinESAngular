@@ -33,6 +33,7 @@ import { AdministrarCursosComponent } from './component/coordinador-home/adminis
 import { DetalleCursoComponent } from './component/coordinador-home/detalle-curso/detalle-curso.component';
 import { CrearCursoComponent } from './component/coordinador-home/crear-curso/crear-curso.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { SpinnerComponent } from './component/spinner/spinner.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { FooterComponent } from './component/footer/footer.component';
     DetalleCursoComponent,
     CrearCursoComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

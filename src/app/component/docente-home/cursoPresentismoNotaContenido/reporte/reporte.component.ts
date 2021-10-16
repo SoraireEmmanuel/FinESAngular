@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
+import { PdfMakeWrapper, Txt, Table, Img } from 'pdfmake-wrapper';
 import { ITable, ICustomTableLayout } from "pdfmake-wrapper/lib/interfaces";
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ interface DataResponseAsistenciaNotas {
   claseId: number,
   presente: boolean
 }
-type TableRowAsistenciaNotas = [number, string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string, number, number, number];
+type TableRowAsistenciaNotas = [number, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, number, number, number];
 
 interface DataResponseClaseContenido {
   Fecha: string,
@@ -30,9 +30,13 @@ type TableRowClaseContenido = [string, string, string]
   styleUrls: ['./reporte.component.css']
 })
 export class ReporteComponent implements OnInit {
-  table = [  ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
-] as any;
-
+  table = [["Id", "Nombre y Apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
+  ] as any;
+  curso: any;
+  materia: any;
+  apellidoNombreDocente: any;
+  dniDocente: any;
+  loading = false;
   newAPI = 'https://apifines.azurewebsites.net/api/';
 
   constructor(public cursoContenidoService: CursoContenidoService, private http: HttpClient,) { }
@@ -40,36 +44,49 @@ export class ReporteComponent implements OnInit {
   ngOnInit(): void {
   }
   async generatePDF() {
-    //this.createtableaux1()
+
 
     const pdf = new PdfMakeWrapper;
     const dataAsistencias = await this.fetchData();
     const dataClaseContenido = await this.fetchData2();
     pdf.pageSize('A4');
     pdf.pageOrientation('landscape');
+    // pdf.pageMargins([ 40, 60, 40, 60 ]);
+
+    pdf.header(`** PLAN FINES ** | Reporte del curso | IGE: ${this.curso.IGE} | Sede:  ${this.curso.SedeNombre} - Ciclo lectivo:  ${this.curso.CicloLectivo}`);
+
+    pdf.watermark(new Txt('USO OFICIAL ').color('#F8F5F5').end);
 
     pdf.add(
-      new Txt("Materia: Matematica 1").bold().italics().end
+      new Txt(`Materia `).bold().italics().bold().fontSize(10).end
+
     )
     pdf.add(
-      new Txt("Curso Ige: 8934").bold().italics().end
+      new Txt(`${this.materia.MateriaNombre}`).fontSize(10).end
+
+    )
+
+
+
+    pdf.add(
+      new Txt(`Carga Horaria`).bold().italics().fontSize(10).end
     )
     pdf.add(
-      new Txt("Carga Horaria: 5 horas semanales.").bold().italics().end
+      new Txt(`${this.materia.CargaHoraria} horas semanales`).fontSize(10).end
     )
     pdf.add(
-      new Txt("Ciclo lectivo: 2021").bold().italics().end
+      new Txt(`Profesor`).bold().italics().bold().fontSize(10).end
     )
     pdf.add(
-      new Txt("Sede: Cent. Cul. Maria").bold().italics().end
+      new Txt(`${this.dniDocente} - ${this.apellidoNombreDocente}`).fontSize(10).end
     )
-    //console.log(dataAsistencias);
-    console.log(dataClaseContenido);
+
+    //console.log(dataClaseContenido);
 
     pdf.add(
       pdf.ln(2)
     );
-    console.log("tabla usada para el reporte", this.table)
+    // console.log("tabla usada para el reporte", this.table)
     pdf.add(this.createTableAsistenciaNotas(this.table));//dataAsistencias
 
     pdf.add(
@@ -81,7 +98,7 @@ export class ReporteComponent implements OnInit {
 
     //var win = window.open('', '_blank');
     pdf.create().open()
-
+    this.loading = false;
   }
 
 
@@ -91,7 +108,28 @@ export class ReporteComponent implements OnInit {
       .then(data => data.filter((_: any, index: number) => index < 5))
 
   }
-  createTableAsistenciaNotas(dataAsistencias: any) : ITable{ //DataResponseAsistenciaNotas[]): ITable {
+  cargarheather() {
+    this.cursoContenidoService.obtenerCurso1(localStorage.getItem('idCurso')).subscribe((res: any) => {
+      this.curso = res[0] as any;
+    });
+
+    this.cursoContenidoService.obtenerMateria1(localStorage.getItem('idCurso')).subscribe(
+      (da: any) => {
+        this.materia = da[0] as any;
+        ;
+
+      })
+    var idDocente: any = -1;
+    idDocente = localStorage.getItem('idUsuario')
+    this.http.get(`${this.newAPI}/Usuarios/${idDocente}`).subscribe(
+      data => {
+        let docente = data as any;
+        this.apellidoNombreDocente = `${docente['Apellido']}, ${docente['Nombre']}`;
+        this.dniDocente = docente['DNI'];
+      }
+    )
+  }
+  createTableAsistenciaNotas(dataAsistencias: any): ITable { //DataResponseAsistenciaNotas[]): ITable {
     return new Table([
       // ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
       // [1, "Carmen Olivaris", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 5, 5],
@@ -121,117 +159,110 @@ export class ReporteComponent implements OnInit {
       .layout({
         fillColor: (rowIndex?: number, node?: any, columnIndex?: number) => {
 
-          return rowIndex === 0 ? "#FFDE33" : "";
+          return rowIndex === 0 ? "#3EE4FC" : "";
         }
       })
 
       .end;
   }
 
-  createtablaauxNota(){
+  createtablaauxNota() {
 
-      this.http.get(`${this.newAPI}NotasByCursoId/${localStorage.getItem('idCurso')}`).toPromise()
-        .then((data: any) => {
-          var notas = data as any;
-          console.log("notas",notas)
-            ;
+    this.http.get(`${this.newAPI}NotasByCursoId/${localStorage.getItem('idCurso')}`).toPromise()
+      .then((data: any) => {
+        var notas = data as any;
+        // console.log("notas", notas)
+        ;
 
-            for (let inx = 0; inx < data.length; inx++) { //asist.length reemplazo 3
+        for (let inx = 0; inx < data.length; inx++) { //asist.length reemplazo 3
 
-              var notas6 = "('"+data[inx].Nota1+"','"+data[inx].Nota2+"','"+data[inx].NotaFinal+"')"
-              console.log("data.notas6",notas6,              )
+          var notas6 = "('" + data[inx].Nota1 + "','" + data[inx].Nota2 + "','" + data[inx].NotaFinal + "')"
+          //  console.log("data.notas6", notas6,)
 
 
-              this.table[inx+1].push(data[inx].Nota1)
-              this.table[inx+1].push(data[inx].Nota2)
-              this.table[inx+1].push(data[inx].NotaFinal)
+          this.table[inx + 1].push(data[inx].Nota1)
+          this.table[inx + 1].push(data[inx].Nota2)
+          this.table[inx + 1].push(data[inx].NotaFinal)
 
-               console.log( "for tabla ",this.table )
-            }
-        })
+          //   console.log("for tabla ", this.table)
+        }
+      })
 
-this.generatePDF()
+    this.generatePDF()
   }
-  createtableaux1(){
+  createtableaux1() {
+    this.loading = true;
+    this.cargarheather();
     var idClase = this.cursoContenidoService.listClases[1].Id_Clase;
     this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${idClase}`).toPromise()
-    .then(  (dat: any) => {
-      for (let ind = 0; ind < dat.length; ind++) { //dat.length reemplazo 3
-      var nya:any= dat[ind].NombreAlumno +" " + dat[ind].ApellidoAlumno;
-      this.table.push([ind+1])
-          this.table[ind+1].push(nya)
-         console.log(this.table[ind])
+      .then((dat: any) => {
+        for (let ind = 0; ind < dat.length; ind++) { //dat.length reemplazo 3
+          var nya: any = dat[ind].NombreAlumno + " " + dat[ind].ApellidoAlumno;
+          this.table.push([ind + 1])
+          this.table[ind + 1].push(nya)
+          //  console.log(this.table[ind])
+        }
+        //  console.log("aux1 tabla ", this.table)
+        this.createTableAux()
       }
-      console.log( "aux1 tabla ",this.table )
-      this.createTableAux()
+      )
+  }
+  createTableAux() {
+
+
+    var idsClases = this.cursoContenidoService.listClases;
+    // console.log("idsClases", idsClases);
+    var clases = idsClases.map((row: any,) => row.Id_Clase);
+    //  console.log("clases filtradas", clases, "  total de clases", clases.length); //tengo todos los ids de clases
+
+
+    var tablaAux: any = []
+    var asistio: any;
+
+    for (let index = 0; index < clases.length; index++) { //clases.length reemplazo 3
+      //  console.log("clases.index=", clases[index])
+
+      this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${clases[index]}`).toPromise()
+        .then(
+          (dat: any) => {
+            // this.asist = dat as Asistencia;
+            // console.log("obtener asis report", dat)
+            ;
+
+
+            for (let index1 = 0; index1 < dat.length; index1++) { //asist.length reemplazo 3
+              //const element = array[index];
+              //   console.log("dat.asistio", dat[index1].Asistio
+
+              //     "tabla  en la posicion", this.table[index1], "index1", index1
+              //  )
+              if (dat[index1].Asistio == true) {
+                asistio = "P";
+                //   console.log("if", "P", asistio);
+              }
+              if (dat[index1].Asistio == false) {
+                asistio = "A";
+                //   console.log("if2", "A", asistio);
+              }
+
+              this.table[index1 + 1].push(asistio)
+              //table[index1+1]=[(table[index1+1]+","+"'"+asistio+"'")]//(table[index1+1],dat[index1].Asistio)
+
+
+              // tablaAux[index1].push(dat[index1].Asistio)
+              // console.log("for tabla ", this.table)
+            }
+          });
+
+
     }
-    )
-  }
-  createTableAux(){
 
 
-  var idsClases = this.cursoContenidoService.listClases;
-  console.log("idsClases",idsClases);
-  var clases = idsClases.map((row :any, ) => row.Id_Clase);
-  console.log("clases filtradas",clases, "  total de clases", clases.length); //tengo todos los ids de clases
-
-
-  var tablaAux:any =[]
-  var asistio:any;
-
-  for (let index = 0; index < clases.length ; index++) { //clases.length reemplazo 3
-    console.log("clases.index=",clases[index])
-
-    this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${clases[index]}`).toPromise()
-    .then(
-      (dat: any) => {
-       // this.asist = dat as Asistencia;
-         console.log("obtener asis report", dat)
-          ;
-
-
-          for (let index1 = 0; index1 < dat.length; index1++) { //asist.length reemplazo 3
-            //const element = array[index];
-            console.log("dat.asistio",dat[index1].Asistio,
-                "tabla  en la posicion",this.table[index1],"index1",index1
-            )
-            if (dat[index1].Asistio==true) {
-              asistio="P";
-              console.log("if","P",asistio);
-            }
-            if(dat[index1].Asistio==false){
-              asistio="A";
-              console.log("if2","A",asistio);
-            }
-
-            this.table[index1+1].push(asistio)
-            //table[index1+1]=[(table[index1+1]+","+"'"+asistio+"'")]//(table[index1+1],dat[index1].Asistio)
-
-
-           // tablaAux[index1].push(dat[index1].Asistio)
-             console.log( "for tabla ",this.table )
-          }
-      });
-
-
-  }
-
-
-    //tablaAux.push(this.cursoContenidoService.asist.Asistio)
-    //console.log( "for tabla aux",tablaAux )
-
-   // const element = array[index];
-
-
-
-  // var table = [];
-  // table.push(clases.map((row:any, index:any) => [index,row]))
-  // console.log("tabla pusheada",table)
-  setTimeout(()=>{
-    this.createtablaauxNota()
-    console.log("inside timeout");
-},3000);
-  //this.createtablaauxNota()
+    setTimeout(() => {
+      this.createtablaauxNota()
+      // console.log("inside timeout");
+    }, 3000);
+    //this.createtablaauxNota()
   }
 
   //se llama desde la creacion de la tabla AsistenciaNotas
@@ -274,7 +305,7 @@ this.generatePDF()
       .layout({
         fillColor: (rowIndex?: number, node?: any, columnIndex?: number) => {
 
-          return rowIndex === 0 ? "#B0FF33" : "";
+          return rowIndex === 0 ? "#3EE4FC" : "";
         }
       })
 
