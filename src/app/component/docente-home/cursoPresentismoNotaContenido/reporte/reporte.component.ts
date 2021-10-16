@@ -3,6 +3,7 @@ import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
 import { ITable, ICustomTableLayout } from "pdfmake-wrapper/lib/interfaces";
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
 import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 // import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -13,7 +14,7 @@ interface DataResponseAsistenciaNotas {
   claseId: number,
   presente: boolean
 }
-type TableRowAsistenciaNotas = [number, string, number, boolean];
+type TableRowAsistenciaNotas = [number, string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string,string, number, number, number];
 
 interface DataResponseClaseContenido {
   Fecha: string,
@@ -39,6 +40,7 @@ export class ReporteComponent implements OnInit {
   ngOnInit(): void {
   }
   async generatePDF() {
+    //this.createtableaux1()
 
     const pdf = new PdfMakeWrapper;
     const dataAsistencias = await this.fetchData();
@@ -67,7 +69,8 @@ export class ReporteComponent implements OnInit {
     pdf.add(
       pdf.ln(2)
     );
-    pdf.add(this.createTableAsistenciaNotas(dataAsistencias));
+    console.log("tabla usada para el reporte", this.table)
+    pdf.add(this.createTableAsistenciaNotas(this.table));//dataAsistencias
 
     pdf.add(
       pdf.ln(2)
@@ -88,25 +91,25 @@ export class ReporteComponent implements OnInit {
       .then(data => data.filter((_: any, index: number) => index < 5))
 
   }
-  createTableAsistenciaNotas(dataAsistencias: DataResponseAsistenciaNotas[]): ITable {
+  createTableAsistenciaNotas(dataAsistencias: any) : ITable{ //DataResponseAsistenciaNotas[]): ITable {
     return new Table([
-      ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
-      [1, "Carmen Olivaris", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 5, 5],
-      [2, "Fernando Fernandez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 3, 10, 6],
-      [3, "gustavo cargneluti", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 0, 8, 6],
-      [4, "Pedro Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [5, "Esteban Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [6, "Emma Ruiz", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 4, 8, 7],
-      [7, "Emma Coco", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 7, 7],
-      [8, "Lucas Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [9, "Roberto Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [10, "October Fest", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 9, 9, 9],
-      [11, "	Lucas Jose", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [12, "Anto Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 8, 8, 8],
-      [13, "Pato Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 6, 5],
-      [14, "Bautista Antares", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
-      [15, "Bautista Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 10, 8],
-      //...this.extractDataAsistencia(dataAsistencias)
+      // ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
+      // [1, "Carmen Olivaris", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 5, 5],
+      // [2, "Fernando Fernandez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 3, 10, 6],
+      // [3, "gustavo cargneluti", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 0, 8, 6],
+      // [4, "Pedro Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [5, "Esteban Gonzalez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [6, "Emma Ruiz", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 4, 8, 7],
+      // [7, "Emma Coco", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 7, 7],
+      // [8, "Lucas Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [9, "Roberto Pastor", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [10, "October Fest", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 9, 9, 9],
+      // [11, "	Lucas Jose", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [12, "Anto Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 8, 8, 8],
+      // [13, "Pato Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 5, 6, 5],
+      // [14, "Bautista Antares", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 10, 10, 10],
+      // [15, "Bautista Lopez", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "A", "A", "A", "A", 7, 10, 8],
+      ...(dataAsistencias)
 
     ])
       .widths([10, 200, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 40, 40, 60])
@@ -132,9 +135,22 @@ export class ReporteComponent implements OnInit {
           var notas = data as any;
           console.log("notas",notas)
             ;
+
+            for (let inx = 0; inx < data.length; inx++) { //asist.length reemplazo 3
+
+              var notas6 = "('"+data[inx].Nota1+"','"+data[inx].Nota2+"','"+data[inx].NotaFinal+"')"
+              console.log("data.notas6",notas6,              )
+
+
+              this.table[inx+1].push(data[inx].Nota1)
+              this.table[inx+1].push(data[inx].Nota2)
+              this.table[inx+1].push(data[inx].NotaFinal)
+
+               console.log( "for tabla ",this.table )
+            }
         })
 
-
+this.generatePDF()
   }
   createtableaux1(){
     var idClase = this.cursoContenidoService.listClases[1].Id_Clase;
@@ -198,13 +214,6 @@ export class ReporteComponent implements OnInit {
       });
 
 
-   // this.cursoContenidoService.obtenerAsistencia1(clases[index]);
-
-      //var asist = this.cursoContenidoService.asist
-      //console.log(asist,"esto es asist")
-
-
-
   }
 
 
@@ -218,14 +227,18 @@ export class ReporteComponent implements OnInit {
   // var table = [];
   // table.push(clases.map((row:any, index:any) => [index,row]))
   // console.log("tabla pusheada",table)
-  this.createtablaauxNota()
+  setTimeout(()=>{
+    this.createtablaauxNota()
+    console.log("inside timeout");
+},3000);
+  //this.createtablaauxNota()
   }
 
   //se llama desde la creacion de la tabla AsistenciaNotas
-  extractDataAsistencia(asistencia: DataResponseAsistenciaNotas[]): TableRowAsistenciaNotas[] {
-    return asistencia.map(row => [row.id, row.nya, row.claseId, row.presente])
+  // extractDataAsistencia(asistencia: DataResponseAsistenciaNotas[]): TableRowAsistenciaNotas[] {
+  //   return asistencia.map(row => [row.id, row.nya, row.claseId, row.presente])
 
-  }
+  // }
   async fetchData2(): Promise<DataResponseClaseContenido[]> { //this.cursoContenidoService.listClases;
     return this.cursoContenidoService.listClases
     // fetch('https://fines-back.herokuapp.com/clases?igeId=2020')
