@@ -11,7 +11,7 @@ export class DetalleCursoComponent implements OnInit {
 
   API_URL = 'https://apifines.azurewebsites.net/api';
 
-  campoDni: number;
+  campoDni: any;
   docente: any;
   docenteExiste: boolean = false;
   apellidoNombreDocente: string;
@@ -60,6 +60,9 @@ export class DetalleCursoComponent implements OnInit {
         this.curso['DocenteId'] = this.docente['IdDocente'];
         this.apellidoNombreDocente = `${this.docente['Apellido']}, ${this.docente['Nombre']}`;
         this.dniDocente = this.docente['DNI'];
+        this.campoDni = null;
+        this.docenteExiste = false;
+        this.docente = null;
       }
     );
   }

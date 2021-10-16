@@ -11,16 +11,15 @@
         <strong>Materia:</strong> {{curso.Materia}}<br />
         <strong>Año:</strong> {{curso.Anio}}<br />
         <strong>Cuatrimestre:</strong> {{curso.Cuatrimestre}}<br />
-        <div *ngIf="curso.DocenteId != -1; else sinDocente">
+        <div *ngIf="curso.DocenteId != -1">
           <strong>Docente:</strong> {{apellidoNombreDocente}}
           <strong>DNI:</strong> {{dniDocente}}
         </div>
-        <ng-template #sinDocente>
-          <p><strong>Docente:</strong> SIN ASIGNAR</p>
-          <label class="form-label">Buscar docente por DNI</label>
+        <div class="mt-2">
+          <label class="form-label">{{curso.DocenteId == -1 ? 'Asignación' : 'Reasignación'}} de docente</label>
           <div class="row">
             <div class="col">
-              <input type="number" class="form-control"
+              <input type="number" class="form-control" placeholder="DNI del docente"
                 min="0" max="99999999" [(ngModel)]="campoDni" />
             </div>
             <div class="col-auto">
@@ -39,7 +38,7 @@
           <ng-template #noEncontrado>
             <p>Inexistente</p>
           </ng-template>
-        </ng-template>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
