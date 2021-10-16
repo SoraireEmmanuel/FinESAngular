@@ -64,7 +64,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   }
   ngOnInit(): void {
     this.subscription = this.cursoContenidoService.obtenerDato$().subscribe(data => {
-      
+
       this.cursoContenidoService.obtenerCurso1(localStorage.getItem('idCurso')).subscribe((res: any) => {
         this.curso = res[0] as Curso;
         this.obtenerNotas(localStorage.getItem('idCurso'));
@@ -108,6 +108,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
   obtenerClases(Id_Curso: any) {
     this.cursoContenidoService.obtenerClases(Id_Curso);
     this.clases = this.cursoContenidoService.listClases;
+    console.log("obtener clases", this.clases)
 
   }
   obtenerMateria(idCurso: any) {
@@ -131,6 +132,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
     this.cursoContenidoService.obtenerAsistencia1(claseId);
     this.asistencia1 = this.cursoContenidoService.asist;
+    console.log("obtener asistencia:", this.asistencia1)
   }
   ejecutarAccion(a: string) {
     this.accion = a;

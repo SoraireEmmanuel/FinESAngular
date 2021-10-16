@@ -61,7 +61,7 @@ export class CursoContenidoService {
       .then(
         (dat: any) => {
           this.asist = dat as Asistencia;
-
+           //console.log("obtener asis service", this.asist)
             ;
         });
     return this.asist;

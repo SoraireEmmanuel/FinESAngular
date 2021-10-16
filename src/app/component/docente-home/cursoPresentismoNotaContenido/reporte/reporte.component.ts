@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
 import { ITable, ICustomTableLayout } from "pdfmake-wrapper/lib/interfaces";
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
+import { HttpClient } from '@angular/common/http';
 // import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -28,8 +29,12 @@ type TableRowClaseContenido = [string, string, string]
   styleUrls: ['./reporte.component.css']
 })
 export class ReporteComponent implements OnInit {
+  table = [  ["id", "nombre y apellido", "CLASE 1", "CLASE 2", "CLASE 3", "CLASE 4", "CLASE 5", "CLASE 6", "CLASE 7", "CLASE 8", "CLASE 8", "CLASE 10", "CLASE 11", "CLASE 12", "CLASE 13", "CLASE 14", "CLASE 15", "CLASE 16", "CLASE 17", "CLASE 18", "CLASE 19", "CLASE 20", "Nota 1", "Nota 2", "Nota Final"],
+] as any;
 
-  constructor(public cursoContenidoService: CursoContenidoService,) { }
+  newAPI = 'https://apifines.azurewebsites.net/api/';
+
+  constructor(public cursoContenidoService: CursoContenidoService, private http: HttpClient,) { }
 
   ngOnInit(): void {
   }
@@ -118,6 +123,102 @@ export class ReporteComponent implements OnInit {
       })
 
       .end;
+  }
+
+  createtablaauxNota(){
+
+      this.http.get(`${this.newAPI}NotasByCursoId/${localStorage.getItem('idCurso')}`).toPromise()
+        .then((data: any) => {
+          var notas = data as any;
+          console.log("notas",notas)
+            ;
+        })
+
+
+  }
+  createtableaux1(){
+    var idClase = this.cursoContenidoService.listClases[1].Id_Clase;
+    this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${idClase}`).toPromise()
+    .then(  (dat: any) => {
+      for (let ind = 0; ind < dat.length; ind++) { //dat.length reemplazo 3
+      var nya:any= dat[ind].NombreAlumno +" " + dat[ind].ApellidoAlumno;
+      this.table.push([ind+1])
+          this.table[ind+1].push(nya)
+         console.log(this.table[ind])
+      }
+      console.log( "aux1 tabla ",this.table )
+      this.createTableAux()
+    }
+    )
+  }
+  createTableAux(){
+
+
+  var idsClases = this.cursoContenidoService.listClases;
+  console.log("idsClases",idsClases);
+  var clases = idsClases.map((row :any, ) => row.Id_Clase);
+  console.log("clases filtradas",clases, "  total de clases", clases.length); //tengo todos los ids de clases
+
+
+  var tablaAux:any =[]
+  var asistio:any;
+
+  for (let index = 0; index < clases.length ; index++) { //clases.length reemplazo 3
+    console.log("clases.index=",clases[index])
+
+    this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${clases[index]}`).toPromise()
+    .then(
+      (dat: any) => {
+       // this.asist = dat as Asistencia;
+         console.log("obtener asis report", dat)
+          ;
+
+
+          for (let index1 = 0; index1 < dat.length; index1++) { //asist.length reemplazo 3
+            //const element = array[index];
+            console.log("dat.asistio",dat[index1].Asistio,
+                "tabla  en la posicion",this.table[index1],"index1",index1
+            )
+            if (dat[index1].Asistio==true) {
+              asistio="P";
+              console.log("if","P",asistio);
+            }
+            if(dat[index1].Asistio==false){
+              asistio="A";
+              console.log("if2","A",asistio);
+            }
+
+            this.table[index1+1].push(asistio)
+            //table[index1+1]=[(table[index1+1]+","+"'"+asistio+"'")]//(table[index1+1],dat[index1].Asistio)
+
+
+           // tablaAux[index1].push(dat[index1].Asistio)
+             console.log( "for tabla ",this.table )
+          }
+      });
+
+
+   // this.cursoContenidoService.obtenerAsistencia1(clases[index]);
+
+      //var asist = this.cursoContenidoService.asist
+      //console.log(asist,"esto es asist")
+
+
+
+  }
+
+
+    //tablaAux.push(this.cursoContenidoService.asist.Asistio)
+    //console.log( "for tabla aux",tablaAux )
+
+   // const element = array[index];
+
+
+
+  // var table = [];
+  // table.push(clases.map((row:any, index:any) => [index,row]))
+  // console.log("tabla pusheada",table)
+  this.createtablaauxNota()
   }
 
   //se llama desde la creacion de la tabla AsistenciaNotas
