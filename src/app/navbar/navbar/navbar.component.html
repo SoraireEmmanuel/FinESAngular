@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+<nav class="navbar navbar-expand-lg navbar-dark bd-navbar" style="height: 5rem;">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
       aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a [routerLink]="['/']" class="navbar-brand">FinES++</a>
+    <a [routerLink]="['/']" class="navbar-brand ms-4" style="height: auto;font-size:x-large">FinES++</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <div *ngIf="rol=='1'" class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -46,11 +46,18 @@
       <form class="d-flex" *ngIf="rol=='0'">
         <input class="form-control me-2" type="text" placeholder="E-mail" [(ngModel)]="usuario">
         <input class="form-control me-2" type="password" placeholder="Contraseña" [(ngModel)]="password">
-        <button class="btn btn-outline-secondary me-2" type="submit" (click)="identificarRol()">Login</button>
+        <button class="btn btn-outline-secondary me-2 boton cinco" style="height: auto;font-size:medium"  type="submit" (click)="identificarRol()">
+          <div class="icono">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </div>
+          <span>Ingresar</span>
+        </button>
       </form>
       <form action="d-flex" *ngIf="rol=='0'">
-        <button class="btn btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          data-bs-whatever="@mdo">Crear Cuenta</button>
+        <button class="btn btn-outline-dark boton tres" style="height: auto;font-size:medium" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"> <span>Crear Cuenta</span> </button>
         <div class="modal fade modal-fullscreen" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">
@@ -120,8 +127,13 @@
         </div>
       </form>
       <form action="d-flex" *ngIf="rol=='0'">
-        <button class="btn btn-outline-success ms-2" type="submit" data-bs-toggle="modal" data-bs-target="#recuperarcontrasenia"
-          data-bs-whatever="@mdo">Recuperar Contraseña</button>
+        <button class="btn btn-outline-secondary ms-2 boton seis" style="height: auto;font-size:medium; color: azure;"  type="submit" data-bs-toggle="modal" data-bs-target="#recuperarcontrasenia"
+          data-bs-whatever="@mdo">
+          <span>Recuperar Contraseña</span>
+				<svg>
+					<rect x="0" y="0" fill="none"></rect>
+				</svg>
+        </button>
         <div class="modal fade modal-fullscreen" id="recuperarcontrasenia" tabindex="-1" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">

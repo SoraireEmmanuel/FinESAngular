@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  finesImg = 'https://web.catamarca.edu.ar/sitio/images/2021/Plan-Fines-2021.jpg'//'https://www.todoprovincial.com/wp-content/uploads/2018/09/fines.png'
+  finesImg = './assets/logo1.png'//'https://www.todoprovincial.com/wp-content/uploads/2018/09/fines.png'
 
   constructor() { }
 
@@ -17,3 +17,4 @@ export class HomeComponent implements OnInit {
   }
 
 }
+

@@ -5,9 +5,9 @@
     </div>
     <div class="card-body">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+      <button type="button" class="btn btn-primary boton dos" data-bs-toggle="modal"
         data-bs-target="#crearCurso">
-        Crear curso
+       <span>Crear curso</span>
       </button>
       <app-crear-curso></app-crear-curso>
 
@@ -16,7 +16,7 @@
       <h3>Ver cursos</h3>
 
       <p>Seleccione el CENS y sede de la que quiera ver cursos</p>
-      
+
       <div class="row mt-1 align-items-end">
         <div class="col">
           <label class="form-label">CENS</label>
@@ -33,7 +33,7 @@
           </select>
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary mt-3" (click)="verCursos()">Ver cursos</button>
+          <button class="btn btn-primary mt-3 boton tres" style="height:auto" (click)="verCursos()"><span>Ver cursos</span> </button>
         </div>
       </div>
 
