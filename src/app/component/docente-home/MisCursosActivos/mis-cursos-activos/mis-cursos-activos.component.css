@@ -1,3 +1,10 @@
+.card{
+  width: 350px;
+height: 250px;
+max-width: 350px;
+max-height: 250px;
+}
+
 .card-body{
   cursor: pointer;
 }
@@ -15,4 +22,6 @@ transform: scale3d(1.006, 1.006, 1);
   background: linear-gradient(to right, #26D0CE, #1A2980);
   }
   */
- 
+.card-text{
+ color: rgb(12, 4, 20);
+}

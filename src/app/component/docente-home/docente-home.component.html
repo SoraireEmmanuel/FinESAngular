@@ -1,29 +1,35 @@
-<div class="row m-5">
-    <div class="col-sm-6" >
-        <div class=" card border-success mb-3 bg-light manito"
+<div style="height: 81vh;overflow: auto;">
+  <div class="align-items-center justify-content-center p-10 container">
+    <div class="row m-5 p-5">
+      <div class="col-sm-6" >
 
-        (click)="estado(true)"
-        style="max-width: 35rem;">
 
-            <div class="card-body text-success">
-              <h3 class="card-title text-center">Mis Cursos Activos</h3>
-              <hr>
-              <p class="card-text">ver la lista de cursos activos</p>
-          </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class=" card border-success mb-3 bg-light manito"
+          <div class=" card border-dark mb-3 bg-light manito"
 
-        (click)="estado(false)"
-        style="max-width: 35rem;">
+          (click)="estado(true)"
+          style="max-width: 30rem;">
 
-            <div class="card-body text-success">
-                <h3 class="card-title text-center">Mis Cursos Historicos</h3>
+              <div class="card-body text-success">
+                <h3 class="card-title text-center" style="color: blueviolet;">Mis Cursos Activos</h3>
                 <hr>
-                <p class="card-text">ver la lista de cursos cerrados</p>
+                <p class="card-text" style="color: rgb(13, 6, 19);text-align: center;">Ver la lista de cursos activos</p>
             </div>
-        </div>
-        </div>
-    </div>
+          </div>
+      </div>
+      <div class="col-sm-6">
+          <div class=" card border-success mb-3 bg-light manito"
 
+          (click)="estado(false)"
+          style="max-width: 30rem;">
+
+              <div class="card-body text-success">
+                  <h3 class="card-title text-center" style="color: blueviolet;">Mis Cursos Historicos</h3>
+                  <hr>
+                  <p class="card-text" style="color: rgb(13, 6, 19);text-align: center;">Ver la lista de cursos cerrados</p>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+
+  </div>

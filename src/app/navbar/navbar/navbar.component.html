@@ -22,6 +22,9 @@
         </div>
         <div *ngIf="rol=='2'" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['docentehome']">Inicio</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" (click)="estado(true)" aria-current="page" [routerLink]="['miscursos']">Mis
               Cursos Activos</a>
           </li>
@@ -161,7 +164,7 @@
         </div>
       </form>
       <form *ngIf="rol!='0'">
-        <button class="btn btn-outline-secondary" (click)="cerrarsesion()"> Cerrar Sesion</button>
+        <button class="btn btn-outline-secondary boton cuatro" (click)="cerrarsesion()" style="height: 30px;"><span> <i class="fas fa-sign-out-alt"></i>&nbsp;Salir</span> </button>
       </form>
       <div class="jumbotron" style="background-color: rgb(255, 255, 245)">
         <!-- <app-user></app-user>-->
