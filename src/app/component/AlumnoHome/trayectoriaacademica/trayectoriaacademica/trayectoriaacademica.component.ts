@@ -16,7 +16,7 @@ materias22:any=[];
 materias31:any=[];
 materias32:any=[];
 
-  constructor(private _route:Router, private _trayectoria:TrayectoriaAcademicaService) { 
+  constructor(private _route:Router, private _trayectoria:TrayectoriaAcademicaService) {
     _trayectoria.verTrayectoriaAcademica(localStorage.getItem('idUsuario')).subscribe(
       resp=>{
         this.materias=resp;
@@ -51,6 +51,8 @@ materias32:any=[];
   verMateria(id:any){
     this._route.navigate(['/vermateria',id])
   }
+cerrar(c:any, c2:any){
 
+}
 
 }

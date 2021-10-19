@@ -1,24 +1,51 @@
-<div class="row mt-5">
-    <div class="col-sm-6 manito">
-        <div class=" card border-success m-3" (click)="trayectoriaAcademica()">
-            <div class="card-body text-success">
-                <h5 class="card-title">Trayectoria Academica</h5>
-                <p class="card-text">En esta seccion podra consultar y administrar su trayectoria academica. 
-                    Podra identificar de manera rapida el estado de sus materias, inscribirse a las mismas
-                    y cargar constancias de cursado para poder acreditar su aprobacion.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 manito" (click)="reclamos()">
-        <div class=" card border-success m-3" >
-            <div class="card-body text-success">
-                <h5 class="card-title">Reclamo</h5>
-                <p class="card-text"> En esta seccion podra iniciar reclamos de diversas tematicas, visualizar
-                    el avance de los mismos y tener una comunicacion directa con nuestros CENS. Ademas puede
-                    realizar denuncias si observa irregularidades. 
-                </p>
-            </div>
-        </div>
-    </div>
 
+<div>
+  <div class="align-items-center justify-content-center p-10 container">
+    <div class="row m-5 p-5">
+      <div class="col-sm-6">
+        <div
+          class="card border-dark mb-3 bg-light manito"
+          (click)="trayectoriaAcademica()"
+          style="max-width: 30rem"
+        >
+          <div class="card-body text-success">
+            <h3 class="card-title text-center" style="color: blueviolet">
+              Trayectoria Academica
+            </h3>
+            <hr />
+            <p
+              class="card-text"
+              style="color: rgb(13, 6, 19); text-align: center"
+            >
+            En esta seccion podra consultar y administrar su trayectoria academica.
+            Podra identificar de manera rapida el estado de sus materias, inscribirse a las mismas
+            y cargar constancias de cursado para poder acreditar su aprobacion.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div
+          class="card border-dark mb-3 bg-light manito"
+          (click)="reclamos()"
+          style="max-width: 30rem"
+        >
+          <div class="card-body text-success">
+            <h3 class="card-title text-center" style="color: blueviolet">
+              Reclamo
+            </h3>
+            <hr />
+            <p
+              class="card-text"
+              style="color: rgb(13, 6, 19); text-align: center"
+            >
+            En esta seccion podra iniciar reclamos de diversas tematicas, visualizar
+            el avance de los mismos y tener una comunicacion directa con nuestros CENS. Ademas puede
+            realizar denuncias si observa irregularidades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

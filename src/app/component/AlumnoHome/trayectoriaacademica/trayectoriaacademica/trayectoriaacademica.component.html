@@ -1,118 +1,201 @@
-<div class="mt-3 p-2 fondo">
+<div class="container mt-5 ">
+  <div class="row d-flex justify-content-center align-items-end academic">
+    <div class="col-4">
+      <p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#primerA"
+          aria-expanded="false"
+          aria-controls="primerA"
+          
+        >
+          Primer año
+        </button>
+      </p>
+
+    </div>
+    <div class="col-4">
+      <p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#segundoA"
+          aria-expanded="false"
+          aria-controls="segundoA"
+        >
+          Segundo año
+        </button>
+      </p>
+
+    </div>
+    <div class="col-4">
+      <p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#tercerA"
+          aria-expanded="false"
+          aria-controls="tercerA"
+        >
+          Tercer año
+        </button>
+      </p>
+
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center  mt-3">
+  <div class="collapse fondo" id="primerA">
     <h3>Primer Año</h3>
-    <hr>
-    <div style="margin-left: 4%;">
-        <h5>Primer Cuatrimestre</h5>
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias11">
-                <div  class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
+    <hr />
+    <div style="margin-left: 4%">
+      <h5>Primer Cuatrimestre</h5>
+      <div class="row">
+        <div class="col-sm-3 p-3" *ngFor="let item of materias11">
+          <div
+            class="card border-success mb-3 manito"
+            (click)="verMateria(item.Id_Cursada)"
+            [class.aprobada]="item.Estado == 'Aprobada'"
+            [class.text-success]="item.Estado == 'Aprobada'"
+            [class.enCurso]="item.Estado == 'En Curso'"
+            [class.border-warning]="item.Estado == 'En Curso'"
+            [class.noCursada]="item.Estado == 'No Cursada'"
+            [class.text-danger]="item.Estado == 'No Cursada'"
+            [class.border-danger]="item.Estado == 'No Cursada'"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ item.NombreMateria }}</h5>
+              <p class="card-text">Estado: {{ item.Estado }}</p>
             </div>
+          </div>
         </div>
-        <h5>Segundo Cuatrimestre</h5>
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias12">
-                <div            
-                class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
+      </div>
+      <h5>Segundo Cuatrimestre</h5>
+      <div class="row">
+        <div class="col-sm-3 p-3" *ngFor="let item of materias12">
+          <div
+            class="card border-success mb-3 manito"
+            (click)="verMateria(item.Id_Cursada)"
+            [class.aprobada]="item.Estado == 'Aprobada'"
+            [class.text-success]="item.Estado == 'Aprobada'"
+            [class.enCurso]="item.Estado == 'En Curso'"
+            [class.border-warning]="item.Estado == 'En Curso'"
+            [class.noCursada]="item.Estado == 'No Cursada'"
+            [class.text-danger]="item.Estado == 'No Cursada'"
+            [class.border-danger]="item.Estado == 'No Cursada'"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ item.NombreMateria }}</h5>
+              <p class="card-text">Estado: {{ item.Estado }}</p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <h3>Segundo Año</h3>
-    <hr>
-    <div style="margin-left: 4%;">
-        <h5>Primer Cuatrimestre</h5>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center  mt-3 mb-3">
+    <div class="collapse fondo" id="segundoA">
+      <h3>Segundo Año</h3>
+  <hr />
+  <div style="margin-left: 4%">
+    <h5>Primer Cuatrimestre</h5>
 
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias21">
-                <div  class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-sm-3 p-3" *ngFor="let item of materias21">
+        <div
+          class="card border-success mb-3 manito"
+          (click)="verMateria(item.Id_Cursada)"
+          [class.aprobada]="item.Estado == 'Aprobada'"
+          [class.text-success]="item.Estado == 'Aprobada'"
+          [class.enCurso]="item.Estado == 'En Curso'"
+          [class.border-warning]="item.Estado == 'En Curso'"
+          [class.noCursada]="item.Estado == 'No Cursada'"
+          [class.text-danger]="item.Estado == 'No Cursada'"
+          [class.border-danger]="item.Estado == 'No Cursada'"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ item.NombreMateria }}</h5>
+            <p class="card-text">Estado: {{ item.Estado }}</p>
+          </div>
         </div>
-        <h5>Segundo Cuatrimestre</h5>
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias22">
-                <div  class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <h3>Tercer Año</h3>
-    <hr>
-    <div style="margin-left: 4%;">
-        <h5>Primer Cuatrimestre</h5>
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias31">
-                <div  class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
-            </div>
+    <h5>Segundo Cuatrimestre</h5>
+    <div class="row">
+      <div class="col-sm-3 p-3" *ngFor="let item of materias22">
+        <div
+          class="card border-success mb-3 manito"
+          (click)="verMateria(item.Id_Cursada)"
+          [class.aprobada]="item.Estado == 'Aprobada'"
+          [class.text-success]="item.Estado == 'Aprobada'"
+          [class.enCurso]="item.Estado == 'En Curso'"
+          [class.border-warning]="item.Estado == 'En Curso'"
+          [class.noCursada]="item.Estado == 'No Cursada'"
+          [class.text-danger]="item.Estado == 'No Cursada'"
+          [class.border-danger]="item.Estado == 'No Cursada'"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ item.NombreMateria }}</h5>
+            <p class="card-text">Estado: {{ item.Estado }}</p>
+          </div>
         </div>
-        <h5>Segundo Cuatrimestre</h5>
-        <div class="row ">
-            <div class="col-sm-3 p-3"  *ngFor="let item of materias32">
-                <div  class=" card border-success mb-3 manito"
-                (click)="verMateria(item.Id_Cursada)"
-                    [class.aprobada]="item.Estado=='Aprobada'" [class.text-success]="item.Estado=='Aprobada'"
-                    [class.enCurso]="item.Estado=='En Curso'" [class.border-warning]="item.Estado=='En Curso'"
-                    [class.noCursada]="item.Estado=='No Cursada'" [class.text-danger]="item.Estado=='No Cursada'"
-                    [class.border-danger]="item.Estado=='No Cursada'">
-                    <div class="card-body ">
-                        <h5 class="card-title">{{item.NombreMateria}}</h5>
-                        <p class="card-text">Estado: {{item.Estado}}</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center  mt-3">
+      <div class="collapse fondo" id="tercerA">
+        <h3>Tercer Año</h3>
+        <hr />
+        <div style="margin-left: 4%">
+          <h5>Primer Cuatrimestre</h5>
+          <div class="row">
+            <div class="col-sm-3 p-3" *ngFor="let item of materias31">
+              <div
+                class="card border-success mb-3 manito"
+                (click)="verMateria(item.Id_Cursada)"
+                [class.aprobada]="item.Estado == 'Aprobada'"
+                [class.text-success]="item.Estado == 'Aprobada'"
+                [class.enCurso]="item.Estado == 'En Curso'"
+                [class.border-warning]="item.Estado == 'En Curso'"
+                [class.noCursada]="item.Estado == 'No Cursada'"
+                [class.text-danger]="item.Estado == 'No Cursada'"
+                [class.border-danger]="item.Estado == 'No Cursada'"
+              >
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.NombreMateria }}</h5>
+                  <p class="card-text">Estado: {{ item.Estado }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5>Segundo Cuatrimestre</h5>
+          <div class="row">
+            <div class="col-sm-3 p-3" *ngFor="let item of materias32">
+              <div
+                class="card border-success mb-3 manito"
+                (click)="verMateria(item.Id_Cursada)"
+                [class.aprobada]="item.Estado == 'Aprobada'"
+                [class.text-success]="item.Estado == 'Aprobada'"
+                [class.enCurso]="item.Estado == 'En Curso'"
+                [class.border-warning]="item.Estado == 'En Curso'"
+                [class.noCursada]="item.Estado == 'No Cursada'"
+                [class.text-danger]="item.Estado == 'No Cursada'"
+                [class.border-danger]="item.Estado == 'No Cursada'"
+              >
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.NombreMateria }}</h5>
+                  <p class="card-text">Estado: {{ item.Estado }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+
+</div>
+

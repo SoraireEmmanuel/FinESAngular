@@ -1,1 +1,37 @@
+.academic{
+  background-image: url('/assets/academic.jpg');
+  background-size: cover;
+  height: 300px;
+  border-radius: 25px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to right, red, rgb(218, 141, 55));
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: .3s ease all;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
 
+}
+
+.btn span {
+  position: relative;
+  z-index: 2;
+  transition: .3s ease all;
+  mix-blend-mode: screen;
+}
+h3, .card-body{
+  justify-content: center;
+  text-align: center;
+}
