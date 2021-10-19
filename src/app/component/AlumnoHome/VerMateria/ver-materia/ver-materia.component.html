@@ -1,4 +1,4 @@
-<div *ngIf="materiaData[0].CursadaEstado=='Aprobada'" style="background-color: white;" class="rounded">
+<div *ngIf="materiaData[0].CursadaEstado=='Aprobada'" class="rounded mt-5 container">
     <div class="border-success text-success aprobada border-success rounded p-0 m-0">
         <div class="row p-5 pt-1">
             <h2  >Resumen de Materia - {{materiaData[0].CursadaEstado}}</h2>
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div *ngIf="materiaData[0].CursadaEstado=='En Curso'" style="background-color: white;" class="rounded">
+<div *ngIf="materiaData[0].CursadaEstado=='En Curso'" class="rounded mt-5 container">
     <div class="enCurso  border-warning rounded p-0 m-0">
         <div class="row p-5 pt-1">
             <h2  >Resumen de Materia - {{materiaData[0].CursadaEstado}}</h2>
@@ -36,7 +36,7 @@
                 <h6>IGE: {{materiaData[0].IGE}} </h6>
                 <h6>Nombre: {{materiaData[0].MateriaNombre}}</h6>
                 <h6>Area: {{materiaData[0].MateriaCodigo}}</h6>
-                <h6>Curso: {{materiaData[0].MateriaAnio}}°{{materiaData[0].MateriaCuatrimestre}}°</h6>   
+                <h6>Curso: {{materiaData[0].MateriaAnio}}°{{materiaData[0].MateriaCuatrimestre}}°</h6>
             </div>
             <div class="col-sm-5">
                 <h6>Año: {{materiaData[0].CicloLectivo}} </h6>
@@ -54,7 +54,7 @@
 </div>
 
 
-<div *ngIf="materiaData[0].CursadaEstado=='No Cursada'" style="background-color: white;" class="rounded">
+<div *ngIf="materiaData[0].CursadaEstado=='No Cursada'" class="rounded mt-5 container">
     <div class="text-danger noCursada border-danger  rounded p-0 m-0">
         <div class="row p-5 pt-1">
             <h2 >Resumen de Materia - {{materiaData[0].CursadaEstado}} </h2>
@@ -63,7 +63,7 @@
                 <h6>Hasta la fecha no curso y/o no aprobo {{materiaData[0].MateriaNombre}}.
                     Inscribase para realizar la cursada o si considera que es un error adminstrativo
                     realice un reclamo en la seccion <a href="#">"Reclamo"</a>
-                </h6>               
+                </h6>
             </div>
             <div class="col-sm-2 ">
                 <button class="btn btn-primary" (click)="volver()" style="width: 100%;">Volver</button>

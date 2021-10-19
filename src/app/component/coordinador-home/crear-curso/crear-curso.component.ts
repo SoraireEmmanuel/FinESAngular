@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-crear-curso',
   templateUrl: './crear-curso.component.html',
@@ -20,7 +20,7 @@ export class CrearCursoComponent implements OnInit {
     estado: true,
     diaHorario: ''
   });
-  
+
   materias: any[];
   cens: any[];
   sedes: any[];
@@ -54,7 +54,14 @@ export class CrearCursoComponent implements OnInit {
   onSubmitCurso() {
     this.http.post(`${this.API_URL}/AdministrarCursos`, this.cursoForm.value)
       .subscribe(
-        data => this.toast.success('Curso creado satisfactoriamente', 'Curso'),
+        data =>
+        Swal.fire({
+          icon: 'success',
+          title: 'Creado!',
+          text: 'Curso creado satisfactoriamente',
+
+        }),
+        // this.toast.success('Curso creado satisfactoriamente', 'Curso'),
         error => this.toast.error('Error en la creacion del curso', 'Curso'),
     );
 

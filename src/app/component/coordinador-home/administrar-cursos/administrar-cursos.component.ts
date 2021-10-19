@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DetalleCursoComponent } from '../detalle-curso/detalle-curso.component';
 import { CrearCursoComponent } from '../crear-curso/crear-curso.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-administrar-cursos',
@@ -37,6 +38,15 @@ export class AdministrarCursosComponent implements OnInit {
   }
 
   verCursos() {
+    if (this.selectedSede==undefined) {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe selecionar una sede!',
+
+      })
+    }
     this.http.get(`${this.API_URL}/CursosByIdSedeActivos/${this.selectedSede}`).subscribe(
       data => this.cursos = data as Array<any>
     );

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-detalle-curso',
@@ -42,7 +43,7 @@ export class DetalleCursoComponent implements OnInit {
           this.docente = (data as any[])[0];
         } else {
           this.docenteExiste = false;
-        }        
+        }
       },
       error => this.docenteExiste = false
     );
@@ -63,6 +64,13 @@ export class DetalleCursoComponent implements OnInit {
         this.campoDni = null;
         this.docenteExiste = false;
         this.docente = null;
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Asignado!',
+          text: 'El docente se asignó correctamente.',
+
+        })
       }
     );
   }

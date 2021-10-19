@@ -31,6 +31,6 @@ this.router.navigate(['/trayectoriaAcademica'])
 }
 inscribirme(){
 
-this.router.navigate(['/inscripcion',this.idMateria])  
+this.router.navigate(['/inscripcion',this.idMateria])
 }
 }

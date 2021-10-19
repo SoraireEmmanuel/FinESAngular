@@ -8,6 +8,7 @@ import { Curso } from 'src/app/models/curso';
 import { Materia } from 'src/app/models/materia';
 import { Nota } from 'src/app/models/nota';
 import { CursoContenidoService } from 'src/app/services/curso-contenido.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-curso-presentismo-nota-contenido',
   templateUrl: './curso-presentismo-nota-contenido.component.html',
@@ -170,13 +171,55 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.enableEditIndex = null;
   }
   actualizarCurso(est: any) {
-    if (this.cursoContenidoService.vista === false) {
-      this.cursoContenidoService.vista = true
-    } else {
-      this.cursoContenidoService.vista = false
-    }
+    var mensaje2:any;
+    var mensaje1:any;
+    var tipo:any;
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
 
-    this.cursoContenidoService.actualizarCursoEstado(this.curso.Id_Curso, est)
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: "Va a modificar el estado del curso!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, modificalo!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result:any) => {
+      if (result.isConfirmed) {
+        if (this.cursoContenidoService.vista === false) {
+          this.cursoContenidoService.vista = true;
+          mensaje2="El curso se cerró correctamente.";
+          mensaje1="Curso cerrado!";
+        } else {
+          this.cursoContenidoService.vista = false;
+          mensaje2="El curso se abrió correctamente.";
+          mensaje1="Curso abierto!";
+        }
+
+        this.cursoContenidoService.actualizarCursoEstado(this.curso.Id_Curso, est);
+        swalWithBootstrapButtons.fire(
+          mensaje1,
+          mensaje2,
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El curso continua como estaba :)',
+          'error'
+        )
+      }
+    })
+
   }
   guardarCambios(e?: any) {
 

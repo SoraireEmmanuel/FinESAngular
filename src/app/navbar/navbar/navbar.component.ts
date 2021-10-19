@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/Auth/auth.service';
 import { ViewChild, ElementRef} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NuevaCuentaService } from 'src/app/services/nuevaCuenta/nueva-cuenta.service';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +13,7 @@ import { NuevaCuentaService } from 'src/app/services/nuevaCuenta/nueva-cuenta.se
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  loading = false;
   rol:any='0';
   usuario:any;
   password:any;
@@ -49,6 +50,7 @@ export class NavbarComponent implements OnInit {
   }
 
 identificarRol(){
+  this.loading=true;
  this._auth.AuthLogin(this.usuario,this.password).subscribe(resp=>{
 
    var us:any=resp;
@@ -56,6 +58,7 @@ identificarRol(){
    localStorage.setItem('token',us.Token);
    localStorage.setItem('idUsuario',us.Id_Usuario);
    localStorage.setItem('rol',us.rol);
+   this.loading=false
    switch(this.rol){
     case 1: this.router.navigate(['/alumnohome']);
     break;
@@ -64,7 +67,7 @@ identificarRol(){
     case 3: this.router.navigate(['/coordinadorhome']);
     break;
    }
- },error=>{console.log(error)})
+ },error=>{console.log(error); this.loading=false})
 }
 
 
@@ -82,12 +85,19 @@ crearCuenta(){
   }
   this._nuevaCuenta.nuevaCuenta(this.nombre, this.apellido, this.dni, this.mail, this.password,
     this.telefono, this.tipousuario).subscribe(resp=>{
-      this.toastr.success('La cuenta fue creada exitosamente','CREACION EXITOSA');
+      //this.toastr.success('La cuenta fue creada exitosamente','CREACION EXITOSA');
       this.cerrarmodal.nativeElement.click();
+      Swal.fire({
+        icon: 'success',
+        title: 'Cuenta creada!',
+        text: 'La cuenta fue creada exitosamente',
+
+      })
+
     },
     error=>{
       console.log(error);
-      this.toastr.error('Problemas con el servidor. La cuenta no pudo ser creada exitosamente', 'ERROR')
+      this.toastr.error('Problemas con el servidor. La cuenta no pudo ser creada.', 'ERROR')
 
     })
 

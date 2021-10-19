@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TrayectoriaAcademicaService } from 'src/app/services/trayectoriaAcademica/trayectoria-academica.service';
 import { TrayectoriaacademicaComponent } from '../../trayectoriaacademica/trayectoriaacademica/trayectoriaacademica.component';
 import { ToastrService } from 'ngx-toastr';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-inscripcion',
@@ -85,8 +85,14 @@ export class InscripcionComponent implements OnInit {
   inscribirme(){
     var idalumno = localStorage.getItem('idUsuario')
     this._trayectoria.inscribirme(this.selectSede.Id_Curso,idalumno).subscribe(resp=>{
-      this._toastr.success('La Inscripcion fue exitosa','INSCRIPCION EXITOSA')
+     // this._toastr.success('La Inscripcion fue exitosa','INSCRIPCION EXITOSA')
       this.router.navigate(['/trayectoriaAcademica'])
+      Swal.fire({
+        icon: 'success',
+        title: 'Inscripto!',
+        text: 'Te has inscripto correctamente.',
+
+      })
     },
     error=>{
     this._toastr.error('Algo salio mal, intente de nuevo mas tarde','INSCRIPCION FALLIDA')
