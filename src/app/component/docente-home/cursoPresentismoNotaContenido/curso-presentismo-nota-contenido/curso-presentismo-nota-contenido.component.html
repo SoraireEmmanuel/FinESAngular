@@ -1,49 +1,33 @@
-<div class="container-fluid">
-  <div class="row mt-3">
-    <div class="col-sm-3 m-2 p-2">
-      <dl class="row">
-        <dt class="col-sm-4">Materia</dt>
-        <dd class="col-sm-8">{{ materia.MateriaNombre }}</dd>
-      </dl>
-      <dl class="row">
-        <dt class="col-sm-4">Carga Horaria</dt>
-        <dd class="col-sm-8">{{ materia.CargaHoraria }} horas semanales.</dd>
-      </dl>
-    </div>
-    <div class="col-sm-3 m-2 p-2">
-      <dl class="row">
-        <dt class="col-sm-4">IGE</dt>
-        <dd class="col-sm-8">{{ materia.Ige }}</dd>
-      </dl>
-      <dl class="row">
-        <dt class="col-sm-4">Curso</dt>
-        <dd class="col-sm-8">{{ materia.Nivel }}°  {{ materia.Cuatrimestre }}°</dd>
-      </dl>
-    </div>
-    <div class="col-sm-3 m-2 p-2">
-      <dl class="row">
-        <dt class="col-sm-5">Sede</dt>
-        <dd class="col-sm-7">{{ curso.SedeNombre }}</dd>
-      </dl>
+<div style="height: 85vh;overflow:auto;overflow-x: hidden;">
+  <div class="row p-4 mt-2 me-1 ">
+    <div class="">
+      <div class="row">
+        <div class="col-6">
+          <button  type="button" class="btn btn-outline-secondary ms-2 boton seis" style="height: auto;font-size:large; color: azure;" data-bs-toggle="modal"
+          data-bs-target="#asistenciaModal">
+          <span> Clases / Asistencia</span>
+          <svg>
+            <rect x="0" y="0" fill="none"></rect>
+          </svg>
+         </button>
+        </div>
+        <div class="col-6">
+          <button   type="button" class="btn btn-outline-secondary ms-2 boton seis" style="height: auto;font-size:large; color: azure;"  data-bs-toggle="modal" data-bs-target="#modalNotas">
+            <span>Ver notas</span>
+				<svg>
+					<rect x="0" y="0" fill="none"></rect>
+				</svg>
+            </button>
+        </div>
 
-      <dl class="row">
-        <dt class="col-sm-5">Ciclo Lectivo</dt>
-        <dd class="col-sm-7">{{ curso.CicloLectivo }}</dd>
-      </dl>
-    </div>
-    <div class="col-2 d-flex align-items-center">
-      <div>
-        <button
-          *ngIf="cursoContenidoService.vista == true"
-          data-placement="top"
-          title="NO CERRAR curso"
-          data-toggle="tooltip"
-          (click)="actualizarCurso('inactivo')"
-          class="btn btn-danger"
-        >
-          Cerrar Curso
-        </button>
       </div>
+      </div>
+  </div>
+<div class="container-fluid detalle-curso  ">
+
+  <div class="row ">
+
+    <div class="col-3 align-self-end mb-1">
       <div>
         <button
           *ngIf="cursoContenidoService.vista == false"
@@ -51,318 +35,429 @@
           title=" Cierra el curso actual"
           data-toggle="tooltip"
           (click)="actualizarCurso('activo')"
-          class="btn btn-secondary"
+          type="button" class="btn btn-outline-secondary ms-2 boton seis abrir" style="height: auto;font-size:medium; color: azure;"
         >
-          Abrir Curso
+        <span>Abrir Curso</span>
+        <svg>
+          <rect x="0" y="0" fill="none"></rect>
+        </svg>
+
         </button>
       </div>
+
+        <div>
+          <button
+            *ngIf="cursoContenidoService.vista == true"
+            data-placement="top"
+            title="NO CERRAR curso"
+            data-toggle="tooltip"
+            (click)="actualizarCurso('inactivo')"
+            type="button" class="btn btn-outline-secondary ms-2 boton seis cerrar" style="height: auto;font-size:medium; color: azure;"
+          >
+          <span>Cerrar Curso</span>
+          <svg>
+            <rect x="0" y="0" fill="none"></rect>
+          </svg>
+
+          </button>
+        </div>
+
+
+
+    </div>
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1>{{ materia.MateriaNombre }}</h1>
+      <hr>
+      <div class="row mt-3">
+        <div class="col-sm-12 m-1 ">
+
+          <dl class="row">
+            <dt class="col-sm-6">Carga Horaria</dt>
+            <dd class="col-sm-5">{{ materia.CargaHoraria }} horas semanales.</dd>
+          </dl>
+        </div>
+        <div class="col-sm-12 m-1 ">
+          <dl class="row">
+            <dt class="col-sm-6">IGE</dt>
+            <dd class="col-sm-5">{{ materia.Ige }}</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-6">Curso</dt>
+            <dd class="col-sm-5">{{ materia.Nivel }}°  {{ materia.Cuatrimestre }}°</dd>
+          </dl>
+        </div>
+        <div class="col-sm-12 m-1 ">
+          <dl class="row">
+            <dt class="col-sm-6">Sede</dt>
+            <dd class="col-sm-5">{{ curso.SedeNombre }}</dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-6">Ciclo Lectivo</dt>
+            <dd class="col-sm-5">{{ curso.CicloLectivo }}</dd>
+          </dl>
+        </div>
+
+      </div>
     </div>
   </div>
+
 </div>
+
+
 
 <br />
-
-<form [formGroup]="form" (ngSubmit)="guardarCambios($event)">
-  <div class="row m-2 p-3 fondo">
-    <div class="col-lg-3">
-      <div class="mb-3">
-        <label class="form-label"> <u>Clase: </u> </label>
-
-        <select
-          class="form-select"
-          #CL
-          (change)="changeForm($event, curso.IGE, CL.value)"
-          id="clase.id"
-          name="claseNm"
-        >
-          <option
-            [value]="clase.Id_Clase"
-            *ngFor="let clase of cursoContenidoService.listClases; index as i"
-          >
-           Clase {{ clase.ClaseNumero }} - {{clase.Titulo}}
-          </option>
-        </select>
+<!-- Modal -->
+<div class="modal fade" id="asistenciaModal" tabindex="-1" aria-labelledby="asistenciaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="asistenciaModalLabel">Detalle de clases y asistencias</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="claseFecha">Fecha</span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="dd/mm/aa"
-          aria-label="Fecha"
-          formControlName="claseFecha"
-          [(ngModel)]="fecha"
-          [readonly]="cursoContenidoService.vista == false"
+      <div class="modal-body">
+        <div class="row m-1 p-1 ">
+          <div class="mb-3">
 
-        />
-      </div>
-      <div class="row">
-        <div class="col-8">
-          <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-success">
-              <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
-            </button>
+
+            <select
+              class="form-select"
+              #CL
+              (change)="changeForm($event, curso.IGE, CL.value)"
+              id="clase.id"
+              name="claseNm"
+            >
+              <option
+                [value]="clase.Id_Clase"
+                *ngFor="let clase of cursoContenidoService.listClases; index as i"
+              >
+               Clase {{ clase.ClaseNumero }} - {{clase.Titulo}}
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <form [formGroup]="form" (ngSubmit)="guardarCambios($event)">
+          <div class="row m-1 p-1 fondo">
+
+
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <u>Título:</u>
+                <div class="input-group input-group-sm mb-3 mt-1">
+                  <input
+                    type="text"
+                    [value]="claseNm"
+                    [(ngModel)]="claseNm"
+                    formControlName="claseNombre"
+                    class="form-control"
+                    [readonly]="cursoContenidoService.vista == false"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">
+                  <u> Tema Dado: </u>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  formControlName="claseTema"
+                  [(ngModel)]="tema"
+                  [readonly]="cursoContenidoService.vista == false"
+                ></textarea>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="claseFecha">Fecha</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="dd/mm/aa"
+                    aria-label="Fecha"
+                    formControlName="claseFecha"
+                    [(ngModel)]="fecha"
+                    [readonly]="cursoContenidoService.vista == false"
+
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+<!-- fdsf -->
+        <div class="col-12" *ngIf="cursoContenidoService.asist !== ''">
+          <div class="row mt-4 g-4">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nr</th>
+                          <th scope="col">Nombre y Apellido del Alumno</th>
+                          <th scope="col">Presente</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let alum of cursoContenidoService.asist;
+                            let i = index
+                          "
+                        >
+                          <th scope="row">{{ i + 1 }}</th>
+                          <td>{{ alum.NombreAlumno }} {{alum.ApellidoAlumno}}</td>
+
+                          <td>
+                            <div class="form-check d-flex justify-content-center">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="Asistio"
+                                #idAsis
+                                name="Asistio"
+                                [checked]="alum.Asistio === true"
+                                [disabled]="
+                                  cursoContenidoService.vista === false
+                                "
+                                [(ngModel)]="alum.Asistio"
+                                (click)=cursoContenidoService.actualizarAsistencia(alum.Id_Asistencia)
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- <div class="col-3 d-flex justify-content-around">
-          <span
-            class="badge rounded-pill bg-secondary sm m-1"
-            data-placement="top"
-            title="Nueva clase"
-            data-toggle="tooltip"
-          >
-            <i class="fas fa-plus"> &nbsp; Crear</i></span
-          >
-        </div> -->
+<!-- ssd -->
       </div>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-    <div class="col-lg-9">
-      <div class="mb-3">
-        <u>Título:</u>
-        <div class="input-group input-group-sm mb-3 mt-1">
-          <input
-            type="text"
-            [value]="claseNm"
-            [(ngModel)]="claseNm"
-            formControlName="claseNombre"
-            class="form-control"
-            [readonly]="cursoContenidoService.vista == false"
-          />
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">
-          <u> Tema Dado: </u>
-        </label>
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-          formControlName="claseTema"
-          [(ngModel)]="tema"
-          [readonly]="cursoContenidoService.vista == false"
-        ></textarea>
+              <button type="submit" (click)="guardarCambios()" class="btn btn-success">
+                <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
+              </button>
+
       </div>
     </div>
   </div>
-</form>
+</div>
+
+
 
 <div class="row">
-  <div class="col-6">
-    <div class="row mt-4 g-4">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col" *ngIf="!this.enableEdit">Nr</th>
-                    <th scope="col">Nombre y Apellido del Alumno</th>
 
-                    <th scope="col">Nota 1</th>
-                    <th scope="col">Nota 2</th>
-                    <th scope="col">Nota Final</th>
-                    <th id="editar" *ngIf="this.enableEdit" scope="col">
-                      Acción
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    *ngFor="
-                      let alumno of cursoContenidoService.notas;
-                      index as i
-                    "
-                  >
-                    <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
-                    <td>{{ alumno.AlumnoNombre }} {{alumno.AlumnoApellido}}</td>
-
-                    <!--
-                  <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
-                    <div *ngIf="this.enableEditIndex !== i">{{alumno.nota1}}</div>
-                  </td> -->
-
-                    <td>
-                      <div class="d-flex justify-content-around">
-                        <button
-                          *ngIf="this.enableEdit && this.enableEditIndex === i"
-                          id=""
-                          class="btn page-primary-action-btn"
-                          type="submit"
-                        >
-                          <input
-                            *ngIf="
-                              this.enableEdit && this.enableEditIndex === i
-                            "
-                            type="text"
-                            class="circulo"
-                            [(ngModel)]="Nota1"
-                            [value]="alumno.Nota1"
-                          />
-                        </button>
-
-                        <span
-                          class="table-row-action edit-action"
-                          *ngIf="!this.enableEdit"
-                          (click)="this.enableEditMethod($event, i)"
-                        >
-                          <div>{{ alumno.Nota1 }}</div>
-                        </span>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="d-flex justify-content-around">
-                        <button
-                          *ngIf="this.enableEdit && this.enableEditIndex === i"
-                          id=""
-                          class="btn page-primary-action-btn"
-                          type="submit"
-                        >
-                          <input
-                            *ngIf="
-                              this.enableEdit && this.enableEditIndex === i
-                            "
-                            type="text"
-                            class="circulo"
-                            [(ngModel)]="Nota2"
-                            [value]="alumno.Nota2"
-                          />
-                        </button>
-
-                        <span
-                          class="table-row-action edit-action"
-                          *ngIf="!this.enableEdit"
-                          (click)="this.enableEditMethod($event, i)"
-                        >
-                          <div>{{ alumno.Nota2 }}</div>
-                        </span>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="d-flex justify-content-around">
-                        <button
-                          *ngIf="this.enableEdit && this.enableEditIndex === i"
-                          id=""
-                          class="btn page-primary-action-btn"
-                          type="submit"
-                        >
-                          <input
-                            *ngIf="
-                              this.enableEdit && this.enableEditIndex === i
-                            "
-                            type="text"
-                            class="circulo"
-                            [(ngModel)]="NotaFinal"
-                            [value]="alumno.NotaFinal"
-                          />
-                        </button>
-
-                        <span
-                          class="table-row-action edit-action"
-                          *ngIf="!this.enableEdit"
-                          (click)="this.enableEditMethod($event, i)"
-                        >
-                          <div>{{ alumno.NotaFinal }}</div>
-                        </span>
-                      </div>
-                    </td>
-
-                    <!-- <td>{{ alumno.nota2 }}</td> -->
-                    <!-- <td>{{ alumno.NotaFinal }}</td> -->
-                    <td *ngIf="this.enableEdit">
-                      <div class="d-flex justify-content-around">
-                        <button
-                          *ngIf="enableEdit && enableEditIndex == i"
-                          (click)="this.enableEdit = false"
-                          class="btn page-secondary-action-btn"
-                          ng-click="cancel()"
-                        >
-                          <i class="fa fa-ban" aria-hidden="true"></i>
-                        </button>
-                        <button
-                          *ngIf="this.enableEdit && this.enableEditIndex === i"
-                          id="saveBtn"
-                          class="btn page-primary-action-btn"
-                          (click)="saveSegment()"
-                          type="submit"
-                        >
-                          <i class="fa fa-database" aria-hidden="true"></i>
-                        </button>
-                        <a
-                          class="table-row-action edit-action"
-                          *ngIf="!enableEdit"
-                          (click)="this.enableEditMethod($event, i)"
-                        >
-                          <i class="fa fa-check" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </td>
-
-                    <!-- <td (click)="ejecutarAccion('editar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'editar'" class="cursor" ></td>
-                  <td (click)="ejecutarAccion('guardar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'guardar'"  class="cursor" ></td> -->
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+<!-- Modal2 -->
+<div class="modal fade" id="modalNotas" tabindex="-1" aria-labelledby="modalNotasLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNotasLabel" style="font-size: 35px;">Notas del curso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div>
-  </div>
-  <div class="col-6" *ngIf="cursoContenidoService.asist !== ''">
-    <div class="row mt-4 g-4">
-      <div class="col"> 
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">Nr</th>
-                    <th scope="col">Nombre y Apellido del Alumno</th>
-                    <th scope="col">Presente</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    *ngFor="
-                      let alum of cursoContenidoService.asist;
-                      let i = index
-                    "
-                  >
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ alum.NombreAlumno }} {{alum.ApellidoAlumno}}</td>
+      <div class="modal-body">
+        <div class="col-12">
+          <div class="row g-4">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col" *ngIf="!this.enableEdit">Nr</th>
+                          <th scope="col">Nombre y Apellido del Alumno</th>
 
-                    <td>
-                      <div class="form-check d-flex justify-content-center">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="Asistio"
-                          #idAsis
-                          name="Asistio"
-                          [checked]="alum.Asistio === true"
-                          [disabled]="
-                            cursoContenidoService.vista === false
+                          <th scope="col">Nota 1</th>
+                          <th scope="col">Nota 2</th>
+                          <th scope="col">Nota Final</th>
+                          <th id="editar" *ngIf="this.enableEdit" scope="col">
+                            Acción
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let alumno of cursoContenidoService.notas;
+                            index as i
                           "
-                          [(ngModel)]="alum.Asistio"
-                          (click)=cursoContenidoService.actualizarAsistencia(alum.Id_Asistencia)
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        >
+                          <th scope="row" *ngIf="!this.enableEdit">{{ i + 1 }}</th>
+                          <td>{{ alumno.AlumnoNombre }} {{alumno.AlumnoApellido}}</td>
+
+                          <!--
+                        <td> <input *ngIf="this.enableEdit && this.enableEditIndex === i" type="text" style="width: 30px;" [(ngModel)]="nota1" [value]="alumno.nota1">
+                          <div *ngIf="this.enableEditIndex !== i">{{alumno.nota1}}</div>
+                        </td> -->
+
+                          <td>
+                            <div class="d-flex justify-content-around">
+                              <button
+                                *ngIf="this.enableEdit && this.enableEditIndex === i"
+                                id=""
+                                class="btn page-primary-action-btn"
+                                type="submit"
+                              >
+                                <input
+                                  *ngIf="
+                                    this.enableEdit && this.enableEditIndex === i
+                                  "
+                                  type="text"
+                                  class="circulo"
+                                  [(ngModel)]="Nota1"
+                                  [value]="alumno.Nota1"
+                                />
+                              </button>
+
+                              <span
+                                class="table-row-action edit-action"
+                                *ngIf="!this.enableEdit"
+                                (click)="this.enableEditMethod($event, i)"
+                              >
+                                <div>{{ alumno.Nota1 }}</div>
+                              </span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="d-flex justify-content-around">
+                              <button
+                                *ngIf="this.enableEdit && this.enableEditIndex === i"
+                                id=""
+                                class="btn page-primary-action-btn"
+                                type="submit"
+                              >
+                                <input
+                                  *ngIf="
+                                    this.enableEdit && this.enableEditIndex === i
+                                  "
+                                  type="text"
+                                  class="circulo"
+                                  [(ngModel)]="Nota2"
+                                  [value]="alumno.Nota2"
+                                />
+                              </button>
+
+                              <span
+                                class="table-row-action edit-action"
+                                *ngIf="!this.enableEdit"
+                                (click)="this.enableEditMethod($event, i)"
+                              >
+                                <div>{{ alumno.Nota2 }}</div>
+                              </span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="d-flex justify-content-around">
+                              <button
+                                *ngIf="this.enableEdit && this.enableEditIndex === i"
+                                id=""
+                                class="btn page-primary-action-btn"
+                                type="submit"
+                              >
+                                <input
+                                  *ngIf="
+                                    this.enableEdit && this.enableEditIndex === i
+                                  "
+                                  type="text"
+                                  class="circulo"
+                                  [(ngModel)]="NotaFinal"
+                                  [value]="alumno.NotaFinal"
+                                />
+                              </button>
+
+                              <span
+                                class="table-row-action edit-action"
+                                *ngIf="!this.enableEdit"
+                                (click)="this.enableEditMethod($event, i)"
+                              >
+                                <div>{{ alumno.NotaFinal }}</div>
+                              </span>
+                            </div>
+                          </td>
+
+                          <!-- <td>{{ alumno.nota2 }}</td> -->
+                          <!-- <td>{{ alumno.NotaFinal }}</td> -->
+                          <td *ngIf="this.enableEdit">
+                            <div class="d-flex justify-content-around">
+                              <button
+                                *ngIf="enableEdit && enableEditIndex == i"
+                                (click)="this.enableEdit = false"
+                                class="btn page-secondary-action-btn"
+                                ng-click="cancel()"
+                              >
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                              </button>
+                              <button
+                                *ngIf="this.enableEdit && this.enableEditIndex === i"
+                                id="saveBtn"
+                                class="btn page-primary-action-btn"
+                                (click)="saveSegment()"
+                                type="submit"
+                              >
+                                <i class="fa fa-database" aria-hidden="true"></i>
+                              </button>
+                              <a
+                                class="table-row-action edit-action"
+                                *ngIf="!enableEdit"
+                                (click)="this.enableEditMethod($event, i)"
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                          </td>
+
+                          <!-- <td (click)="ejecutarAccion('editar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'editar'" class="cursor" ></td>
+                        <td (click)="ejecutarAccion('guardar')" [(ngModel)]="this.accion" *ngIf="this.accion === 'guardar'"  class="cursor" ></td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+
+
       </div>
     </div>
   </div>
-
-  <app-reporte></app-reporte>
 </div>
+
+
+
+</div>
+<div class="row">
+
+  <div class="col-12">
+
+      <app-reporte></app-reporte>
+  </div>
+
+
+    </div>
+
+  </div>
+

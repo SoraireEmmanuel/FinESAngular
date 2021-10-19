@@ -3,7 +3,7 @@
 }
 .container-fluid{
   background-color: rgb(255, 255, 255);
-border-radius: 12px;
+
 }
 .manito:hover {
   -webkit-transform:scale(1.25);
@@ -34,4 +34,73 @@ border-radius: 12px;
 }
 .fa-ban{
   color: red;
+}
+
+.detalle-curso{
+  width: 95%;
+  height: 80%;
+
+  background-repeat: no-repeat;
+  text-align: right;
+  padding: 10px;
+
+  background: #bc4e9c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f80759, #bc4e9c);
+background-image: url(/assets/doc2.jpg);
+background-size: cover;
+background-color:rgba(0, 0, 0, 0.9);
+position: relative
+
+
+
+}
+h1{
+  text-align: center;
+  color: white;
+}
+
+
+.detalle-curso:before {
+	content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.4);
+}
+.detalle-curso h1{
+	font-size: 60px;
+	color: #fff;
+	position: relative;
+  text-align: center;
+}
+.detalle-curso .col-6{
+	font-size: 23px;
+	color: #fff;
+	position: relative;
+  text-align: right;
+}
+dd{
+	font-size: 23px;
+	color: #fff;
+	position: relative;
+  text-align: left;
+}
+.boton
+{
+  background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f80759, #bc4e9c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+height: 20px;
+}
+.abrir
+{ background: -webkit-linear-gradient(to right, #5bfa33, #ebe155);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #5bfa33, #ebe155);  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.cerrar
+{ background: -webkit-linear-gradient(to right, #f82a0f, #c55551);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f82a0f, #c55551); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }

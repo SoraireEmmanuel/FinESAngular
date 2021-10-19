@@ -85,12 +85,11 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.subscription.unsubscribe();
     this.cursoContenidoService.asist = '';
   }
-  changeForm(e: any, ige: any, idCurso: any) {
-
+  changeForm(e: any, ige: any, idClase: any) {
 
 
     this.idClase = e.target.options.selectedIndex;
-    this.completarClase(this.cursoContenidoService.listClases[this.idClase], idCurso);
+    this.completarClase(this.cursoContenidoService.listClases[this.idClase], idClase);
   }
   completarClase(clase: Clases, idClase: any) {
 
@@ -179,7 +178,7 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
 
     this.cursoContenidoService.actualizarCursoEstado(this.curso.Id_Curso, est)
   }
-  guardarCambios(e: any) {
+  guardarCambios(e?: any) {
 
     this.clase1 = this.cursoContenidoService.listClases[this.idClase];
     this.clase1.Fecha = this.fecha;
@@ -188,5 +187,8 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
     this.clase1.Contenido = this.tema;
 
     this.cursoContenidoService.actualizarClase(this.clase1)
-  }
+
+ }
+
+
 }
