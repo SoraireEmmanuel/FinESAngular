@@ -1,0 +1,52 @@
+.coordinador{
+  width: 95%;
+  height: 80%;
+
+  background-repeat: no-repeat;
+  text-align: right;
+  padding: 10px;
+
+  background: #bc4e9c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f80759, #bc4e9c);
+background-image: url(/assets/coord.jpg);
+background-size: cover;
+background-color:rgba(0, 0, 0, 0.9);
+position: relative;
+
+
+
+}
+h1{
+  text-align: center;
+  color: white;
+  align-items: center;
+  margin-top: 90px;
+
+}
+
+
+.coordinador:before {
+	content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+}
+.coordinador h1{
+	font-size: 60px;
+	color: #fff;
+	position: relative;
+  text-align: center;
+}
+.coordinador p{
+	font-size: 23px;
+	color: #fff;
+	position: relative;
+  text-align: center;
+}
+.coordinador:hover{
+  cursor: pointer;
+}
