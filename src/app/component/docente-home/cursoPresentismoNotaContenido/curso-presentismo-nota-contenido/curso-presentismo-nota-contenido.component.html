@@ -23,7 +23,7 @@
       </div>
       </div>
   </div>
-<div class="container-fluid detalle-curso  ">
+<div class="container-fluid detalle-curso  " >
 
   <div class="row ">
 
@@ -128,6 +128,7 @@
               id="clase.id"
               name="claseNm"
             >
+            <option selected>Seleccione una clase</option>
               <option
                 [value]="clase.Id_Clase"
                 *ngFor="let clase of cursoContenidoService.listClases; index as i"
@@ -247,7 +248,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-              <button type="submit" (click)="guardarCambios()" class="btn btn-success">
+              <button type="submit" (click)="guardarCambios()" class="btn btn-success" [disabled]="
+              cursoContenidoService.vista === false
+            ">
                 <i style="color: azure" class="fas fa-database"></i>&nbsp; Guardar
               </button>
 

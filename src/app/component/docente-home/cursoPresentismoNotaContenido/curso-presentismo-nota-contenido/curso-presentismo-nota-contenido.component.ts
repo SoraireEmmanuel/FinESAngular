@@ -194,12 +194,13 @@ export class CursoPresentismoNotaContenidoComponent implements OnInit, AfterView
       if (result.isConfirmed) {
         if (this.cursoContenidoService.vista === false) {
           this.cursoContenidoService.vista = true;
-          mensaje2="El curso se cerró correctamente.";
-          mensaje1="Curso cerrado!";
-        } else {
-          this.cursoContenidoService.vista = false;
           mensaje2="El curso se abrió correctamente.";
           mensaje1="Curso abierto!";
+        } else {
+          this.cursoContenidoService.vista = false;
+
+          mensaje2="El curso se cerró correctamente.";
+          mensaje1="Curso cerrado!";
         }
 
         this.cursoContenidoService.actualizarCursoEstado(this.curso.Id_Curso, est);

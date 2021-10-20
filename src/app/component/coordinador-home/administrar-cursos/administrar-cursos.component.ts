@@ -38,12 +38,12 @@ export class AdministrarCursosComponent implements OnInit {
   }
 
   verCursos() {
-    if (this.selectedSede==undefined) {
+    if (this.selectedSede==undefined || this.selectedSede=="--" ) {
 
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Debe selecionar una sede!',
+        text: 'Debe selecionar un Cens y una sede!',
 
       })
     }

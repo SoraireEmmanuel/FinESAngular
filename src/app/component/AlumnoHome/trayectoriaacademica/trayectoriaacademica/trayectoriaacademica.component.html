@@ -9,9 +9,13 @@
           data-bs-target="#primerA"
           aria-expanded="false"
           aria-controls="primerA"
-          
-        >
-          Primer año
+          (click)="mostrarP1()"
+
+        > <span> Primer año</span>
+        &nbsp;
+        &nbsp;
+        <i *ngIf="p1" class="fas fa-thumbtack "></i>
+
         </button>
       </p>
 
@@ -25,8 +29,12 @@
           data-bs-target="#segundoA"
           aria-expanded="false"
           aria-controls="segundoA"
+          (click)="mostrarP2()"
         >
           Segundo año
+          &nbsp;
+          &nbsp;
+          <i *ngIf="p2" class="fas fa-thumbtack "></i>
         </button>
       </p>
 
@@ -40,8 +48,12 @@
           data-bs-target="#tercerA"
           aria-expanded="false"
           aria-controls="tercerA"
+          (click)="mostrarP3()"
         >
           Tercer año
+          &nbsp;
+          &nbsp;
+          <i *ngIf="p3" class="fas fa-thumbtack "></i>
         </button>
       </p>
 

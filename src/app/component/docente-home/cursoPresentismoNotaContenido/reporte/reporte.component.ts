@@ -192,6 +192,7 @@ export class ReporteComponent implements OnInit {
   }
   createtableaux1() {
     this.loading = true;
+   
     this.cargarheather();
     var idClase = this.cursoContenidoService.listClases[1].Id_Clase;
     this.http.get(`${this.newAPI}TodasLasAsistenciasDeUnaClase/${idClase}`).toPromise()

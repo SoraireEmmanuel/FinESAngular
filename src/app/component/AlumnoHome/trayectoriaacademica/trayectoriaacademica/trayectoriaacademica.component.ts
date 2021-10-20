@@ -16,6 +16,9 @@ materias22:any=[];
 materias31:any=[];
 materias32:any=[];
 
+p1:any=false;
+p2:any=false;
+p3:any=false;
   constructor(private _route:Router, private _trayectoria:TrayectoriaAcademicaService) {
     _trayectoria.verTrayectoriaAcademica(localStorage.getItem('idUsuario')).subscribe(
       resp=>{
@@ -54,5 +57,25 @@ materias32:any=[];
 cerrar(c:any, c2:any){
 
 }
+mostrarP1(){
+  if (this.p1==true) {
+this.p1=false
+  }else{
+  this.p1=true}
+}
+mostrarP2(){
+  if (this.p2==true) {
+this.p2=false
+  }else{
+  this.p2=true}
+}
+
+mostrarP3(){
+  if (this.p3==true) {
+this.p3=false
+  }else{
+  this.p3=true}
+}
+
 
 }
